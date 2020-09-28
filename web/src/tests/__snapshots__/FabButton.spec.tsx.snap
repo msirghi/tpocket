@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FabButton component should render fab button 1`] = `
+<WithStyles(ForwardRef(Fab))
+  aria-label="Fab button"
+  className="makeStyles-fab-2"
+  color="primary"
+  data-test="fab-button"
+  onClick={[Function]}
+/>
+`;

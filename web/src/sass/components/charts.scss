@@ -1,0 +1,9 @@
+.expense-chart {
+  width: 40%;
+}
+
+@media only screen and (max-width: 1450px) {
+  .expense-chart {
+    width: 100%;
+  }
+}

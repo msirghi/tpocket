@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageHeader Component should render component properly 1`] = `
+<div
+  className="text-center"
+  data-test="header-wrapper"
+>
+  <WithStyles(ForwardRef(Typography))
+    component="h5"
+    data-test="primary-text"
+    gutterBottom={true}
+    variant="h5"
+  >
+    Primary text
+  </WithStyles(ForwardRef(Typography))>
+  <WithStyles(ForwardRef(Typography))
+    data-test="secondary-text"
+    gutterBottom={true}
+    variant="subtitle1"
+  >
+    Secondary Text
+  </WithStyles(ForwardRef(Typography))>
+</div>
+`;

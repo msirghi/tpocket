@@ -1,0 +1,39 @@
+.light-grey-icon {
+  color: $light-grey-1;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.row {
+  display: flex;
+}
+
+.row-center {
+  justify-content: center;
+}
+
+.row-vert-center {
+  align-items: center;
+}
+
+.pb-15 {
+  padding-bottom: 15px;
+}
+
+.full-width {
+  flex: 1;
+}
+
+.m-15 {
+  margin: 15px;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.mt-5rem {
+  margin-top: 2.5rem;
+}

@@ -1,0 +1,6 @@
+query GetCategoryExpenseStatisticsByUser {
+  getCategoryExpenseStatisticsByUser {
+    totalCategories
+    totalExpenses
+  }
+}

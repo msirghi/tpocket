@@ -1,0 +1,246 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SiteWrapper Component should render properly 1`] = `
+<div
+  className="makeStyles-root-1"
+  data-test="site-wrapper"
+>
+  <WithStyles(CssBaseline) />
+  <WithStyles(ForwardRef(AppBar))
+    className="makeStyles-appBar-2"
+    data-test="site-header"
+    position="fixed"
+    style={
+      Object {
+        "background": "#fff",
+      }
+    }
+  >
+    <WithStyles(ForwardRef(Toolbar))>
+      <WithStyles(ForwardRef(IconButton))
+        aria-label="open drawer"
+        className="makeStyles-menuButton-4"
+        data-test="menu-icon"
+        edge="start"
+        onClick={[Function]}
+      >
+        <MenuIcon />
+      </WithStyles(ForwardRef(IconButton))>
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-title-12"
+        data-test="site-name"
+        noWrap={true}
+        variant="h6"
+      >
+        TPocket
+      </WithStyles(ForwardRef(Typography))>
+      <div
+        className="makeStyles-grow-14"
+      />
+      <div
+        className="makeStyles-sectionDesktop-13"
+      >
+        <WithStyles(ForwardRef(IconButton))
+          aria-label="show 4 new mails"
+        >
+          <WithStyles(ForwardRef(Badge))
+            badgeContent={4}
+            color="primary"
+          >
+            <MailIcon />
+          </WithStyles(ForwardRef(Badge))>
+        </WithStyles(ForwardRef(IconButton))>
+        <WithStyles(ForwardRef(IconButton))
+          aria-label="show 17 new notifications"
+        >
+          <WithStyles(ForwardRef(Badge))
+            badgeContent={17}
+            color="primary"
+          >
+            <NotificationsNoneIcon />
+          </WithStyles(ForwardRef(Badge))>
+        </WithStyles(ForwardRef(IconButton))>
+        <WithStyles(ForwardRef(IconButton))
+          aria-haspopup="true"
+          aria-label="account of current user"
+          edge="end"
+        >
+          <AccountCircleIcon />
+        </WithStyles(ForwardRef(IconButton))>
+      </div>
+    </WithStyles(ForwardRef(Toolbar))>
+  </WithStyles(ForwardRef(AppBar))>
+  <ForwardRef(SwipeableDrawer)
+    anchor="left"
+    className="makeStyles-drawer-7"
+    classes={
+      Object {
+        "paper": "makeStyles-paper-6 makeStyles-drawerClose-9",
+      }
+    }
+    onClose={[Function]}
+    onOpen={[Function]}
+    open={false}
+  >
+    <WithStyles(ForwardRef(List))>
+      <Link
+        key="1"
+        to="/home"
+      >
+        <WithStyles(ForwardRef(ListItem))
+          button={true}
+          key="1"
+        >
+          <WithStyles(ForwardRef(ListItemIcon))
+            key="1"
+          >
+            <HomeIcon
+              className="light-grey-icon"
+            />
+          </WithStyles(ForwardRef(ListItemIcon))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="drawer-text"
+            data-test="menu-Home"
+            key="Home"
+            primary="Home"
+          />
+        </WithStyles(ForwardRef(ListItem))>
+      </Link>
+      <Link
+        key="2"
+        to="/account"
+      >
+        <WithStyles(ForwardRef(ListItem))
+          button={true}
+          key="2"
+        >
+          <WithStyles(ForwardRef(ListItemIcon))
+            key="2"
+          >
+            <AccountCircleIcon
+              className="light-grey-icon "
+            />
+          </WithStyles(ForwardRef(ListItemIcon))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="drawer-text"
+            data-test="menu-Account"
+            key="Account"
+            primary="Account"
+          />
+        </WithStyles(ForwardRef(ListItem))>
+      </Link>
+      <Link
+        key="3"
+        to="/categories"
+      >
+        <WithStyles(ForwardRef(ListItem))
+          button={true}
+          key="3"
+        >
+          <WithStyles(ForwardRef(ListItemIcon))
+            key="3"
+          >
+            <CategoryIcon
+              className="light-grey-icon"
+            />
+          </WithStyles(ForwardRef(ListItemIcon))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="drawer-text"
+            data-test="menu-Categories"
+            key="Categories"
+            primary="Categories"
+          />
+        </WithStyles(ForwardRef(ListItem))>
+      </Link>
+    </WithStyles(ForwardRef(List))>
+    <WithStyles(ForwardRef(Divider)) />
+    <WithStyles(ForwardRef(List))>
+      <Link
+        key="1"
+        to="/help"
+      >
+        <WithStyles(ForwardRef(ListItem))
+          button={true}
+          key="1"
+        >
+          <WithStyles(ForwardRef(ListItemIcon))
+            key="1"
+          >
+            <HelpIcon
+              className="light-grey-icon"
+            />
+          </WithStyles(ForwardRef(ListItemIcon))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="drawer-text"
+            key="Help"
+            primary="Help"
+          />
+        </WithStyles(ForwardRef(ListItem))>
+      </Link>
+      <Link
+        key="2"
+        to="/writeus"
+      >
+        <WithStyles(ForwardRef(ListItem))
+          button={true}
+          key="2"
+        >
+          <WithStyles(ForwardRef(ListItemIcon))
+            key="2"
+          >
+            <EmailIcon
+              className="light-grey-icon"
+            />
+          </WithStyles(ForwardRef(ListItemIcon))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="drawer-text"
+            key="Support"
+            primary="Support"
+          />
+        </WithStyles(ForwardRef(ListItem))>
+      </Link>
+      <Link
+        key="3"
+        to="/logout"
+      >
+        <WithStyles(ForwardRef(ListItem))
+          button={true}
+          key="3"
+        >
+          <WithStyles(ForwardRef(ListItemIcon))
+            key="3"
+          >
+            <ExitToAppIcon
+              className="light-grey-icon "
+            />
+          </WithStyles(ForwardRef(ListItemIcon))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="drawer-text"
+            key="Sign out"
+            primary="Sign out"
+          />
+        </WithStyles(ForwardRef(ListItem))>
+      </Link>
+    </WithStyles(ForwardRef(List))>
+  </ForwardRef(SwipeableDrawer)>
+  <main
+    className="makeStyles-content-11"
+  >
+    <div
+      className="makeStyles-toolbar-10"
+    />
+    <div>
+      <span
+        data-test="text-1"
+      >
+        Lorem ipsum.
+      </span>
+      <span
+        data-test="text-2"
+      >
+        Lorem ipsum dolor sit amet.
+      </span>
+    </div>
+  </main>
+</div>
+`;

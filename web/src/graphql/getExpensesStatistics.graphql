@@ -1,0 +1,6 @@
+query GetExpensesStatistics($year: Float!) {
+  getExpensesStatistics(year: $year) {
+    name
+    expenses
+  }
+}

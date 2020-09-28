@@ -1,0 +1,6 @@
+query CategoryByUser {
+    getCategoryByUser {
+        id
+        name
+    }
+}

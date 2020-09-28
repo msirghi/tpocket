@@ -1,0 +1,11 @@
+export const BAD_EMAIL = 'Bad email.';
+export const EMAIL_ALREADY_EXISTS = 'User with this email is already registered.';
+export const USER_NOT_FOUND = 'Could not find user.';
+export const BAD_PASSWORD = 'Bad password.';
+export const WEAK_PASSWORD = 'Weak password.'
+export const NOT_AUTHENTICATED = 'Not authenticated.';
+export const CATEGORY_ALREADY_EXISTS = 'You already have category with this name.';
+export const NO_CATEGORY = 'No such category.'
+export const NOT_FOUND = 'Not found.';
+export const CATEGORY_NOT_FOUND = 'Category not found.';
+export const AMOUNT_NOT_NUMBER = 'Amount is not a number';

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategoryCard Component should render category card 1`] = `
+<WithStyles(ForwardRef(Card))
+  className="makeStyles-root-1"
+>
+  <WithStyles(ForwardRef(CardActionArea))>
+    <WithStyles(ForwardRef(CardMedia))
+      className="makeStyles-media-2"
+      image="some-link"
+      title="Contemplative Reptile"
+    />
+    <WithStyles(ForwardRef(CardContent))>
+      <WithStyles(ForwardRef(Typography))
+        component="h2"
+        data-test="card-name"
+        gutterBottom={true}
+        variant="h5"
+      >
+        Category card
+      </WithStyles(ForwardRef(Typography))>
+    </WithStyles(ForwardRef(CardContent))>
+  </WithStyles(ForwardRef(CardActionArea))>
+  <WithStyles(ForwardRef(CardActions))>
+    <WithStyles(ForwardRef(Button))
+      color="primary"
+      data-test="card-edit"
+      onClick={[Function]}
+      size="small"
+    >
+      Edit
+    </WithStyles(ForwardRef(Button))>
+    <WithStyles(ForwardRef(Button))
+      color="primary"
+      data-test="card-remove"
+      onClick={[Function]}
+      size="small"
+    >
+      Remove
+    </WithStyles(ForwardRef(Button))>
+  </WithStyles(ForwardRef(CardActions))>
+</WithStyles(ForwardRef(Card))>
+`;

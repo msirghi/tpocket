@@ -1,0 +1,9 @@
+query GetExpensePercentageByCategory {
+  getExpensePercentageByCategory {
+    category {
+      id
+      name
+    }
+    percentage
+  }
+}

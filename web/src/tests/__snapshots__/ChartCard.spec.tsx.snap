@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChartCard Component should render chart card properly 1`] = `
+<WithStyles(ForwardRef(Card))
+  className="makeStyles-root-1"
+>
+  <WithStyles(ForwardRef(CardContent))>
+    <WithStyles(ForwardRef(Typography))
+      align="center"
+      className="card-title"
+      component="h2"
+      variant="h5"
+    >
+      title
+    </WithStyles(ForwardRef(Typography))>
+    <div>
+      Children
+    </div>
+     
+  </WithStyles(ForwardRef(CardContent))>
+</WithStyles(ForwardRef(Card))>
+`;

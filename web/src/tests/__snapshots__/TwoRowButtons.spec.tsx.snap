@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TwoRowButton Component should render properly 1`] = `
+<Row
+  className="row-center pb-15"
+>
+  <WithStyles(ForwardRef(Button))
+    color="primary"
+    data-test="left-button"
+    onClick={[Function]}
+    startIcon={
+      <UNDEFINED
+        data-test="left-icon"
+      />
+    }
+    style={
+      Object {
+        "width": 150,
+      }
+    }
+  >
+    Left label
+  </WithStyles(ForwardRef(Button))>
+  <WithStyles(ForwardRef(Button))
+    color="primary"
+    data-test="right-button"
+    onClick={[Function]}
+    startIcon={
+      <UNDEFINED
+        data-test="right-icon"
+      />
+    }
+    style={
+      Object {
+        "width": 150,
+      }
+    }
+  >
+    Right label
+  </WithStyles(ForwardRef(Button))>
+</Row>
+`;
