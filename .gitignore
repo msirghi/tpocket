@@ -1,5 +1,7 @@
 /server/.env
 /server/yarn.lock
+/server/ormconfig.json
+
 */node_modules/*
 
 /web/.env
