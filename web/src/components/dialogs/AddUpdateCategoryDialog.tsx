@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { Category } from "../../generated/graphql";
+import { Category } from '../../generated/graphql';
 
 interface IProps {
   open: boolean;
@@ -18,15 +18,14 @@ interface IProps {
   selectedCategory: Category | null;
 }
 
-export const AddUpdateCategoryDialog: React.FC<IProps> = (
-  {
-    open,
-    toggleDialog,
-    onSubmit,
-    isLoading,
-    selectedCategory,
-    deselectCategory
-  }) => {
+export const AddUpdateCategoryDialog: React.FC<IProps> = ({
+  open,
+  toggleDialog,
+  onSubmit,
+  isLoading,
+  selectedCategory,
+  deselectCategory,
+}) => {
   const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
 
@@ -45,62 +44,68 @@ export const AddUpdateCategoryDialog: React.FC<IProps> = (
 
   return (
     <div>
-      <Dialog open={ open } onClose={ () => {
-        deselectCategory();
-        toggleDialog(false);
-      } } aria-labelledby="form-dialog-title">
-        { isLoading && <LinearProgress/> }
-        <DialogTitle id="form-dialog-title">
-          { selectedCategory ? 'Edit category' : 'Add new category' }
+      <Dialog
+        open={open}
+        onClose={() => {
+          deselectCategory();
+          toggleDialog(false);
+        }}
+        aria-labelledby='form-dialog-title'
+      >
+        {isLoading && <LinearProgress />}
+        <DialogTitle id='form-dialog-title'>
+          {selectedCategory ? 'Edit category' : 'Add new category'}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            { selectedCategory ? 'Update your category.' : 'Enter some information about new category.' }
+            {selectedCategory
+              ? 'Update your category.'
+              : 'Enter some information about new category.'}
           </DialogContentText>
           <TextField
-            value={ name }
-            onChange={ e => setName(e.target.value) }
-            margin="dense"
-            id="name"
-            label="Name"
-            type="email"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            margin='dense'
+            id='name'
+            label='Name'
+            type='email'
             fullWidth
           />
           <TextField
-            value={ description }
-            onChange={ e => setDescription(e.target.value) }
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             multiline
-            rowsMax={ 4 }
-            margin="dense"
-            label="Description"
+            rowsMax={4}
+            margin='dense'
+            label='Description'
             fullWidth
           />
         </DialogContent>
         <DialogActions>
           <Button
-            onClick={ () => {
+            onClick={() => {
               deselectCategory();
-              toggleDialog(false)
-            } }
-            color="secondary"
+              toggleDialog(false);
+            }}
+            color='secondary'
           >
             Cancel
           </Button>
           <Button
-            disabled={ name.length === 0 || isLoading }
-            onClick={ () => {
+            disabled={name.length === 0 || isLoading}
+            onClick={() => {
               if (selectedCategory) {
                 deselectCategory();
                 return;
               }
               onSubmit({ name: name.trim(), description: description.trim() });
-            } }
-            color="primary"
+            }}
+            color='primary'
           >
-            Create
+            {selectedCategory ? 'Update' : 'Create'}
           </Button>
         </DialogActions>
       </Dialog>
     </div>
   );
-}
+};

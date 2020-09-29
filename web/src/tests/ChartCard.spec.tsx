@@ -1,5 +1,5 @@
 import { shallow, ShallowWrapper } from 'enzyme';
-import { ChartCard } from '../components/card/ChartCard';
+import { ChartCard } from '../components/cards/ChartCard';
 import React from 'react';
 import toJson from 'enzyme-to-json';
 

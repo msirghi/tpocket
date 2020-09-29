@@ -16,11 +16,11 @@ import {
 } from '../constants';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
-import { TwoRowButtons } from '../components/button/TwoRowButtons';
+import { TwoRowButtons } from '../components/buttons/TwoRowButtons';
 import { CategorySearch } from '../components/category/CategorySearch';
-import { AddUpdateCategoryDialog } from '../components/dialog/AddUpdateCategoryDialog';
+import { AddUpdateCategoryDialog } from '../components/dialogs/AddUpdateCategoryDialog';
 import { useSnackbar } from 'notistack';
-import { ConfirmationDialog } from '../components/dialog/ConfirmationDialog';
+import { ConfirmationDialog } from '../components/dialogs/ConfirmationDialog';
 
 type ICategory =
   | Array<{ __typename?: 'Category' } & Pick<Category, 'id' | 'name'>>

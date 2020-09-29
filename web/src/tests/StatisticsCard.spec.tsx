@@ -1,7 +1,7 @@
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
-import { StatisticCard } from '../components/card/StatisticCard';
+import { StatisticCard } from '../components/cards/StatisticCard';
 
 describe('StatisticsCard component', () => {
   let component: ShallowWrapper;

@@ -1,16 +1,25 @@
 import React from 'react';
-import { useGetCategoryExpenseStatisticsByUserQuery } from '../../generated/graphql';
-import { StatisticCard } from '../card/StatisticCard';
+import {
+  Category,
+  useGetCategoryExpenseStatisticsByUserQuery,
+  PercentageByCategoryPayload,
+} from '../../generated/graphql';
+import { StatisticCard } from '../cards/StatisticCard';
+import { startCase } from 'lodash';
+import { MonthlyStatistics } from '../../pages/Home';
 
-interface IProps {}
+interface IProps {
+  data: any;
+  mostUsedCategory?: PercentageByCategoryPayload;
+  monthlyStatistics?: MonthlyStatistics;
+}
 
-export const HomeCardSection: React.FC<IProps> = () => {
-  const { data, loading } = useGetCategoryExpenseStatisticsByUserQuery();
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
+export const HomeCardSection: React.FC<IProps> = ({
+  data,
+  mostUsedCategory,
+  monthlyStatistics,
+}) => {
+  console.log('monthlyStatistics :>> ', monthlyStatistics);
   return (
     <div>
       <div className={'home-cards'}>
@@ -21,9 +30,9 @@ export const HomeCardSection: React.FC<IProps> = () => {
           currency={'MDL'}
         />
         <StatisticCard
-          title={'Total categories'}
-          value={12}
-          description={'Your categories'}
+          title={'Most used category'}
+          value={mostUsedCategory ? startCase(mostUsedCategory.category.name) : 'Fetching...'}
+          description={'Where you spend the most'}
         />
       </div>
 
@@ -34,9 +43,9 @@ export const HomeCardSection: React.FC<IProps> = () => {
           description={'Your categories'}
         />
         <StatisticCard
-          title={'Total expenses'}
-          value={500}
-          description={'Sum of your expenses'}
+          title={'Spent this month'}
+          value={monthlyStatistics ? monthlyStatistics.thisMonthExpenses!.expenses : 0}
+          description={'Sum of your expenses by this month'}
           currency={'MDL'}
         />
       </div>
