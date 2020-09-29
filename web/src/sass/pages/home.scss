@@ -13,8 +13,8 @@
 }
 
 .expense-table {
-  width: 86%;
   margin: 0 auto;
+  // padding: 1.5rem;
 }
 
 @media only screen and (max-width: 1450px) {
@@ -26,6 +26,10 @@
 @media only screen and (max-width: 850px) {
   .home-cards {
     flex-direction: column;
+  }
+
+  .content-wrapper {
+    margin: 0.5rem;
   }
 
   .expense-table {

@@ -1,14 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
-import { ChartCard } from '../card/ChartCard';
+import { ChartCard } from '../cards/ChartCard';
 import { useWindowSize } from '../../utils/useWindowSize';
-import { useGetExpensesStatisticsQuery } from '../../generated/graphql';
+import { useGetExpensesStatisticsQuery, MonthExpensesPayload } from '../../generated/graphql';
+import { MonthlyStatistics } from '../../pages/Home';
 
-export const CustomBarChart = () => {
+type Props = {
+  monthlyStatisticsHandler: (statistics: MonthlyStatistics) => void;
+};
+
+export const CustomBarChart: React.FC<Props> = ({ monthlyStatisticsHandler }) => {
   const [width] = useWindowSize();
   const { data, loading, error } = useGetExpensesStatisticsQuery({
     variables: { year: new Date().getFullYear() },
   });
+
+  useEffect(() => {
+    if (data) {
+      console.log('data :>> ', data.getExpensesStatistics);
+      const sortedByExpenses = data.getExpensesStatistics.sort((a, b) => a.expenses - b.expenses);
+      let statistics: MonthlyStatistics = {
+        monthWithMaxExpenses: sortedByExpenses.slice(-1).pop(),
+        monthWithMinExpenses: sortedByExpenses.filter(
+          (stats) => +stats.name !== new Date().getMonth() + 1
+        )[0],
+        thisMonthExpenses: sortedByExpenses.find(
+          (stats) => +stats.name === new Date().getMonth() + 1
+        ),
+      };
+      monthlyStatisticsHandler(statistics);
+    }
+  }, [data]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -31,7 +53,7 @@ export const CustomBarChart = () => {
         <BarChart
           width={width > 600 ? 600 : 300}
           height={300}
-          data={chartData}
+          data={chartData.reverse()}
           margin={{
             top: 20,
             right: 30,

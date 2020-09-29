@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
-import { TwoRowButtons } from '../components/button/TwoRowButtons';
+import { TwoRowButtons } from '../components/buttons/TwoRowButtons';
 import { findByTestAttr } from './utils/findByTestAttr';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
 import toJson from 'enzyme-to-json';

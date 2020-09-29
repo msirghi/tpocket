@@ -1,7 +1,7 @@
 // @ts-nocheck
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Cell, Legend, Pie, PieChart } from 'recharts';
-import { ChartCard } from '../card/ChartCard';
+import { ChartCard } from '../cards/ChartCard';
 import { useWindowSize } from '../../utils/useWindowSize';
 import { useGetExpensePercentageByCategoryQuery } from '../../generated/graphql';
 import { startCase } from 'lodash';
@@ -36,9 +36,25 @@ const renderCustomizedLabel = ({
   );
 };
 
-export const CustomPieChart = () => {
+interface Props {
+  mostUsedCategoryHandler: (category: Category) => void;
+}
+
+export const CustomPieChart: React.FC<Props> = ({
+  mostUsedCategoryHandler,
+}) => {
   const [width] = useWindowSize();
   const { data, loading, error } = useGetExpensePercentageByCategoryQuery();
+
+  useEffect(() => {
+    // mostUsedCategoryHandler()
+    if (data) {
+      const mostUsedCategory = data.getExpensePercentageByCategory
+        .sort((a, b) => a.percentage - b.percentage)
+        .filter((expenses) => expenses.category.name !== 'Others');
+      mostUsedCategoryHandler(mostUsedCategory.slice(-1).pop());
+    }
+  }, [data]);
 
   if (loading) {
     return <div>Loading...</div>;

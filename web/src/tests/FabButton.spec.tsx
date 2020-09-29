@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow, ShallowWrapper} from 'enzyme';
-import { FabButton } from "../components/button/FabButton";
+import { FabButton } from "../components/buttons/FabButton";
 import { findByTestAttr } from "./utils/findByTestAttr";
 import toJson from 'enzyme-to-json';
 

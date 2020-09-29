@@ -66,19 +66,22 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
       );
       return;
     }
+    try {
+      const response = await login({
+        variables: {
+          email,
+          password,
+        },
+      });
+      console.log(response);
+      if (response && response.data) {
+        setAccessToken(response.data.login.accessToken);
+      }
 
-    const response = await login({
-      variables: {
-        email,
-        password,
-      },
-    });
-    console.log(response);
-    if (response && response.data) {
-      setAccessToken(response.data.login.accessToken);
+      history.push('/home');
+    } catch (e) {
+      setError('Invalid credentials.')
     }
-
-    history.push('/home');
   };
 
   return (

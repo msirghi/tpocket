@@ -13,7 +13,7 @@ import { MyContext } from '../MyContext';
 import { Category } from '../entity/Category';
 import { In } from 'typeorm';
 import { Expense } from '../entity/Expense';
-import _ from 'lodash';
+import { groupBy } from 'lodash';
 
 @ObjectType()
 class StatisticsPayload {
@@ -61,9 +61,7 @@ export class StatisticsResolver {
     });
     let totalExpenses = 0;
 
-    const totalExpensesEntities = await this.getTotalExpenseEntities(
-      totalCategories
-    );
+    const totalExpensesEntities = await this.getTotalExpenseEntities(totalCategories);
 
     if (totalExpensesEntities) {
       totalExpenses = totalExpensesEntities
@@ -87,16 +85,11 @@ export class StatisticsResolver {
       where: { user: payload?.userId },
     });
 
-    const totalExpensesEntities = await this.getTotalExpenseEntities(
-      totalCategories
-    );
+    const totalExpensesEntities = await this.getTotalExpenseEntities(totalCategories);
     const sortedByYear = await totalExpensesEntities.filter(
       (expense) => expense.createdAt.getFullYear() === year
     );
-    const expensesByDate = _.groupBy(
-      sortedByYear,
-      (element) => element.createdAt.getMonth() + 1
-    );
+    const expensesByDate = groupBy(sortedByYear, (element) => element.createdAt.getMonth() + 1);
     const result: Array<MonthExpensesPayload> = [];
 
     for (let month of Object.keys(expensesByDate)) {
@@ -114,40 +107,25 @@ export class StatisticsResolver {
     });
     let totalExpensesEntities;
     try {
-      totalExpensesEntities = await this.getTotalExpenseEntities(
-        totalCategories
-      );
+      totalExpensesEntities = await this.getTotalExpenseEntities(totalCategories);
     } catch (e) {
       throw Error('No data found.');
     }
 
     const tempResult: Array<PercentageByCategoryPayload> = [];
-    const totalExpenses = totalExpensesEntities.reduce(
-      (a, b) => a + b.amount,
-      0
-    );
-    const groupedByCategory = _.groupBy(
-      totalExpensesEntities,
-      (element) => element.category.name
-    );
+    const totalExpenses = totalExpensesEntities.reduce((a, b) => a + b.amount, 0);
+    const groupedByCategory = groupBy(totalExpensesEntities, (element) => element.category.name);
 
     for (let category of Object.keys(groupedByCategory)) {
-      const sumOfCategoryExpense = groupedByCategory[category].reduce(
-        (a, b) => a + b.amount,
-        0
-      );
+      const sumOfCategoryExpense = groupedByCategory[category].reduce((a, b) => a + b.amount, 0);
       const percentage = (sumOfCategoryExpense / totalExpenses) * 100;
 
       tempResult.push({
-        category: totalExpensesEntities.find(
-          (value) => value.category.name === category
-        )!.category,
+        category: totalExpensesEntities.find((value) => value.category.name === category)!.category,
         percentage,
       });
     }
-    const sortedByExpenses = tempResult.sort(
-      (a, b) => a.percentage - b.percentage
-    );
+    const sortedByExpenses = tempResult.sort((a, b) => a.percentage - b.percentage);
     return this.filterByPercentage(sortedByExpenses);
   }
 
@@ -156,7 +134,7 @@ export class StatisticsResolver {
     let totalPercentage = 0;
     let totalCategories = 0;
 
-    for (let val of arr) {
+    for (let val of arr.reverse()) {
       if (totalCategories > 4 || totalPercentage > 60) {
         result.push(getOtherCategory(totalCategories));
         break;
