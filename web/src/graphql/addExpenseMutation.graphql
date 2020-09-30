@@ -1,0 +1,12 @@
+mutation AddExpense($categoryId: Float!, $amount: Float!) {
+  addExpense(categoryId: $categoryId, amount: $amount) {
+    category {
+      id
+      name
+    }
+    expense {
+      id
+      amount
+    }
+  }
+}

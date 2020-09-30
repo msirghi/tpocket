@@ -24,13 +24,7 @@ const renderCustomizedLabel = ({
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
   return (
-    <text
-      x={x}
-      y={y}
-      fill='white'
-      textAnchor={x > cx ? 'start' : 'end'}
-      dominantBaseline='central'
-    >
+    <text x={x} y={y} fill='white' textAnchor={x > cx ? 'start' : 'end'} dominantBaseline='central'>
       {`${(percent * 100).toFixed(0)}%`}
     </text>
   );
@@ -40,20 +34,18 @@ interface Props {
   mostUsedCategoryHandler: (category: Category) => void;
 }
 
-export const CustomPieChart: React.FC<Props> = ({
-  mostUsedCategoryHandler,
-}) => {
+export const CustomPieChart: React.FC<Props> = ({ mostUsedCategoryHandler }) => {
   const [width] = useWindowSize();
   const { data, loading, error } = useGetExpensePercentageByCategoryQuery();
 
   useEffect(() => {
-    // mostUsedCategoryHandler()
     if (data) {
       const mostUsedCategory = data.getExpensePercentageByCategory
         .sort((a, b) => a.percentage - b.percentage)
         .filter((expenses) => expenses.category.name !== 'Others');
       mostUsedCategoryHandler(mostUsedCategory.slice(-1).pop());
     }
+    // eslint-disable-next-line
   }, [data]);
 
   if (loading) {
@@ -86,12 +78,7 @@ export const CustomPieChart: React.FC<Props> = ({
             dataKey='value'
           >
             {chartData.map((entry, index) => {
-              return (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              );
+              return <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />;
             })}
           </Pie>
           <Legend />

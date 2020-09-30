@@ -164,6 +164,26 @@ export type LoginResponse = {
   accessToken: Scalars['String'];
 };
 
+export type AddExpenseMutationVariables = Exact<{
+  categoryId: Scalars['Float'];
+  amount: Scalars['Float'];
+}>;
+
+
+export type AddExpenseMutation = (
+  { __typename?: 'Mutation' }
+  & { addExpense: (
+    { __typename?: 'ExpenseResponse' }
+    & { category: (
+      { __typename?: 'Category' }
+      & Pick<Category, 'id' | 'name'>
+    ), expense: (
+      { __typename?: 'Expense' }
+      & Pick<Expense, 'id' | 'amount'>
+    ) }
+  ) }
+);
+
 export type CreateCategoryMutationVariables = Exact<{
   name: Scalars['String'];
 }>;
@@ -274,6 +294,46 @@ export type UsersQuery = (
 );
 
 
+export const AddExpenseDocument = gql`
+    mutation AddExpense($categoryId: Float!, $amount: Float!) {
+  addExpense(categoryId: $categoryId, amount: $amount) {
+    category {
+      id
+      name
+    }
+    expense {
+      id
+      amount
+    }
+  }
+}
+    `;
+export type AddExpenseMutationFn = ApolloReactCommon.MutationFunction<AddExpenseMutation, AddExpenseMutationVariables>;
+
+/**
+ * __useAddExpenseMutation__
+ *
+ * To run a mutation, you first call `useAddExpenseMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddExpenseMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addExpenseMutation, { data, loading, error }] = useAddExpenseMutation({
+ *   variables: {
+ *      categoryId: // value for 'categoryId'
+ *      amount: // value for 'amount'
+ *   },
+ * });
+ */
+export function useAddExpenseMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<AddExpenseMutation, AddExpenseMutationVariables>) {
+        return ApolloReactHooks.useMutation<AddExpenseMutation, AddExpenseMutationVariables>(AddExpenseDocument, baseOptions);
+      }
+export type AddExpenseMutationHookResult = ReturnType<typeof useAddExpenseMutation>;
+export type AddExpenseMutationResult = ApolloReactCommon.MutationResult<AddExpenseMutation>;
+export type AddExpenseMutationOptions = ApolloReactCommon.BaseMutationOptions<AddExpenseMutation, AddExpenseMutationVariables>;
 export const CreateCategoryDocument = gql`
     mutation CreateCategory($name: String!) {
   createCategory(name: $name) {

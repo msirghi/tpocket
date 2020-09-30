@@ -1,52 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CategorySearch Component Renders component without errors 1`] = `
-<Fragment>
-  <WithStyles(ForwardRef(Grid))
-    alignItems="flex-end"
-    className="pb-15"
-    container={true}
-    justify="center"
-    spacing={1}
-  >
-    <WithStyles(ForwardRef(Grid))
-      item={true}
-    >
-      <WithStyles(ForwardRef(TextField))
-        data-test="category-name-field"
-        label="Category name"
-        onChange={[Function]}
-        style={
-          Object {
-            "width": 300,
-          }
-        }
-      />
-    </WithStyles(ForwardRef(Grid))>
-    <WithStyles(ForwardRef(Grid))
-      item={true}
-    >
-      <CloseIcon
-        data-test="close-icon"
-        onClick={[Function]}
-      />
-    </WithStyles(ForwardRef(Grid))>
-  </WithStyles(ForwardRef(Grid))>
-  <div
-    className="text-center"
-  >
-    <WithStyles(ForwardRef(Typography))
-      data-test="result-counter"
-      gutterBottom={true}
-      variant="subtitle1"
-    >
-      23
-       results found.
-    </WithStyles(ForwardRef(Typography))>
-  </div>
-</Fragment>
-`;
-
 exports[`CategorySearch Component should render component without errors 1`] = `
 <Fragment>
   <WithStyles(ForwardRef(Grid))

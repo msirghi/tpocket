@@ -13,4 +13,4 @@ const monthNames: Array<string> = [
   'December',
 ];
 
-export const getMonthName = (monthNumber: number) => monthNames[monthNumber + 1];
+export const getMonthName = (monthNumber: number) => monthNames[monthNumber];

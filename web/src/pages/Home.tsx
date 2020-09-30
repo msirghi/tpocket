@@ -3,6 +3,8 @@ import {
   PercentageByCategoryPayload,
   useGetCategoryExpenseStatisticsByUserQuery,
   MonthExpensesPayload,
+  useCategoryByUserQuery,
+  AddExpenseMutationResult,
 } from '../generated/graphql';
 import { HomeCardSection } from '../components/home/HomeCardSection';
 import { CustomPieChart } from '../components/charts/CustomPieChart';
@@ -14,6 +16,9 @@ import { CustomBarChart } from '../components/charts/CustomBarChart';
 import { ExpenseTable } from '../components/tables/ExpenseTable';
 import { StatisticCard } from '../components/cards/StatisticCard';
 import { NoHomeData } from '../components/alerts/NoHomeData';
+import { useHistory } from 'react-router-dom';
+import { AddExpenseDialog } from '../components/dialogs/AddExpenseDialog';
+import { useSnackbar } from 'notistack';
 import { getMonthName } from '../utils/extensions';
 
 export type MonthlyStatistics = {
@@ -23,20 +28,33 @@ export type MonthlyStatistics = {
 };
 
 export const Home: React.FC = () => {
-  const { data, loading } = useGetCategoryExpenseStatisticsByUserQuery();
+  const { enqueueSnackbar } = useSnackbar();
+  const categoryQuery = useCategoryByUserQuery();
+  const { data, loading, refetch } = useGetCategoryExpenseStatisticsByUserQuery();
+  const [expenseDialogOpen, setExpenseDialogOpen] = useState<boolean>(false);
   const [mostUsedCategory, setMostUsedCategory] = useState<PercentageByCategoryPayload | null>(
     null
   );
   const [monthlyStatistics, setMonthlyStatistics] = useState<MonthlyStatistics>();
+  const history = useHistory();
 
   const mostUsedCategoryHandler = (category: PercentageByCategoryPayload) => {
-    console.log('category :>> ', category);
     setMostUsedCategory(category);
   };
 
   const monthlyStatisticsHandler = (statistics: MonthlyStatistics) => {
     setMonthlyStatistics(statistics);
-    console.log('statistics :>> ', statistics);
+  };
+
+  const expenseAddHandler = (response: AddExpenseMutationResult) => {
+    enqueueSnackbar('Expense added.');
+    setExpenseDialogOpen(false);
+    const stats = monthlyStatistics;
+    if (stats) {
+      refetch();
+      stats.thisMonthExpenses!.expenses += response.data!.addExpense.expense.amount;
+      setMonthlyStatistics(stats);
+    }
   };
 
   if (loading) {
@@ -51,13 +69,13 @@ export const Home: React.FC = () => {
         rightIcon={<CategoryIcon />}
         leftLabel={'Add expense'}
         rightLabel={'Add category'}
-        leftClickHandler={() => {}}
-        rightClickHandler={() => {}}
+        leftClickHandler={() => setExpenseDialogOpen(true)}
+        rightClickHandler={() => history.push('/categories')}
       />
     );
   };
 
-  if (!data) {
+  if (!data || !categoryQuery.data) {
     return (
       <>
         <NoHomeData />
@@ -68,6 +86,15 @@ export const Home: React.FC = () => {
 
   return (
     <>
+      {expenseDialogOpen && (
+        <AddExpenseDialog
+          open={expenseDialogOpen}
+          toggleDialog={() => setExpenseDialogOpen(false)}
+          onSuccess={expenseAddHandler}
+          categories={categoryQuery.data.getCategoryByUser}
+        />
+      )}
+
       <PageHeader primaryText={'Home'} secondaryText={'Find out statistics about your expenses.'} />
       {getRowButtons()}
       <div className={'content-wrapper'}>

@@ -16,12 +16,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
-import Badge from "@material-ui/core/Badge";
-import NotificationsIcon from "@material-ui/icons/NotificationsNone";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import { mainMenuItems, secondaryMenuItems } from "../../utils/mainMenuItems";
-import { Link } from "react-router-dom";
-import { useWindowSize } from "../../utils/useWindowSize";
+import Badge from '@material-ui/core/Badge';
+import NotificationsIcon from '@material-ui/icons/NotificationsNone';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import { mainMenuItems, secondaryMenuItems } from '../../utils/mainMenuItems';
+import { Link } from 'react-router-dom';
+import { useWindowSize } from '../../utils/useWindowSize';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 
 const drawerWidth = 240;
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     appBarShift: {
       marginLeft: drawerWidth,
-      width: `calc(100% - ${ drawerWidth }px)`,
+      width: `calc(100% - ${drawerWidth}px)`,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'none',
     },
     paper: {
-      backgroundColor: '#233c46'
+      backgroundColor: '#233c46',
     },
     drawer: {
       width: drawerWidth,
@@ -91,10 +91,10 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(3),
       paddingLeft: window.innerWidth < 700 ? theme.spacing(0) : theme.spacing(3),
       paddingRight: window.innerWidth < 700 ? theme.spacing(0) : theme.spacing(3),
-      overflowX: 'hidden'
+      overflowX: 'hidden',
     },
     title: {
-      color: '#000'
+      color: '#000',
     },
     sectionDesktop: {
       display: 'none',
@@ -105,42 +105,41 @@ const useStyles = makeStyles((theme: Theme) =>
     grow: {
       flexGrow: 1,
     },
-  }),
+  })
 );
 
 const renderMenu = () => {
-  return <>
-    <List>
-      { mainMenuItems.map(item => (
-        <Link key={ item.id } to={ item.link }>
-          <ListItem button key={ item.id }>
-            <ListItemIcon key={ item.id }>
-              { item.icon }
-            </ListItemIcon>
-            <ListItemText
-              data-test={ `menu-${ item.name }` }
-              key={ item.name } primary={ item.name }
-              className={ 'drawer-text' }
-            />
-          </ListItem>
-        </Link>
-      )) }
-    </List>
-    <Divider/>
-    <List>
-      { secondaryMenuItems.map(item => (
-        <Link key={ item.id } to={ item.link }>
-          <ListItem button key={ item.id }>
-            <ListItemIcon key={ item.id }>
-              { item.icon }
-            </ListItemIcon>
-            <ListItemText key={ item.name } primary={ item.name } className={ 'drawer-text' }/>
-          </ListItem>
-        </Link>
-      )) }
-    </List>
-  </>
-}
+  return (
+    <>
+      <List>
+        {mainMenuItems.map((item) => (
+          <Link key={item.id} to={item.link}>
+            <ListItem button key={item.id}>
+              <ListItemIcon key={item.id}>{item.icon}</ListItemIcon>
+              <ListItemText
+                data-test={`menu-${item.name}`}
+                key={item.name}
+                primary={item.name}
+                className={'drawer-text'}
+              />
+            </ListItem>
+          </Link>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {secondaryMenuItems.map((item) => (
+          <Link key={item.id} to={item.link}>
+            <ListItem button key={item.id}>
+              <ListItemIcon key={item.id}>{item.icon}</ListItemIcon>
+              <ListItemText key={item.name} primary={item.name} className={'drawer-text'} />
+            </ListItem>
+          </Link>
+        ))}
+      </List>
+    </>
+  );
+};
 
 export const SiteWrapper: React.FC = ({ children }) => {
   const classes = useStyles();
@@ -151,7 +150,7 @@ export const SiteWrapper: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (width < 900 && open) {
-      console.log('entered')
+      console.log('entered');
       setOpen(false);
     }
   }, [width, height, open]);
@@ -177,97 +176,98 @@ export const SiteWrapper: React.FC = ({ children }) => {
     localStorage.setItem('drawerStatus', open ? 'expanded' : 'hidden');
   }, [open]);
 
-  const appBarStyle = width > 900 ? {
-    [classes.appBarShift]: open,
-  } : {};
+  const appBarStyle =
+    width > 900
+      ? {
+          [classes.appBarShift]: open,
+        }
+      : {};
 
   return (
-    <div className={ classes.root } data-test={ 'site-wrapper' }>
-      <CssBaseline/>
+    <div className={classes.root} data-test={'site-wrapper'}>
+      <CssBaseline />
       <AppBar
-        data-test={ 'site-header' }
-        style={ { background: '#fff' } }
-        position="fixed"
-        className={ clsx(classes.appBar, appBarStyle) }
+        data-test={'site-header'}
+        style={{ background: '#fff' }}
+        position='fixed'
+        className={clsx(classes.appBar, appBarStyle)}
       >
         <Toolbar>
           <IconButton
-            data-test={ 'menu-icon' }
-            aria-label="open drawer"
-            onClick={ () => width > 900 ? handleDrawerOpen() : setMobileDrawerOpen(true) }
-            edge="start"
-            className={ clsx(classes.menuButton, {
+            data-test={'menu-icon'}
+            aria-label='open drawer'
+            onClick={() => (width > 900 ? handleDrawerOpen() : setMobileDrawerOpen(true))}
+            edge='start'
+            className={clsx(classes.menuButton, {
               [classes.hide]: open,
-            }) }
+            })}
           >
-            <MenuIcon/>
+            <MenuIcon />
           </IconButton>
-          <Typography data-test={ 'site-name' } variant="h6" noWrap className={ classes.title }>
+          <Typography data-test={'site-name'} variant='h6' noWrap className={classes.title}>
             TPocket
           </Typography>
-          <div className={ classes.grow }/>
-          <div className={ classes.sectionDesktop }>
-            <IconButton aria-label="show 4 new mails">
-              <Badge badgeContent={ 4 } color="primary">
-                <MailIcon/>
+          <div className={classes.grow} />
+          <div className={classes.sectionDesktop}>
+            <IconButton aria-label='show 4 new mails'>
+              <Badge badgeContent={4} color='primary'>
+                <MailIcon />
               </Badge>
             </IconButton>
-            <IconButton aria-label="show 17 new notifications">
-              <Badge badgeContent={ 17 } color="primary">
-                <NotificationsIcon/>
+            <IconButton aria-label='show 17 new notifications'>
+              <Badge badgeContent={17} color='primary'>
+                <NotificationsIcon />
               </Badge>
             </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-haspopup="true"
-            >
-              <AccountCircle/>
+            <IconButton edge='end' aria-label='account of current user' aria-haspopup='true'>
+              <AccountCircle />
             </IconButton>
           </div>
         </Toolbar>
       </AppBar>
-      { width > 900 ? <Drawer
-          variant="permanent"
-          className={ clsx(classes.drawer, {
+      {width > 900 ? (
+        <Drawer
+          variant='permanent'
+          className={clsx(classes.drawer, {
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
-          }) }
-          classes={ {
+          })}
+          classes={{
             paper: clsx(classes.paper, {
               [classes.drawerOpen]: open,
               [classes.drawerClose]: !open,
             }),
-          } }
+          }}
         >
-          <div className={ classes.toolbar }>
-            <IconButton onClick={ handleDrawerClose }>
-              { theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/> }
+          <div className={classes.toolbar}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
           </div>
-          <Divider/>
-          { renderMenu() }
+          <Divider />
+          {renderMenu()}
         </Drawer>
-        : <SwipeableDrawer
-          onOpen={ () => setMobileDrawerOpen(true) }
-          classes={ {
+      ) : (
+        <SwipeableDrawer
+          onOpen={() => setMobileDrawerOpen(true)}
+          classes={{
             paper: clsx(classes.paper, {
               [classes.drawerOpen]: mobileDrawerOpen,
               [classes.drawerClose]: !mobileDrawerOpen,
-            })
-          } }
-          className={ classes.drawer }
-          anchor={ 'left' }
-          open={ mobileDrawerOpen }
-          onClose={ () => setMobileDrawerOpen(false) }
+            }),
+          }}
+          className={classes.drawer}
+          anchor={'left'}
+          open={mobileDrawerOpen}
+          onClose={() => setMobileDrawerOpen(false)}
         >
-          { renderMenu() }
+          {renderMenu()}
         </SwipeableDrawer>
-      }
-      <main className={ classes.content }>
-        <div className={ classes.toolbar }/>
-        { children }
+      )}
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        {children}
       </main>
     </div>
   );
-}
+};

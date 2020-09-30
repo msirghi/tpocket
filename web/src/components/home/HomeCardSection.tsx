@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  Category,
-  useGetCategoryExpenseStatisticsByUserQuery,
-  PercentageByCategoryPayload,
-} from '../../generated/graphql';
+import { PercentageByCategoryPayload } from '../../generated/graphql';
 import { StatisticCard } from '../cards/StatisticCard';
 import { startCase } from 'lodash';
 import { MonthlyStatistics } from '../../pages/Home';
