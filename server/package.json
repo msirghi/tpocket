@@ -45,6 +45,10 @@
   "scripts": {
     "start": "nodemon --exec ts-node src/index.ts",
     "test": "jest src/tests/runner.test.ts --coverage",
+    "test-file": "jest src/tests/userResolver.test.ts",
     "generate": "graphql-codegen --config codegen.yml"
+  },
+  "transform": {
+    "\\.js$": "<rootDir>/node_modules/babel-jest"
   }
 }

@@ -1,32 +1,47 @@
-import { Arg, Ctx, Field, Mutation, ObjectType, Query, Resolver, UseMiddleware } from 'type-graphql';
-import { User } from "../entity/User";
+import {
+  Arg,
+  Ctx,
+  Field,
+  Mutation,
+  ObjectType,
+  Query,
+  Resolver,
+  UseMiddleware
+} from 'type-graphql';
+import { User } from '../entity/User';
 import { compare, hash } from 'bcryptjs';
-import { MyContext } from "../MyContext";
-import { createAccessToken, createRefreshToken } from "../auth";
-import { sendRefreshToken } from "../sendRefreshToken";
-import { getConnection } from "typeorm";
-import { validateEmail } from "../utils/emailValidator";
+import { MyContext } from '../MyContext';
+import { createAccessToken, createRefreshToken } from '../auth';
+import { sendRefreshToken } from '../sendRefreshToken';
+import { getConnection } from 'typeorm';
+import { validateEmail } from '../utils/emailValidator';
 import {
   BAD_EMAIL,
   BAD_PASSWORD,
   EMAIL_ALREADY_EXISTS,
   USER_NOT_FOUND,
   WEAK_PASSWORD
-} from "../constants/error.constants";
-import { isAuthMiddleware } from "../isAuthMiddleware";
+} from '../constants/error.constants';
+import { isAuthMiddleware } from '../isAuthMiddleware';
 
-const passwordStrength = require('check-password-strength')
+const passwordStrength = require('check-password-strength');
 
 @ObjectType()
 class LoginResponse {
-
+  
   @Field()
-  accessToken: string
+  accessToken: string;
+}
+
+@ObjectType()
+class RegisterResponse {
+  
+  @Field()
+  id: string;
 }
 
 @Resolver()
 export class UserResolver {
-
   @Query(() => [User])
   users() {
     return User.find();
@@ -34,19 +49,19 @@ export class UserResolver {
 
   @Mutation(() => Boolean)
   @UseMiddleware(isAuthMiddleware)
-  async revokeRefreshTokenForUser(
-    @Ctx() { payload }: MyContext
-  ) {
+  async revokeRefreshTokenForUser(@Ctx() { payload }: MyContext) {
     await getConnection()
       .getRepository(User)
       .increment({ id: +payload!.userId }, 'tokenVersion', 1);
     return true;
   }
 
-  @Mutation(() => Boolean)
+  @Mutation(() => RegisterResponse)
   async register(
     @Arg('email') email: string,
-    @Arg('password') password: string
+    @Arg('password') password: string,
+    @Arg('firstName') firstName: string,
+    @Arg('lastName') lastName: string
   ) {
     if (!validateEmail(email)) {
       throw new Error(BAD_EMAIL);
@@ -63,15 +78,20 @@ export class UserResolver {
     }
 
     const hashedPassword = await hash(password, 12);
+    let newUser;
     try {
-      await User.insert({
+      newUser = await User.insert({
         email,
-        password: hashedPassword
-      })
+        password: hashedPassword,
+        firstName,
+        lastName
+      });
     } catch (err) {
       return false;
     }
-    return true;
+    return {
+      id: newUser.identifiers[0].id
+    };
   }
 
   @Mutation(() => LoginResponse)
@@ -92,10 +112,10 @@ export class UserResolver {
       throw new Error(BAD_PASSWORD);
     }
 
-    sendRefreshToken(res, createRefreshToken(user))
+    sendRefreshToken(res, createRefreshToken(user));
 
     return {
       accessToken: createAccessToken(user)
-    }
+    };
   }
 }

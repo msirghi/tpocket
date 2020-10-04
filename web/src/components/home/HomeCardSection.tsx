@@ -40,7 +40,11 @@ export const HomeCardSection: React.FC<IProps> = ({
         />
         <StatisticCard
           title={'Spent this month'}
-          value={monthlyStatistics ? monthlyStatistics.thisMonthExpenses!.expenses : 0}
+          value={
+            monthlyStatistics && monthlyStatistics.thisMonthExpenses
+              ? monthlyStatistics.thisMonthExpenses.expenses
+              : 0
+          }
           description={'Sum of your expenses by this month'}
           currency={'MDL'}
         />

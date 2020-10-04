@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoHomeData component should render properly 1`] = `
+<div
+  className="no-data-wrapper"
+>
+  <img
+    alt="No data"
+    height={200}
+    src="https://www.pinclipart.com/picdir/big/220-2203662_man-with-smartphone-illustration-smartphone-person-dribbble-clipart.png"
+  />
+  <div
+    className="mt-5rem text-center"
+  >
+    <WithStyles(ForwardRef(Typography))
+      component="h5"
+      gutterBottom={true}
+      variant="h6"
+    >
+      Look like you don't have any data.
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      component="h5"
+      gutterBottom={true}
+      variant="body1"
+    >
+      Try adding categories & expenses to see the statistics.
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+</div>
+`;

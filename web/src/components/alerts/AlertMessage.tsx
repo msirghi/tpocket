@@ -11,15 +11,15 @@ const useStyles = makeStyles((theme: Theme) =>
         marginTop: theme.spacing(2),
       },
     },
-  }),
+  })
 );
 
-type Props ={ 
-    type: AlertType;
-    message: string;
-}
+type Props = {
+  type: AlertType;
+  message: string;
+};
 
-export const  AlertMessage: React.FC<Props> = ({message, type}) => {
+export const AlertMessage: React.FC<Props> = ({ message, type }) => {
   const classes = useStyles();
 
   return (
@@ -27,4 +27,4 @@ export const  AlertMessage: React.FC<Props> = ({message, type}) => {
       <Alert color={type}>{message}</Alert>
     </div>
   );
-}
+};

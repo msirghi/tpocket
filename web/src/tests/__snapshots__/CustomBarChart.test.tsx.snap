@@ -1,0 +1,940 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomBarChart component should render properly 1`] = `
+<ApolloProvider
+  client={
+    ApolloClient {
+      "cache": InMemoryCache {
+        "addTypename": false,
+        "config": Object {
+          "addTypename": false,
+          "dataIdFromObject": [Function],
+          "resultCaching": true,
+          "typePolicies": Object {},
+        },
+        "data": Root {
+          "canRead": [Function],
+          "data": Object {},
+          "getFieldValue": [Function],
+          "group": CacheGroup {
+            "caching": true,
+            "d": [Function],
+            "keyMaker": KeyTrie {
+              "makeData": [Function],
+              "weakness": true,
+            },
+          },
+          "policies": Policies {
+            "cache": [Circular],
+            "config": Object {
+              "cache": [Circular],
+              "dataIdFromObject": [Function],
+              "possibleTypes": undefined,
+              "typePolicies": Object {},
+            },
+            "rootIdsByTypename": Object {
+              "Mutation": "ROOT_MUTATION",
+              "Query": "ROOT_QUERY",
+              "Subscription": "ROOT_SUBSCRIPTION",
+            },
+            "rootTypenamesById": Object {
+              "ROOT_MUTATION": "Mutation",
+              "ROOT_QUERY": "Query",
+              "ROOT_SUBSCRIPTION": "Subscription",
+            },
+            "storageTrie": KeyTrie {
+              "makeData": [Function],
+              "weakness": true,
+            },
+            "typePolicies": Object {},
+            "usingPossibleTypes": false,
+          },
+          "refs": Object {},
+          "rootIds": Object {},
+          "sharedLayerGroup": CacheGroup {
+            "caching": true,
+            "d": [Function],
+            "keyMaker": KeyTrie {
+              "makeData": [Function],
+              "weakness": true,
+            },
+          },
+          "toReference": [Function],
+        },
+        "getFragmentDoc": [Function],
+        "makeVar": [Function],
+        "maybeBroadcastWatch": [Function],
+        "optimisticData": Root {
+          "canRead": [Function],
+          "data": Object {},
+          "getFieldValue": [Function],
+          "group": CacheGroup {
+            "caching": true,
+            "d": [Function],
+            "keyMaker": KeyTrie {
+              "makeData": [Function],
+              "weakness": true,
+            },
+          },
+          "policies": Policies {
+            "cache": [Circular],
+            "config": Object {
+              "cache": [Circular],
+              "dataIdFromObject": [Function],
+              "possibleTypes": undefined,
+              "typePolicies": Object {},
+            },
+            "rootIdsByTypename": Object {
+              "Mutation": "ROOT_MUTATION",
+              "Query": "ROOT_QUERY",
+              "Subscription": "ROOT_SUBSCRIPTION",
+            },
+            "rootTypenamesById": Object {
+              "ROOT_MUTATION": "Mutation",
+              "ROOT_QUERY": "Query",
+              "ROOT_SUBSCRIPTION": "Subscription",
+            },
+            "storageTrie": KeyTrie {
+              "makeData": [Function],
+              "weakness": true,
+            },
+            "typePolicies": Object {},
+            "usingPossibleTypes": false,
+          },
+          "refs": Object {},
+          "rootIds": Object {},
+          "sharedLayerGroup": CacheGroup {
+            "caching": true,
+            "d": [Function],
+            "keyMaker": KeyTrie {
+              "makeData": [Function],
+              "weakness": true,
+            },
+          },
+          "toReference": [Function],
+        },
+        "policies": Policies {
+          "cache": [Circular],
+          "config": Object {
+            "cache": [Circular],
+            "dataIdFromObject": [Function],
+            "possibleTypes": undefined,
+            "typePolicies": Object {},
+          },
+          "rootIdsByTypename": Object {
+            "Mutation": "ROOT_MUTATION",
+            "Query": "ROOT_QUERY",
+            "Subscription": "ROOT_SUBSCRIPTION",
+          },
+          "rootTypenamesById": Object {
+            "ROOT_MUTATION": "Mutation",
+            "ROOT_QUERY": "Query",
+            "ROOT_SUBSCRIPTION": "Subscription",
+          },
+          "storageTrie": KeyTrie {
+            "makeData": [Function],
+            "weakness": true,
+          },
+          "typePolicies": Object {},
+          "usingPossibleTypes": false,
+        },
+        "storeReader": StoreReader {
+          "config": Object {
+            "addTypename": false,
+            "cache": [Circular],
+          },
+          "executeSelectionSet": [Function],
+          "executeSubSelectedArray": [Function],
+          "knownResults": WeakMap {},
+        },
+        "storeWriter": StoreWriter {
+          "cache": [Circular],
+          "reader": StoreReader {
+            "config": Object {
+              "addTypename": false,
+              "cache": [Circular],
+            },
+            "executeSelectionSet": [Function],
+            "executeSubSelectedArray": [Function],
+            "knownResults": WeakMap {},
+          },
+        },
+        "txCount": 0,
+        "typenameDocumentCache": Map {},
+        "watchDep": [Function],
+        "watches": Set {},
+      },
+      "clearStoreCallbacks": Array [],
+      "defaultOptions": Object {},
+      "disableNetworkFetches": false,
+      "link": MockLink {
+        "addTypename": false,
+        "mockedResponsesByKey": Object {
+          "{\\"query\\":\\"query GetExpensesStatistics($year: Float!) {\\\\n  getExpensesStatistics(year: $year) {\\\\n    name\\\\n    expenses\\\\n  }\\\\n}\\\\n\\"}": Array [
+            Object {
+              "request": Object {
+                "query": Object {
+                  "definitions": Array [
+                    Object {
+                      "directives": Array [],
+                      "kind": "OperationDefinition",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "GetExpensesStatistics",
+                      },
+                      "operation": "query",
+                      "selectionSet": Object {
+                        "kind": "SelectionSet",
+                        "selections": Array [
+                          Object {
+                            "alias": undefined,
+                            "arguments": Array [
+                              Object {
+                                "kind": "Argument",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "year",
+                                },
+                                "value": Object {
+                                  "kind": "Variable",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "year",
+                                  },
+                                },
+                              },
+                            ],
+                            "directives": Array [],
+                            "kind": "Field",
+                            "name": Object {
+                              "kind": "Name",
+                              "value": "getExpensesStatistics",
+                            },
+                            "selectionSet": Object {
+                              "kind": "SelectionSet",
+                              "selections": Array [
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "name",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "expenses",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                      "variableDefinitions": Array [
+                        Object {
+                          "defaultValue": undefined,
+                          "directives": Array [],
+                          "kind": "VariableDefinition",
+                          "type": Object {
+                            "kind": "NonNullType",
+                            "type": Object {
+                              "kind": "NamedType",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "Float",
+                              },
+                            },
+                          },
+                          "variable": Object {
+                            "kind": "Variable",
+                            "name": Object {
+                              "kind": "Name",
+                              "value": "year",
+                            },
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                  "kind": "Document",
+                  "loc": Object {
+                    "end": 121,
+                    "start": 0,
+                  },
+                },
+                "variables": Object {
+                  "year": "2020",
+                },
+              },
+              "result": Object {
+                "data": Object {
+                  "getExpensesStatistics": Array [
+                    Object {
+                      "expenses": 905,
+                      "name": "1",
+                    },
+                  ],
+                },
+              },
+            },
+          ],
+        },
+      },
+      "localState": LocalState {
+        "cache": InMemoryCache {
+          "addTypename": false,
+          "config": Object {
+            "addTypename": false,
+            "dataIdFromObject": [Function],
+            "resultCaching": true,
+            "typePolicies": Object {},
+          },
+          "data": Root {
+            "canRead": [Function],
+            "data": Object {},
+            "getFieldValue": [Function],
+            "group": CacheGroup {
+              "caching": true,
+              "d": [Function],
+              "keyMaker": KeyTrie {
+                "makeData": [Function],
+                "weakness": true,
+              },
+            },
+            "policies": Policies {
+              "cache": [Circular],
+              "config": Object {
+                "cache": [Circular],
+                "dataIdFromObject": [Function],
+                "possibleTypes": undefined,
+                "typePolicies": Object {},
+              },
+              "rootIdsByTypename": Object {
+                "Mutation": "ROOT_MUTATION",
+                "Query": "ROOT_QUERY",
+                "Subscription": "ROOT_SUBSCRIPTION",
+              },
+              "rootTypenamesById": Object {
+                "ROOT_MUTATION": "Mutation",
+                "ROOT_QUERY": "Query",
+                "ROOT_SUBSCRIPTION": "Subscription",
+              },
+              "storageTrie": KeyTrie {
+                "makeData": [Function],
+                "weakness": true,
+              },
+              "typePolicies": Object {},
+              "usingPossibleTypes": false,
+            },
+            "refs": Object {},
+            "rootIds": Object {},
+            "sharedLayerGroup": CacheGroup {
+              "caching": true,
+              "d": [Function],
+              "keyMaker": KeyTrie {
+                "makeData": [Function],
+                "weakness": true,
+              },
+            },
+            "toReference": [Function],
+          },
+          "getFragmentDoc": [Function],
+          "makeVar": [Function],
+          "maybeBroadcastWatch": [Function],
+          "optimisticData": Root {
+            "canRead": [Function],
+            "data": Object {},
+            "getFieldValue": [Function],
+            "group": CacheGroup {
+              "caching": true,
+              "d": [Function],
+              "keyMaker": KeyTrie {
+                "makeData": [Function],
+                "weakness": true,
+              },
+            },
+            "policies": Policies {
+              "cache": [Circular],
+              "config": Object {
+                "cache": [Circular],
+                "dataIdFromObject": [Function],
+                "possibleTypes": undefined,
+                "typePolicies": Object {},
+              },
+              "rootIdsByTypename": Object {
+                "Mutation": "ROOT_MUTATION",
+                "Query": "ROOT_QUERY",
+                "Subscription": "ROOT_SUBSCRIPTION",
+              },
+              "rootTypenamesById": Object {
+                "ROOT_MUTATION": "Mutation",
+                "ROOT_QUERY": "Query",
+                "ROOT_SUBSCRIPTION": "Subscription",
+              },
+              "storageTrie": KeyTrie {
+                "makeData": [Function],
+                "weakness": true,
+              },
+              "typePolicies": Object {},
+              "usingPossibleTypes": false,
+            },
+            "refs": Object {},
+            "rootIds": Object {},
+            "sharedLayerGroup": CacheGroup {
+              "caching": true,
+              "d": [Function],
+              "keyMaker": KeyTrie {
+                "makeData": [Function],
+                "weakness": true,
+              },
+            },
+            "toReference": [Function],
+          },
+          "policies": Policies {
+            "cache": [Circular],
+            "config": Object {
+              "cache": [Circular],
+              "dataIdFromObject": [Function],
+              "possibleTypes": undefined,
+              "typePolicies": Object {},
+            },
+            "rootIdsByTypename": Object {
+              "Mutation": "ROOT_MUTATION",
+              "Query": "ROOT_QUERY",
+              "Subscription": "ROOT_SUBSCRIPTION",
+            },
+            "rootTypenamesById": Object {
+              "ROOT_MUTATION": "Mutation",
+              "ROOT_QUERY": "Query",
+              "ROOT_SUBSCRIPTION": "Subscription",
+            },
+            "storageTrie": KeyTrie {
+              "makeData": [Function],
+              "weakness": true,
+            },
+            "typePolicies": Object {},
+            "usingPossibleTypes": false,
+          },
+          "storeReader": StoreReader {
+            "config": Object {
+              "addTypename": false,
+              "cache": [Circular],
+            },
+            "executeSelectionSet": [Function],
+            "executeSubSelectedArray": [Function],
+            "knownResults": WeakMap {},
+          },
+          "storeWriter": StoreWriter {
+            "cache": [Circular],
+            "reader": StoreReader {
+              "config": Object {
+                "addTypename": false,
+                "cache": [Circular],
+              },
+              "executeSelectionSet": [Function],
+              "executeSubSelectedArray": [Function],
+              "knownResults": WeakMap {},
+            },
+          },
+          "txCount": 0,
+          "typenameDocumentCache": Map {},
+          "watchDep": [Function],
+          "watches": Set {},
+        },
+        "client": [Circular],
+      },
+      "mutate": [Function],
+      "query": [Function],
+      "queryDeduplication": true,
+      "queryManager": QueryManager {
+        "assumeImmutableResults": false,
+        "cache": InMemoryCache {
+          "addTypename": false,
+          "config": Object {
+            "addTypename": false,
+            "dataIdFromObject": [Function],
+            "resultCaching": true,
+            "typePolicies": Object {},
+          },
+          "data": Root {
+            "canRead": [Function],
+            "data": Object {},
+            "getFieldValue": [Function],
+            "group": CacheGroup {
+              "caching": true,
+              "d": [Function],
+              "keyMaker": KeyTrie {
+                "makeData": [Function],
+                "weakness": true,
+              },
+            },
+            "policies": Policies {
+              "cache": [Circular],
+              "config": Object {
+                "cache": [Circular],
+                "dataIdFromObject": [Function],
+                "possibleTypes": undefined,
+                "typePolicies": Object {},
+              },
+              "rootIdsByTypename": Object {
+                "Mutation": "ROOT_MUTATION",
+                "Query": "ROOT_QUERY",
+                "Subscription": "ROOT_SUBSCRIPTION",
+              },
+              "rootTypenamesById": Object {
+                "ROOT_MUTATION": "Mutation",
+                "ROOT_QUERY": "Query",
+                "ROOT_SUBSCRIPTION": "Subscription",
+              },
+              "storageTrie": KeyTrie {
+                "makeData": [Function],
+                "weakness": true,
+              },
+              "typePolicies": Object {},
+              "usingPossibleTypes": false,
+            },
+            "refs": Object {},
+            "rootIds": Object {},
+            "sharedLayerGroup": CacheGroup {
+              "caching": true,
+              "d": [Function],
+              "keyMaker": KeyTrie {
+                "makeData": [Function],
+                "weakness": true,
+              },
+            },
+            "toReference": [Function],
+          },
+          "getFragmentDoc": [Function],
+          "makeVar": [Function],
+          "maybeBroadcastWatch": [Function],
+          "optimisticData": Root {
+            "canRead": [Function],
+            "data": Object {},
+            "getFieldValue": [Function],
+            "group": CacheGroup {
+              "caching": true,
+              "d": [Function],
+              "keyMaker": KeyTrie {
+                "makeData": [Function],
+                "weakness": true,
+              },
+            },
+            "policies": Policies {
+              "cache": [Circular],
+              "config": Object {
+                "cache": [Circular],
+                "dataIdFromObject": [Function],
+                "possibleTypes": undefined,
+                "typePolicies": Object {},
+              },
+              "rootIdsByTypename": Object {
+                "Mutation": "ROOT_MUTATION",
+                "Query": "ROOT_QUERY",
+                "Subscription": "ROOT_SUBSCRIPTION",
+              },
+              "rootTypenamesById": Object {
+                "ROOT_MUTATION": "Mutation",
+                "ROOT_QUERY": "Query",
+                "ROOT_SUBSCRIPTION": "Subscription",
+              },
+              "storageTrie": KeyTrie {
+                "makeData": [Function],
+                "weakness": true,
+              },
+              "typePolicies": Object {},
+              "usingPossibleTypes": false,
+            },
+            "refs": Object {},
+            "rootIds": Object {},
+            "sharedLayerGroup": CacheGroup {
+              "caching": true,
+              "d": [Function],
+              "keyMaker": KeyTrie {
+                "makeData": [Function],
+                "weakness": true,
+              },
+            },
+            "toReference": [Function],
+          },
+          "policies": Policies {
+            "cache": [Circular],
+            "config": Object {
+              "cache": [Circular],
+              "dataIdFromObject": [Function],
+              "possibleTypes": undefined,
+              "typePolicies": Object {},
+            },
+            "rootIdsByTypename": Object {
+              "Mutation": "ROOT_MUTATION",
+              "Query": "ROOT_QUERY",
+              "Subscription": "ROOT_SUBSCRIPTION",
+            },
+            "rootTypenamesById": Object {
+              "ROOT_MUTATION": "Mutation",
+              "ROOT_QUERY": "Query",
+              "ROOT_SUBSCRIPTION": "Subscription",
+            },
+            "storageTrie": KeyTrie {
+              "makeData": [Function],
+              "weakness": true,
+            },
+            "typePolicies": Object {},
+            "usingPossibleTypes": false,
+          },
+          "storeReader": StoreReader {
+            "config": Object {
+              "addTypename": false,
+              "cache": [Circular],
+            },
+            "executeSelectionSet": [Function],
+            "executeSubSelectedArray": [Function],
+            "knownResults": WeakMap {},
+          },
+          "storeWriter": StoreWriter {
+            "cache": [Circular],
+            "reader": StoreReader {
+              "config": Object {
+                "addTypename": false,
+                "cache": [Circular],
+              },
+              "executeSelectionSet": [Function],
+              "executeSubSelectedArray": [Function],
+              "knownResults": WeakMap {},
+            },
+          },
+          "txCount": 0,
+          "typenameDocumentCache": Map {},
+          "watchDep": [Function],
+          "watches": Set {},
+        },
+        "clientAwareness": Object {
+          "name": undefined,
+          "version": undefined,
+        },
+        "fetchCancelFns": Map {},
+        "inFlightLinkObservables": Map {},
+        "link": MockLink {
+          "addTypename": false,
+          "mockedResponsesByKey": Object {
+            "{\\"query\\":\\"query GetExpensesStatistics($year: Float!) {\\\\n  getExpensesStatistics(year: $year) {\\\\n    name\\\\n    expenses\\\\n  }\\\\n}\\\\n\\"}": Array [
+              Object {
+                "request": Object {
+                  "query": Object {
+                    "definitions": Array [
+                      Object {
+                        "directives": Array [],
+                        "kind": "OperationDefinition",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "GetExpensesStatistics",
+                        },
+                        "operation": "query",
+                        "selectionSet": Object {
+                          "kind": "SelectionSet",
+                          "selections": Array [
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [
+                                Object {
+                                  "kind": "Argument",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "year",
+                                  },
+                                  "value": Object {
+                                    "kind": "Variable",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "year",
+                                    },
+                                  },
+                                },
+                              ],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "getExpensesStatistics",
+                              },
+                              "selectionSet": Object {
+                                "kind": "SelectionSet",
+                                "selections": Array [
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "name",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "expenses",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                        "variableDefinitions": Array [
+                          Object {
+                            "defaultValue": undefined,
+                            "directives": Array [],
+                            "kind": "VariableDefinition",
+                            "type": Object {
+                              "kind": "NonNullType",
+                              "type": Object {
+                                "kind": "NamedType",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "Float",
+                                },
+                              },
+                            },
+                            "variable": Object {
+                              "kind": "Variable",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "year",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                    "kind": "Document",
+                    "loc": Object {
+                      "end": 121,
+                      "start": 0,
+                    },
+                  },
+                  "variables": Object {
+                    "year": "2020",
+                  },
+                },
+                "result": Object {
+                  "data": Object {
+                    "getExpensesStatistics": Array [
+                      Object {
+                        "expenses": 905,
+                        "name": "1",
+                      },
+                    ],
+                  },
+                },
+              },
+            ],
+          },
+        },
+        "localState": LocalState {
+          "cache": InMemoryCache {
+            "addTypename": false,
+            "config": Object {
+              "addTypename": false,
+              "dataIdFromObject": [Function],
+              "resultCaching": true,
+              "typePolicies": Object {},
+            },
+            "data": Root {
+              "canRead": [Function],
+              "data": Object {},
+              "getFieldValue": [Function],
+              "group": CacheGroup {
+                "caching": true,
+                "d": [Function],
+                "keyMaker": KeyTrie {
+                  "makeData": [Function],
+                  "weakness": true,
+                },
+              },
+              "policies": Policies {
+                "cache": [Circular],
+                "config": Object {
+                  "cache": [Circular],
+                  "dataIdFromObject": [Function],
+                  "possibleTypes": undefined,
+                  "typePolicies": Object {},
+                },
+                "rootIdsByTypename": Object {
+                  "Mutation": "ROOT_MUTATION",
+                  "Query": "ROOT_QUERY",
+                  "Subscription": "ROOT_SUBSCRIPTION",
+                },
+                "rootTypenamesById": Object {
+                  "ROOT_MUTATION": "Mutation",
+                  "ROOT_QUERY": "Query",
+                  "ROOT_SUBSCRIPTION": "Subscription",
+                },
+                "storageTrie": KeyTrie {
+                  "makeData": [Function],
+                  "weakness": true,
+                },
+                "typePolicies": Object {},
+                "usingPossibleTypes": false,
+              },
+              "refs": Object {},
+              "rootIds": Object {},
+              "sharedLayerGroup": CacheGroup {
+                "caching": true,
+                "d": [Function],
+                "keyMaker": KeyTrie {
+                  "makeData": [Function],
+                  "weakness": true,
+                },
+              },
+              "toReference": [Function],
+            },
+            "getFragmentDoc": [Function],
+            "makeVar": [Function],
+            "maybeBroadcastWatch": [Function],
+            "optimisticData": Root {
+              "canRead": [Function],
+              "data": Object {},
+              "getFieldValue": [Function],
+              "group": CacheGroup {
+                "caching": true,
+                "d": [Function],
+                "keyMaker": KeyTrie {
+                  "makeData": [Function],
+                  "weakness": true,
+                },
+              },
+              "policies": Policies {
+                "cache": [Circular],
+                "config": Object {
+                  "cache": [Circular],
+                  "dataIdFromObject": [Function],
+                  "possibleTypes": undefined,
+                  "typePolicies": Object {},
+                },
+                "rootIdsByTypename": Object {
+                  "Mutation": "ROOT_MUTATION",
+                  "Query": "ROOT_QUERY",
+                  "Subscription": "ROOT_SUBSCRIPTION",
+                },
+                "rootTypenamesById": Object {
+                  "ROOT_MUTATION": "Mutation",
+                  "ROOT_QUERY": "Query",
+                  "ROOT_SUBSCRIPTION": "Subscription",
+                },
+                "storageTrie": KeyTrie {
+                  "makeData": [Function],
+                  "weakness": true,
+                },
+                "typePolicies": Object {},
+                "usingPossibleTypes": false,
+              },
+              "refs": Object {},
+              "rootIds": Object {},
+              "sharedLayerGroup": CacheGroup {
+                "caching": true,
+                "d": [Function],
+                "keyMaker": KeyTrie {
+                  "makeData": [Function],
+                  "weakness": true,
+                },
+              },
+              "toReference": [Function],
+            },
+            "policies": Policies {
+              "cache": [Circular],
+              "config": Object {
+                "cache": [Circular],
+                "dataIdFromObject": [Function],
+                "possibleTypes": undefined,
+                "typePolicies": Object {},
+              },
+              "rootIdsByTypename": Object {
+                "Mutation": "ROOT_MUTATION",
+                "Query": "ROOT_QUERY",
+                "Subscription": "ROOT_SUBSCRIPTION",
+              },
+              "rootTypenamesById": Object {
+                "ROOT_MUTATION": "Mutation",
+                "ROOT_QUERY": "Query",
+                "ROOT_SUBSCRIPTION": "Subscription",
+              },
+              "storageTrie": KeyTrie {
+                "makeData": [Function],
+                "weakness": true,
+              },
+              "typePolicies": Object {},
+              "usingPossibleTypes": false,
+            },
+            "storeReader": StoreReader {
+              "config": Object {
+                "addTypename": false,
+                "cache": [Circular],
+              },
+              "executeSelectionSet": [Function],
+              "executeSubSelectedArray": [Function],
+              "knownResults": WeakMap {},
+            },
+            "storeWriter": StoreWriter {
+              "cache": [Circular],
+              "reader": StoreReader {
+                "config": Object {
+                  "addTypename": false,
+                  "cache": [Circular],
+                },
+                "executeSelectionSet": [Function],
+                "executeSubSelectedArray": [Function],
+                "knownResults": WeakMap {},
+              },
+            },
+            "txCount": 0,
+            "typenameDocumentCache": Map {},
+            "watchDep": [Function],
+            "watches": Set {},
+          },
+          "client": [Circular],
+        },
+        "mutationIdCounter": 1,
+        "mutationStore": MutationStore {
+          "store": Object {},
+        },
+        "onBroadcast": [Function],
+        "queries": Map {},
+        "queryDeduplication": true,
+        "queryIdCounter": 1,
+        "requestIdCounter": 1,
+        "ssrMode": false,
+        "transformCache": WeakMap {},
+      },
+      "reFetchObservableQueries": [Function],
+      "resetStore": [Function],
+      "resetStoreCallbacks": Array [],
+      "typeDefs": undefined,
+      "version": "local",
+      "watchQuery": [Function],
+    }
+  }
+>
+  <CustomBarChart
+    monthlyStatisticsHandler={[MockFunction]}
+  />
+</ApolloProvider>
+`;
+
+exports[`CustomBarChart component should render properly 2`] = `undefined`;

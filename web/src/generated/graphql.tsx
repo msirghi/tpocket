@@ -50,6 +50,8 @@ export type User = {
   __typename?: 'User';
   id: Scalars['Int'];
   email: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
 };
 
 export type Expense = {
@@ -94,7 +96,7 @@ export type Mutation = {
   deleteCategory: Scalars['Boolean'];
   createCategory: Category;
   revokeRefreshTokenForUser: Scalars['Boolean'];
-  register: Scalars['Boolean'];
+  register: RegisterResponse;
   login: LoginResponse;
   deleteExpenseById: Scalars['Boolean'];
   updateExpenseById: Scalars['Boolean'];
@@ -122,6 +124,8 @@ export type MutationCreateCategoryArgs = {
 
 
 export type MutationRegisterArgs = {
+  lastName: Scalars['String'];
+  firstName: Scalars['String'];
   password: Scalars['String'];
   email: Scalars['String'];
 };
@@ -157,6 +161,11 @@ export type MutationChangeUserCurrencyArgs = {
 
 export type MutationInitializePreferencesArgs = {
   currency: Scalars['String'];
+};
+
+export type RegisterResponse = {
+  __typename?: 'RegisterResponse';
+  id: Scalars['String'];
 };
 
 export type LoginResponse = {
@@ -274,12 +283,17 @@ export type LoginMutation = (
 export type RegisterMutationVariables = Exact<{
   email: Scalars['String'];
   password: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
 }>;
 
 
 export type RegisterMutation = (
   { __typename?: 'Mutation' }
-  & Pick<Mutation, 'register'>
+  & { register: (
+    { __typename?: 'RegisterResponse' }
+    & Pick<RegisterResponse, 'id'>
+  ) }
 );
 
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
@@ -567,8 +581,10 @@ export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = ApolloReactCommon.MutationResult<LoginMutation>;
 export type LoginMutationOptions = ApolloReactCommon.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
 export const RegisterDocument = gql`
-    mutation Register($email: String!, $password: String!) {
-  register(email: $email, password: $password)
+    mutation Register($email: String!, $password: String!, $firstName: String!, $lastName: String!) {
+  register(email: $email, password: $password, firstName: $firstName, lastName: $lastName) {
+    id
+  }
 }
     `;
 export type RegisterMutationFn = ApolloReactCommon.MutationFunction<RegisterMutation, RegisterMutationVariables>;
@@ -588,6 +604,8 @@ export type RegisterMutationFn = ApolloReactCommon.MutationFunction<RegisterMuta
  *   variables: {
  *      email: // value for 'email'
  *      password: // value for 'password'
+ *      firstName: // value for 'firstName'
+ *      lastName: // value for 'lastName'
  *   },
  * });
  */

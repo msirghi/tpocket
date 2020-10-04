@@ -1,6 +1,6 @@
 export const initPrefsMutation = (currency: string) => `
   mutation {
-    initializePreferences(currency: "${ currency }") {
+    initializePreferences(currency: "${currency}") {
       id
       currency
     }
@@ -22,28 +22,28 @@ export const changeUserCurrencyMutation = (currency: string) => `
 export const getCreateCategoryMutation = (name: string) => {
   return `
     mutation {
-      createCategory(name: "${ name }") {
+      createCategory(name: "${name}") {
         id
       }
     }
   `;
-}
+};
 
 export const updateCategoryName = (id: number | string, categoryName: string) => {
   return `
     mutation {
-      updateCategoryName(id: ${ id }, name: "${ categoryName }")
+      updateCategoryName(id: ${id}, name: "${categoryName}")
     }
   `;
-}
+};
 
 export const deleteCategoryById = (id: number | string) => {
   return `
     mutation {
-      deleteCategory(id: ${ id })
+      deleteCategory(id: ${id})
     }
   `;
-}
+};
 
 export const addExpenseMutation = (categoryId: number | string, amount: number | string) => `
   mutation {
@@ -69,5 +69,11 @@ export const updateExpenseByIdMutation = (id: number, amount: number) => `
 export const deleteExpenseById = (id: number) => `
   mutation {
     deleteExpenseById(id: ${id})
+  }
+`;
+
+export const updateMonthLimitMutation = (limit: number) => `
+  mutation {
+    updateMonthLimit(monthLimit: ${limit})
   }
 `;

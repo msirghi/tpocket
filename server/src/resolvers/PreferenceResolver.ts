@@ -1,10 +1,10 @@
-import { Arg, Ctx, Mutation, Query, Resolver, UseMiddleware } from "type-graphql";
-import { Preference } from "../entity/Preference";
-import { isAuthMiddleware } from "../isAuthMiddleware";
-import { MyContext } from "../MyContext";
-import { getConnection } from "typeorm";
-import { User } from "../entity/User";
-import { USER_NOT_FOUND } from "../constants/error.constants";
+import { Arg, Ctx, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql';
+import { Preference } from '../entity/Preference';
+import { isAuthMiddleware } from '../isAuthMiddleware';
+import { MyContext } from '../MyContext';
+import { getConnection } from 'typeorm';
+import { User } from '../entity/User';
+import { USER_NOT_FOUND } from '../constants/error.constants';
 
 // @ObjectType()
 // @InputType('data')
@@ -16,21 +16,15 @@ import { USER_NOT_FOUND } from "../constants/error.constants";
 
 @Resolver()
 export class PreferenceResolver {
-
   @Query(() => Preference)
   @UseMiddleware(isAuthMiddleware)
-  async getUserPreferences(
-    @Ctx() { payload }: MyContext
-  ) {
-    return await Preference.findOne({ where: { user: payload?.userId } })
+  async getUserPreferences(@Ctx() { payload }: MyContext) {
+    return await Preference.findOne({ where: { user: payload?.userId } });
   }
 
   @Mutation(() => Boolean)
   @UseMiddleware(isAuthMiddleware)
-  async changeUserCurrency(
-    @Ctx() { payload }: MyContext,
-    @Arg('currency') currency: string
-  ) {
+  async changeUserCurrency(@Ctx() { payload }: MyContext, @Arg('currency') currency: string) {
     await getConnection()
       .createQueryBuilder()
       .update(Preference)
@@ -43,10 +37,7 @@ export class PreferenceResolver {
 
   @Mutation(() => Preference)
   @UseMiddleware(isAuthMiddleware)
-  async initializePreferences(
-    @Ctx() { payload }: MyContext,
-    @Arg('currency') currency: string
-  ) {
+  async initializePreferences(@Ctx() { payload }: MyContext, @Arg('currency') currency: string) {
     const user = await User.findOne({ where: { id: payload?.userId } });
 
     if (!user) {
@@ -59,9 +50,7 @@ export class PreferenceResolver {
 
   @Mutation(() => Boolean)
   @UseMiddleware(isAuthMiddleware)
-  async deletePreferences(
-    @Ctx() { payload }: MyContext,
-  ) {
+  async deletePreferences(@Ctx() { payload }: MyContext) {
     const user = await User.findOne({ where: { id: payload?.userId } });
 
     if (!user) {
@@ -69,6 +58,19 @@ export class PreferenceResolver {
     }
 
     await Preference.delete({ user });
+    return true;
+  }
+
+  @Mutation(() => Boolean)
+  @UseMiddleware(isAuthMiddleware)
+  async updateMonthLimit(@Ctx() { payload }: MyContext, @Arg('monthLimit') monthLimit: number) {
+    await getConnection()
+      .createQueryBuilder()
+      .update(Preference)
+      .set({ monthLimit })
+      .where('id = :id', { id: payload?.userId })
+      .execute();
+
     return true;
   }
 }

@@ -29,9 +29,9 @@ export const Routes = () => {
             <>
               <Switch location={location}>
                 <Route key={3} exact path={'/login'} component={Login} />
+                <Route key={2} exact path={'/register'} component={Register} />
                 <SiteWrapper>
                   <Route key={1} exact path={'/home'} component={HomeWrapper} />
-                  <Route key={2} exact path={'/register'} component={Register} />
                   <Route key={4} exact path={'/bye'} component={Bye} />
                   <Route key={5} exact path={'/categories'} component={CategoryPage} />
                 </SiteWrapper>
