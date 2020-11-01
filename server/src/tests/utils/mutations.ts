@@ -1,8 +1,9 @@
-export const initPrefsMutation = (currency: string) => `
+export const initPrefsMutation = (currency: string, monthLimit: number) => `
   mutation {
-    initializePreferences(currency: "${currency}") {
+    initializePreferences(currency: "${currency}", monthLimit: ${monthLimit}) {
       id
       currency
+      monthLimit
     }
   }
 `;
@@ -75,5 +76,66 @@ export const deleteExpenseById = (id: number) => `
 export const updateMonthLimitMutation = (limit: number) => `
   mutation {
     updateMonthLimit(monthLimit: ${limit})
+  }
+`;
+
+export const updateFirstNameMutation = (name: string) => `
+  mutation {
+    updateFirstName(firstName: "${name}")
+  }
+`;
+
+export const updateLastNameMutation = (name: string) => `
+  mutation {
+    updateLastName(lastName: "${name}")
+  }
+`;
+
+export const initAdditionalRegInfoMutation = (
+  categories: string,
+  userId: string,
+  currency: string,
+  monthLimit: number
+) => `
+  mutation {
+    initAdditionalRegInfo(
+      monthLimit: ${monthLimit}
+      currency: "${currency}"
+      userId: "${userId}"
+      categories: "${categories}"
+    )
+  }
+`;
+
+export const registerMutation = (
+  email: string,
+  password: string,
+  lastName: string,
+  firstName: string
+) => `
+    mutation {
+     register(email: "${email}", password: "${password}", lastName: "${lastName}", firstName: "${firstName}") {
+       id
+     }
+   }
+  `;
+
+export const loginMutation = (email: string, password: string) => `
+    mutation {
+      login(email: "${email}", password: "${password}") {
+        accessToken
+      }
+    }
+  `;
+
+export const revokeRefreshTokenMutation = () => `
+    mutation {
+      revokeRefreshTokenForUser
+    }
+  `;
+
+export const activeAccountMutation = (token: string) => `
+  mutation {
+    activateAccount(token: "${token}")
   }
 `;

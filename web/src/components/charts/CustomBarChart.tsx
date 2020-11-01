@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 import { ChartCard } from '../cards/ChartCard';
 import { useWindowSize } from '../../utils/useWindowSize';
@@ -11,28 +11,29 @@ type Props = {
 
 export const CustomBarChart: React.FC<Props> = ({ monthlyStatisticsHandler }) => {
   const [width] = useWindowSize();
-  const { data, loading, error } = useGetExpensesStatisticsQuery({
-    variables: { year: new Date().getFullYear() },
+  const { data, error } = useGetExpensesStatisticsQuery({
+    variables: { year: new Date().getFullYear() }
   });
+  const [isLoading, setLoading] = useState(true);
 
+  // console.log('data is: ', data);
   useEffect(() => {
     if (data) {
       const sortedByExpenses = data.getExpensesStatistics.sort((a, b) => a.expenses - b.expenses);
       let statistics: MonthlyStatistics = {
         monthWithMaxExpenses: sortedByExpenses.slice(-1).pop(),
-        monthWithMinExpenses:
-          sortedByExpenses[// .filter((stats) => +stats.name !== new Date().getMonth() + 1)
-          0],
+        monthWithMinExpenses: sortedByExpenses[0],
         thisMonthExpenses: sortedByExpenses.find(
           (stats) => +stats.name === new Date().getMonth() + 1
-        ),
+        )
       };
       monthlyStatisticsHandler(statistics);
     }
+    setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  if (loading) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -41,7 +42,7 @@ export const CustomBarChart: React.FC<Props> = ({ monthlyStatisticsHandler }) =>
   if (data) {
     chartData = data.getExpensesStatistics.map((expense) => ({
       name: expense.name,
-      uv: expense.expenses,
+      uv: expense.expenses
     }));
   }
 
@@ -58,7 +59,7 @@ export const CustomBarChart: React.FC<Props> = ({ monthlyStatisticsHandler }) =>
             top: 20,
             right: 30,
             left: 20,
-            bottom: 5,
+            bottom: 5
           }}
         >
           <CartesianGrid strokeDasharray='3 3' />

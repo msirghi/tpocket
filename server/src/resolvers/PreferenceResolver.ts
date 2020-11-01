@@ -37,15 +37,19 @@ export class PreferenceResolver {
 
   @Mutation(() => Preference)
   @UseMiddleware(isAuthMiddleware)
-  async initializePreferences(@Ctx() { payload }: MyContext, @Arg('currency') currency: string) {
+  async initializePreferences(
+    @Ctx() { payload }: MyContext,
+    @Arg('currency') currency: string,
+    @Arg('monthLimit') monthLimit: number
+  ) {
     const user = await User.findOne({ where: { id: payload?.userId } });
 
     if (!user) {
       throw new Error(USER_NOT_FOUND);
     }
 
-    const result = await Preference.insert({ currency, user });
-    return { currency, id: result.identifiers[0].id };
+    const result = await Preference.insert({ currency, monthLimit, user });
+    return { currency, id: result.identifiers[0].id, monthLimit };
   }
 
   @Mutation(() => Boolean)

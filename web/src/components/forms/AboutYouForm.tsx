@@ -4,15 +4,17 @@ import Typography from '@material-ui/core/Typography';
 import { CheckboxWithLabel, TextField } from 'formik-material-ui';
 import { Formik, Form, Field } from 'formik';
 import { Button, LinearProgress } from '@material-ui/core';
-import { isPasswordWeak, validateEmailStr } from '../../utils/extensions';
+import { isPasswordWeak, validateEmailStr } from '../../utils/ValidationService';
 import { useRegisterMutation } from '../../generated/graphql';
 import { AlertMessage } from '../alerts/AlertMessage';
 import { AlertType } from '../../commons/enums';
 import { AES } from 'crypto-js';
+import { Link } from 'react-router-dom';
 
 type Props = {
   handleNext: () => void;
   handleRegister: (id: number) => void;
+  setEncryptedUserId: (id: string) => void;
 };
 
 interface Values {
@@ -24,7 +26,11 @@ interface Values {
   checked: boolean;
 }
 
-export const AboutYouForm: React.FC<Props> = ({ handleNext, handleRegister }) => {
+export const AboutYouForm: React.FC<Props> = ({
+  handleNext,
+  handleRegister,
+  setEncryptedUserId
+}) => {
   const [register] = useRegisterMutation();
   const [error, setError] = useState<string | null>();
 
@@ -46,6 +52,7 @@ export const AboutYouForm: React.FC<Props> = ({ handleNext, handleRegister }) =>
         const userId = response.data.register.id;
         handleRegister(+userId);
         const encrypted = AES.encrypt(userId, process.env.REACT_APP_TEMP_ID_KEY!);
+        setEncryptedUserId(encrypted.toString());
         localStorage.setItem('tempId', encrypted.toString());
       }
     } catch (e) {
@@ -64,12 +71,13 @@ export const AboutYouForm: React.FC<Props> = ({ handleNext, handleRegister }) =>
         checked: false
       }}
       validateOnChange
+      data-testid={'formik'}
       validate={(values) => {
         const errors: Partial<Values> = {};
         const { email, password, repeatPassword, firstName, lastName } = values;
         if (!email) {
           errors.email = 'Required.';
-        } else if (validateEmailStr(email)) {
+        } else if (!validateEmailStr(email)) {
           errors.email = 'Invalid email address.';
         }
 
@@ -85,7 +93,6 @@ export const AboutYouForm: React.FC<Props> = ({ handleNext, handleRegister }) =>
         if (lastName.length < 2) {
           errors.lastName = 'Enter a valid last name';
         }
-
         return errors;
       }}
       onSubmit={async (values, { setSubmitting }) => await onSubmit(values, setSubmitting)}
@@ -101,6 +108,8 @@ export const AboutYouForm: React.FC<Props> = ({ handleNext, handleRegister }) =>
               <Field
                 component={TextField}
                 required
+                data-test='firstname-field'
+                inputProps={{ 'data-testid': 'firstname-field' }}
                 name='firstName'
                 label='First name'
                 fullWidth
@@ -109,6 +118,8 @@ export const AboutYouForm: React.FC<Props> = ({ handleNext, handleRegister }) =>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Field
+                data-test='lastname-field'
+                inputProps={{ 'data-testid': 'lastname-field' }}
                 component={TextField}
                 id='lastName'
                 name='lastName'
@@ -120,6 +131,8 @@ export const AboutYouForm: React.FC<Props> = ({ handleNext, handleRegister }) =>
             <Grid item xs={12}>
               <Field
                 component={TextField}
+                data-test='email-field'
+                inputProps={{ 'data-testid': 'email-field' }}
                 required
                 id='email'
                 name='email'
@@ -131,6 +144,8 @@ export const AboutYouForm: React.FC<Props> = ({ handleNext, handleRegister }) =>
             <Grid item xs={12} sm={12}>
               <Field
                 component={TextField}
+                data-test='password-field'
+                inputProps={{ 'data-testid': 'password-field' }}
                 required
                 type='password'
                 id='password'
@@ -141,6 +156,8 @@ export const AboutYouForm: React.FC<Props> = ({ handleNext, handleRegister }) =>
             </Grid>
             <Grid item xs={12} sm={12}>
               <Field
+                data-test='repeatPassword-field'
+                inputProps={{ 'data-testid': 'repeatPassword-field' }}
                 component={TextField}
                 required
                 type='password'
@@ -152,6 +169,8 @@ export const AboutYouForm: React.FC<Props> = ({ handleNext, handleRegister }) =>
             </Grid>
             <Grid item xs={12}>
               <Field
+                data-test='terms-field'
+                inputProps={{ 'data-testid': 'terms-field' }}
                 component={CheckboxWithLabel}
                 type='checkbox'
                 Label={{ label: 'Accept Terms and Conditions' }}
@@ -165,6 +184,7 @@ export const AboutYouForm: React.FC<Props> = ({ handleNext, handleRegister }) =>
             )}
             <Grid item xs={12} className='row row-center'>
               <Button
+                data-testid={'submit-button'}
                 variant='contained'
                 color='primary'
                 fullWidth
@@ -182,6 +202,9 @@ export const AboutYouForm: React.FC<Props> = ({ handleNext, handleRegister }) =>
                 Next
               </Button>
             </Grid>
+            <Typography className='text-center' style={{ width: '100%' }}>
+              Already have an account? <Link to='/login'>Sign in</Link>
+            </Typography>
           </Grid>
         </Form>
       )}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -8,13 +8,14 @@ import { Formik, Field, Form } from 'formik';
 import { Select, TextField } from 'formik-material-ui';
 import { FormHelperText } from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
+import { useInitAdditionalRegInfoMutation } from '../../generated/graphql';
 
 type Props = {
-  handleNext?: () => void;
+  handleNext: () => void;
 };
 
 type Values = {
-  currecny: string;
+  currency: string;
   monthLimit: string;
 };
 
@@ -37,8 +38,36 @@ const currencies = [
   }
 ];
 
-export const AdditionalInfoForm: React.FC<Props> = ({}) => {
-  const onSubmit = () => {};
+export const AdditionalInfoForm: React.FC<Props> = ({ handleNext }) => {
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [initAdditionalRegInfo] = useInitAdditionalRegInfoMutation();
+
+  const onSubmit = async (values: Values, setSubmitting: (val: boolean) => void) => {
+    const { currency, monthLimit } = values;
+
+    try {
+      const response = await initAdditionalRegInfo({
+        variables: {
+          categories: selectedCategories.join(','),
+          currency,
+          monthLimit: +monthLimit,
+          userId: localStorage.getItem('tempId')!
+        }
+      });
+      if (response && response.data!.initAdditionalRegInfo) {
+        handleNext();
+        localStorage.removeItem('tempId');
+      }
+    } catch (e) {}
+  };
+
+  const onCategorySelect = (category: string) => {
+    if (selectedCategories.includes(category)) {
+      setSelectedCategories((prevState: string[]) => prevState.filter((val) => val !== category));
+      return;
+    }
+    setSelectedCategories((prevState: string[]) => [...prevState, category]);
+  };
 
   return (
     <Formik
@@ -46,8 +75,8 @@ export const AdditionalInfoForm: React.FC<Props> = ({}) => {
         currency: '',
         monthLimit: ''
       }}
-      onSubmit={(values) => {
-        console.log('values :>> ', values);
+      onSubmit={(values: Values, { setSubmitting }) => {
+        onSubmit(values, setSubmitting);
       }}
     >
       {({ submitForm, isSubmitting, values }) => (
@@ -61,6 +90,7 @@ export const AdditionalInfoForm: React.FC<Props> = ({}) => {
                 Your currency
               </InputLabel>
               <Field
+                inputProps={{ 'data-testid': 'currency-selector' }}
                 label='Currency'
                 placeholder='Currency'
                 fullWidth
@@ -78,6 +108,7 @@ export const AdditionalInfoForm: React.FC<Props> = ({}) => {
             </Grid>
             <Grid item xs={12} md={6}>
               <Field
+                inputProps={{ 'data-testid': 'limit-input' }}
                 name='monthLimit'
                 component={TextField}
                 type='number'
@@ -98,7 +129,10 @@ export const AdditionalInfoForm: React.FC<Props> = ({}) => {
               </Typography>
             </Grid>
             <Grid item xs={12} md={12} className='disable-padding'>
-              <CategorySelectForm />
+              <CategorySelectForm
+                selectedCategories={selectedCategories}
+                onCategorySelect={onCategorySelect}
+              />
             </Grid>
             <Grid item xs={12}>
               <Typography variant='subtitle1' gutterBottom>
@@ -108,13 +142,19 @@ export const AdditionalInfoForm: React.FC<Props> = ({}) => {
           </Grid>
           <Grid item xs={12} className='row row-center'>
             <Button
+              data-testid='submit-button'
               variant='contained'
               color='primary'
-              disabled={isSubmitting || !values.currency || !values.monthLimit}
+              disabled={
+                isSubmitting ||
+                !values.currency ||
+                !values.monthLimit ||
+                selectedCategories.length < 3
+              }
               onClick={submitForm}
               fullWidth
             >
-              Submit
+              {isSubmitting ? 'Sending data...' : 'Submit'}
             </Button>
           </Grid>
         </Form>

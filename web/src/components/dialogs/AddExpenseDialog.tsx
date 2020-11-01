@@ -27,7 +27,7 @@ export const AddExpenseDialog: React.FC<IProps> = ({
   open,
   toggleDialog,
   categories,
-  onSuccess,
+  onSuccess
 }) => {
   const theme = useTheme();
   const [addExpenseMutation] = useAddExpenseMutation();
@@ -47,9 +47,8 @@ export const AddExpenseDialog: React.FC<IProps> = ({
     setLoading(true);
     try {
       const response = await addExpenseMutation({
-        variables: { amount: amount!, categoryId: selectedCategory },
+        variables: { amount: amount!, categoryId: selectedCategory }
       });
-      console.log('response :>> ', response);
       onSuccess(response);
       toggleDialog(false);
       setLoading(false);
@@ -59,6 +58,10 @@ export const AddExpenseDialog: React.FC<IProps> = ({
     }
   };
 
+  const handleSelectChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setSelectedCategory(event.target.value as number);
+  };
+
   return (
     <div>
       <Dialog open={open} onClose={() => toggleDialog(false)} aria-labelledby='form-dialog-title'>
@@ -66,17 +69,26 @@ export const AddExpenseDialog: React.FC<IProps> = ({
         <DialogTitle id='form-dialog-title'>Add new expense</DialogTitle>
         <DialogContent>
           {error && (
-            <div style={{ marginBottom: '1rem' }}>
-              <AlertMessage message={error} type={AlertType.ERROR} />
+            <div data-test='error-alert' style={{ marginBottom: '1rem' }}>
+              <AlertMessage message={'Error'} type={AlertType.ERROR} />
             </div>
           )}
           <TextField
+            data-testid='nameInput'
+            data-test='amount-input'
             label='Amount'
+            inputProps={{
+              'data-testid': 'nameInput'
+            }}
             type='number'
             onChange={(e) => setAmount(+e.target.value)}
             fullWidth
           />
           <TextField
+            data-test='description-input'
+            inputProps={{
+              'data-testid': 'description-input'
+            }}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             multiline
@@ -95,7 +107,7 @@ export const AddExpenseDialog: React.FC<IProps> = ({
                       style={{
                         background:
                           selectedCategory === category.id ? theme.palette.primary.main : '#f5f5f5',
-                        color: selectedCategory === category.id ? '#fff' : '#000',
+                        color: selectedCategory === category.id ? '#fff' : '#000'
                       }}
                       onClick={() => setSelectedCategory(category.id)}
                       label={startCase(category.name)}
@@ -105,26 +117,29 @@ export const AddExpenseDialog: React.FC<IProps> = ({
               )}
             </div>
 
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              fullWidth
-              className={'mt-1'}
-              value={selectedCategory || ''}
-            >
-              {categories.map(
-                (category, idx) =>
-                  idx > 4 && (
-                    <MenuItem
-                      key={category.id}
-                      onClick={() => setSelectedCategory(category.id)}
-                      value={category.id}
-                    >
-                      {startCase(category.name)}
-                    </MenuItem>
-                  )
-              )}
-            </Select>
+            {categories.length > 5 && (
+              <Select
+                labelId='demo-simple-select-label'
+                id='demo-simple-select'
+                inputProps={{
+                  'data-testid': 'category-select'
+                }}
+                fullWidth
+                data-testid={'category-select'}
+                className={'mt-1'}
+                value={selectedCategory || ''}
+                onChange={handleSelectChange}
+              >
+                {categories.map(
+                  (category, idx) =>
+                    idx > 4 && (
+                      <MenuItem data-test='menu-item' key={category.id} value={category.id}>
+                        {startCase(category.name)}
+                      </MenuItem>
+                    )
+                )}
+              </Select>
+            )}
           </div>
         </DialogContent>
         <DialogActions>
@@ -132,11 +147,18 @@ export const AddExpenseDialog: React.FC<IProps> = ({
             onClick={() => {
               toggleDialog(false);
             }}
+            data-test='cancel-button'
             color='secondary'
           >
             Cancel
           </Button>
-          <Button disabled={!amount || isLoading} onClick={onSubmit} color='primary'>
+          <Button
+            data-testid='submit'
+            disabled={!amount || isLoading}
+            onClick={onSubmit}
+            color='primary'
+            data-test='submit-button'
+          >
             Submit
           </Button>
         </DialogActions>

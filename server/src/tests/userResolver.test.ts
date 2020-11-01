@@ -1,51 +1,30 @@
-import { setTestCreds } from './utils/getClientWithTokenInterceptor';
+import { INVALID_NAME } from './../constants/error.constants';
+import {
+  getClientWithTokenInterceptor,
+  getAccessToken,
+  getEmail
+} from './utils/getClientWithTokenInterceptor';
 import { GraphQLClient, request } from 'graphql-request';
 import {
   BAD_EMAIL,
-  BAD_PASSWORD,
   EMAIL_ALREADY_EXISTS,
   NOT_AUTHENTICATED,
-  USER_NOT_FOUND,
   WEAK_PASSWORD
 } from '../constants/error.constants';
 import { getConnection } from 'typeorm';
 import { User } from '../entity/User';
+import {
+  updateLastNameMutation,
+  updateFirstNameMutation,
+  initAdditionalRegInfoMutation
+} from './utils/mutations';
+import { getAllCategoriesByUser, getUserPreferencesQuery } from './utils/queries';
+import { registerMutation, revokeRefreshTokenMutation } from './utils/mutations';
+import { verify } from 'jsonwebtoken';
+import { AES } from 'crypto-js';
 
 const getGraphqlEndpoint = require('./utils/getGraphqlEndpoint');
 const Chance = require('chance');
-
-const getRegisterMutation = (
-  email: string,
-  password: string,
-  lastName: string,
-  firstName: string
-) => {
-  return `
-    mutation {
-     register(email: "${email}", password: "${password}", lastName: "${lastName}", firstName: "${firstName}") {
-       id
-     }
-   }
-  `;
-};
-
-export const getLoginMutation = (email: string, password: string) => {
-  return `
-    mutation {
-      login(email: "${email}", password: "${password}") {
-        accessToken
-      }
-    }
-  `;
-};
-
-const getRevokeRefreshTokenMutation = () => {
-  return `
-    mutation {
-      revokeRefreshTokenForUser
-    }
-  `;
-};
 
 export const userResolverTest = () =>
   describe('User resolver', () => {
@@ -53,10 +32,14 @@ export const userResolverTest = () =>
     let password = 'passwordQw12';
     let firstName = '';
     let lastName = '';
-    let token: string;
+    let client;
+    const categories = 'Category 1, Category 2';
+    const monthlyLimit = 500;
+    const currency = 'EUR';
+    const chance = new Chance();
 
     beforeAll(async () => {
-      const chance = new Chance();
+      client = await getClientWithTokenInterceptor();
       email = chance.email();
       firstName = chance.word({ length: 5 });
       lastName = chance.word({ length: 5 });
@@ -80,101 +63,168 @@ export const userResolverTest = () =>
         .execute();
     });
 
-    it('should register new user', async () => {
-      const response = await request(
-        getGraphqlEndpoint(),
-        getRegisterMutation(email, password, firstName, lastName)
-      );
-      expect(response.register.id).toBeDefined();
-      setTestCreds(email, password);
+    it('should throw an error when registering new user with invalid first name', async () => {
+      let error;
+      try {
+        await request(getGraphqlEndpoint(), registerMutation(email, password, 'name12', lastName));
+      } catch (e) {
+        error = e;
+      }
+      expect(String(error).includes(INVALID_NAME)).toBeTruthy();
+    });
+
+    it('should throw an error when updating the user with invalid last name', async () => {
+      let error;
+      try {
+        await client.request(updateLastNameMutation('name12'));
+      } catch (e) {
+        error = e;
+      }
+      expect(String(error).includes(INVALID_NAME)).toBeTruthy();
+    });
+
+    it('should update last name on valid string', async () => {
+      const response = await client.request(updateLastNameMutation(chance.word({ length: 5 })));
+      expect(response.updateLastName).toBeTruthy();
+    });
+
+    it('should throw an error when updating the user with invalid first name', async () => {
+      let error;
+      try {
+        await client.request(updateFirstNameMutation('name12'));
+      } catch (e) {
+        error = e;
+      }
+      expect(String(error).includes(INVALID_NAME)).toBeTruthy();
+    });
+
+    it('should update first name on valid string', async () => {
+      const response = await client.request(updateFirstNameMutation(chance.word({ length: 5 })));
+      expect(response.updateFirstName).toBeTruthy();
+    });
+
+    it('should throw an error when registering new user with invalid last name', async () => {
+      let error;
+      try {
+        await request(getGraphqlEndpoint(), registerMutation(email, password, firstName, 'name12'));
+      } catch (e) {
+        error = e;
+      }
+      expect(String(error).includes(INVALID_NAME)).toBeTruthy();
     });
 
     it('should throw an error when registering new user with the same email', async () => {
+      let error;
       try {
         await request(
           getGraphqlEndpoint(),
-          getRegisterMutation(email, password, firstName, lastName)
+          registerMutation(getEmail(), password, firstName, lastName)
         );
       } catch (e) {
-        expect(String(e).includes(EMAIL_ALREADY_EXISTS)).toBeTruthy();
+        error = e;
       }
+      expect(String(error).includes(EMAIL_ALREADY_EXISTS)).toBeTruthy();
     });
 
     it('should throw an error on register with empty email', async () => {
+      let error;
       try {
-        await request(getGraphqlEndpoint(), getRegisterMutation('', password, firstName, lastName));
+        await request(getGraphqlEndpoint(), registerMutation('', password, firstName, lastName));
       } catch (e) {
-        expect(String(e).includes(BAD_EMAIL)).toBeTruthy();
+        error = e;
       }
+      expect(String(error).includes(BAD_EMAIL)).toBeTruthy();
     });
 
     it('should throw an error on register with empty password', async () => {
+      let error;
       try {
-        await request(getGraphqlEndpoint(), getRegisterMutation(email, '', firstName, lastName));
+        await request(getGraphqlEndpoint(), registerMutation(email, '', firstName, lastName));
       } catch (e) {
-        expect(e).toBeTruthy();
+        error = e;
       }
+      expect(error).toBeTruthy();
     });
 
     it('should throw an error if the password is weak', async () => {
+      let error;
       try {
-        await request(
-          getGraphqlEndpoint(),
-          getRegisterMutation(email, 'weak', firstName, lastName)
-        );
+        await request(getGraphqlEndpoint(), registerMutation(email, 'weak', firstName, lastName));
       } catch (e) {
-        expect(String(e).includes(WEAK_PASSWORD)).toBeTruthy();
+        error = e;
       }
+      expect(String(error).includes(WEAK_PASSWORD)).toBeTruthy();
     });
 
     it('should throw an error on bad email', async () => {
+      let error;
       try {
-        await request(
-          getGraphqlEndpoint(),
-          getRegisterMutation('bad', password, firstName, lastName)
-        );
+        await request(getGraphqlEndpoint(), registerMutation('bad', password, firstName, lastName));
       } catch (e) {
-        expect(String(e).includes(BAD_EMAIL)).toBe(true);
+        error = e;
       }
-    });
-
-    it('should return accessToken on user login', async () => {
-      const response = await request(getGraphqlEndpoint(), getLoginMutation(email, password));
-      expect(response.login.accessToken.length > 20).toBeTruthy();
-      token = response.login.accessToken;
-    });
-
-    it('should throw an error if password is not correct', async () => {
-      try {
-        await request(getGraphqlEndpoint(), getLoginMutation(email, 'badPassword'));
-      } catch (e) {
-        expect(String(e).includes(BAD_PASSWORD)).toBeTruthy();
-      }
-    });
-
-    it('should throw an error if email is not found', async () => {
-      try {
-        await request(getGraphqlEndpoint(), getLoginMutation('randomemail@email.com', password));
-      } catch (e) {
-        expect(String(e).includes(USER_NOT_FOUND)).toBeTruthy();
-      }
+      expect(String(error).includes(BAD_EMAIL)).toBe(true);
     });
 
     it('should revoke refresh token', async () => {
       const client = new GraphQLClient(getGraphqlEndpoint(), {
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${getAccessToken()}`
         }
       });
-      const response = await client.request(getRevokeRefreshTokenMutation());
+      const response = await client.request(revokeRefreshTokenMutation());
       expect(response.revokeRefreshTokenForUser).toBeTruthy();
     });
 
     it('should throw an error on token revoke without token', async () => {
+      let error;
       try {
-        await request(getGraphqlEndpoint(), getRevokeRefreshTokenMutation());
+        await request(getGraphqlEndpoint(), revokeRefreshTokenMutation());
       } catch (e) {
-        expect(String(e).includes(NOT_AUTHENTICATED)).toBeTruthy();
+        error = e;
       }
+      expect(String(error).includes(NOT_AUTHENTICATED)).toBeTruthy();
+    });
+
+    it('should init additional info on registration', async () => {
+      const tokenPayload: any = verify(getAccessToken(), process.env.ACCESS_TOKEN_SECRET!);
+      const encryptedUserId = AES.encrypt(tokenPayload.userId.toString(), process.env.TEMP_ID_KEY!);
+      const initInfoResponse = await request(
+        getGraphqlEndpoint(),
+        initAdditionalRegInfoMutation(
+          categories,
+          encryptedUserId.toString(),
+          currency,
+          monthlyLimit
+        )
+      );
+
+      expect(initInfoResponse.initAdditionalRegInfo).toBeTruthy();
+    });
+
+    it('should get user preferences after init additional info on reg', async () => {
+      const client = new GraphQLClient(getGraphqlEndpoint(), {
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`
+        }
+      });
+      const preferencesResponse = await client.request(getUserPreferencesQuery());
+      expect(preferencesResponse.getUserPreferences.currency).toBe(currency);
+      expect(preferencesResponse.getUserPreferences.monthLimit).toBe(monthlyLimit);
+    });
+
+    it('should get user categories after init additional info on reg', async () => {
+      const client = new GraphQLClient(getGraphqlEndpoint(), {
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`
+        }
+      });
+
+      const categoryArray = categories.split(',');
+      const response = await client.request(getAllCategoriesByUser());
+      expect(response.getCategoryByUser[0].id).toBeDefined();
+      expect(response.getCategoryByUser[0].name).toBe(categoryArray[0]);
+      expect(response.getCategoryByUser[1].id).toBeDefined();
+      expect(response.getCategoryByUser[1].name).toBe(categoryArray[1]);
     });
   });

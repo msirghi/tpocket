@@ -52,6 +52,7 @@ export type User = {
   email: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
+  confirmed: Scalars['Boolean'];
 };
 
 export type Expense = {
@@ -70,6 +71,7 @@ export type Preference = {
   __typename?: 'Preference';
   id: Scalars['Int'];
   currency: Scalars['String'];
+  monthLimit: Scalars['Float'];
 };
 
 export type StatisticsPayload = {
@@ -97,13 +99,18 @@ export type Mutation = {
   createCategory: Category;
   revokeRefreshTokenForUser: Scalars['Boolean'];
   register: RegisterResponse;
-  login: LoginResponse;
+  initAdditionalRegInfo: Scalars['Boolean'];
+  updateFirstName: Scalars['Boolean'];
+  updateLastName: Scalars['Boolean'];
   deleteExpenseById: Scalars['Boolean'];
   updateExpenseById: Scalars['Boolean'];
   addExpense: ExpenseResponse;
   changeUserCurrency: Scalars['Boolean'];
   initializePreferences: Preference;
   deletePreferences: Scalars['Boolean'];
+  updateMonthLimit: Scalars['Boolean'];
+  activateAccount: Scalars['Boolean'];
+  login: LoginResponse;
 };
 
 
@@ -131,9 +138,21 @@ export type MutationRegisterArgs = {
 };
 
 
-export type MutationLoginArgs = {
-  password: Scalars['String'];
-  email: Scalars['String'];
+export type MutationInitAdditionalRegInfoArgs = {
+  categories: Scalars['String'];
+  monthLimit: Scalars['Float'];
+  currency: Scalars['String'];
+  userId: Scalars['String'];
+};
+
+
+export type MutationUpdateFirstNameArgs = {
+  firstName: Scalars['String'];
+};
+
+
+export type MutationUpdateLastNameArgs = {
+  lastName: Scalars['String'];
 };
 
 
@@ -160,7 +179,24 @@ export type MutationChangeUserCurrencyArgs = {
 
 
 export type MutationInitializePreferencesArgs = {
+  monthLimit: Scalars['Float'];
   currency: Scalars['String'];
+};
+
+
+export type MutationUpdateMonthLimitArgs = {
+  monthLimit: Scalars['Float'];
+};
+
+
+export type MutationActivateAccountArgs = {
+  token: Scalars['String'];
+};
+
+
+export type MutationLoginArgs = {
+  password: Scalars['String'];
+  email: Scalars['String'];
 };
 
 export type RegisterResponse = {
@@ -266,6 +302,19 @@ export type GetExpensesStatisticsQuery = (
   )> }
 );
 
+export type InitAdditionalRegInfoMutationVariables = Exact<{
+  categories: Scalars['String'];
+  monthLimit: Scalars['Float'];
+  currency: Scalars['String'];
+  userId: Scalars['String'];
+}>;
+
+
+export type InitAdditionalRegInfoMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'initAdditionalRegInfo'>
+);
+
 export type LoginMutationVariables = Exact<{
   email: Scalars['String'];
   password: Scalars['String'];
@@ -294,6 +343,17 @@ export type RegisterMutation = (
     { __typename?: 'RegisterResponse' }
     & Pick<RegisterResponse, 'id'>
   ) }
+);
+
+export type UpdateCategoryNameMutationVariables = Exact<{
+  name: Scalars['String'];
+  id: Scalars['Float'];
+}>;
+
+
+export type UpdateCategoryNameMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'updateCategoryName'>
 );
 
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
@@ -547,6 +607,39 @@ export function useGetExpensesStatisticsLazyQuery(baseOptions?: ApolloReactHooks
 export type GetExpensesStatisticsQueryHookResult = ReturnType<typeof useGetExpensesStatisticsQuery>;
 export type GetExpensesStatisticsLazyQueryHookResult = ReturnType<typeof useGetExpensesStatisticsLazyQuery>;
 export type GetExpensesStatisticsQueryResult = ApolloReactCommon.QueryResult<GetExpensesStatisticsQuery, GetExpensesStatisticsQueryVariables>;
+export const InitAdditionalRegInfoDocument = gql`
+    mutation initAdditionalRegInfo($categories: String!, $monthLimit: Float!, $currency: String!, $userId: String!) {
+  initAdditionalRegInfo(monthLimit: $monthLimit, currency: $currency, userId: $userId, categories: $categories)
+}
+    `;
+export type InitAdditionalRegInfoMutationFn = ApolloReactCommon.MutationFunction<InitAdditionalRegInfoMutation, InitAdditionalRegInfoMutationVariables>;
+
+/**
+ * __useInitAdditionalRegInfoMutation__
+ *
+ * To run a mutation, you first call `useInitAdditionalRegInfoMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInitAdditionalRegInfoMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [initAdditionalRegInfoMutation, { data, loading, error }] = useInitAdditionalRegInfoMutation({
+ *   variables: {
+ *      categories: // value for 'categories'
+ *      monthLimit: // value for 'monthLimit'
+ *      currency: // value for 'currency'
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useInitAdditionalRegInfoMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<InitAdditionalRegInfoMutation, InitAdditionalRegInfoMutationVariables>) {
+        return ApolloReactHooks.useMutation<InitAdditionalRegInfoMutation, InitAdditionalRegInfoMutationVariables>(InitAdditionalRegInfoDocument, baseOptions);
+      }
+export type InitAdditionalRegInfoMutationHookResult = ReturnType<typeof useInitAdditionalRegInfoMutation>;
+export type InitAdditionalRegInfoMutationResult = ApolloReactCommon.MutationResult<InitAdditionalRegInfoMutation>;
+export type InitAdditionalRegInfoMutationOptions = ApolloReactCommon.BaseMutationOptions<InitAdditionalRegInfoMutation, InitAdditionalRegInfoMutationVariables>;
 export const LoginDocument = gql`
     mutation Login($email: String!, $password: String!) {
   login(email: $email, password: $password) {
@@ -615,6 +708,37 @@ export function useRegisterMutation(baseOptions?: ApolloReactHooks.MutationHookO
 export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = ApolloReactCommon.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = ApolloReactCommon.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
+export const UpdateCategoryNameDocument = gql`
+    mutation updateCategoryName($name: String!, $id: Float!) {
+  updateCategoryName(name: $name, id: $id)
+}
+    `;
+export type UpdateCategoryNameMutationFn = ApolloReactCommon.MutationFunction<UpdateCategoryNameMutation, UpdateCategoryNameMutationVariables>;
+
+/**
+ * __useUpdateCategoryNameMutation__
+ *
+ * To run a mutation, you first call `useUpdateCategoryNameMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateCategoryNameMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateCategoryNameMutation, { data, loading, error }] = useUpdateCategoryNameMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useUpdateCategoryNameMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateCategoryNameMutation, UpdateCategoryNameMutationVariables>) {
+        return ApolloReactHooks.useMutation<UpdateCategoryNameMutation, UpdateCategoryNameMutationVariables>(UpdateCategoryNameDocument, baseOptions);
+      }
+export type UpdateCategoryNameMutationHookResult = ReturnType<typeof useUpdateCategoryNameMutation>;
+export type UpdateCategoryNameMutationResult = ApolloReactCommon.MutationResult<UpdateCategoryNameMutation>;
+export type UpdateCategoryNameMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateCategoryNameMutation, UpdateCategoryNameMutationVariables>;
 export const UsersDocument = gql`
     query Users {
   users {

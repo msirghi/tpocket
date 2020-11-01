@@ -1,0 +1,3 @@
+mutation updateCategoryName($name: String!, $id: Float!) {
+  updateCategoryName(name: $name, id: $id)
+}

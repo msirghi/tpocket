@@ -3,6 +3,7 @@ export const getUserPreferencesQuery = () => `
     getUserPreferences {
       id
       currency
+      monthLimit
     }
   }
 `;

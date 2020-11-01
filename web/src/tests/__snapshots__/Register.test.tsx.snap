@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register component should match the snapshot 1`] = `
+<Fragment>
+  <WithStyles(CssBaseline) />
+  <main
+    className="makeStyles-layout-2"
+  >
+    <WithStyles(ForwardRef(Paper))
+      className="makeStyles-paper-3"
+    >
+      <WithStyles(ForwardRef(Typography))
+        align="center"
+        component="h1"
+        variant="h4"
+      >
+        Registration
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Stepper))
+        activeStep={0}
+        className="makeStyles-stepper-4"
+      >
+        <WithStyles(ForwardRef(Step))
+          key="About You"
+        >
+          <WithStyles(ForwardRef(StepLabel))>
+            About You
+          </WithStyles(ForwardRef(StepLabel))>
+        </WithStyles(ForwardRef(Step))>
+        <WithStyles(ForwardRef(Step))
+          key="Additional Info"
+        >
+          <WithStyles(ForwardRef(StepLabel))>
+            Additional Info
+          </WithStyles(ForwardRef(StepLabel))>
+        </WithStyles(ForwardRef(Step))>
+        <WithStyles(ForwardRef(Step))
+          key="Done!"
+        >
+          <WithStyles(ForwardRef(StepLabel))>
+            Done!
+          </WithStyles(ForwardRef(StepLabel))>
+        </WithStyles(ForwardRef(Step))>
+      </WithStyles(ForwardRef(Stepper))>
+      <AboutYouForm
+        handleNext={[Function]}
+        handleRegister={[Function]}
+        setEncryptedUserId={[Function]}
+      />
+    </WithStyles(ForwardRef(Paper))>
+    <Copyright />
+  </main>
+</Fragment>
+`;

@@ -4,7 +4,7 @@ import {
   useGetCategoryExpenseStatisticsByUserQuery,
   MonthExpensesPayload,
   useCategoryByUserQuery,
-  AddExpenseMutationResult,
+  AddExpenseMutationResult
 } from '../generated/graphql';
 import { HomeCardSection } from '../components/home/HomeCardSection';
 import { CustomPieChart } from '../components/charts/CustomPieChart';
@@ -19,7 +19,7 @@ import { NoHomeData } from '../components/alerts/NoHomeData';
 import { useHistory } from 'react-router-dom';
 import { AddExpenseDialog } from '../components/dialogs/AddExpenseDialog';
 import { useSnackbar } from 'notistack';
-import { getMonthName } from '../utils/extensions';
+import ExtensionService from '../utils/ExtensionService';
 
 export type MonthlyStatistics = {
   thisMonthExpenses?: MonthExpensesPayload;
@@ -43,7 +43,10 @@ export const Home: React.FC = () => {
   };
 
   const monthlyStatisticsHandler = (statistics: MonthlyStatistics) => {
-    setMonthlyStatistics(statistics);
+    console.log('statistics :>> ', statistics);
+    if (statistics && statistics.thisMonthExpenses) {
+      setMonthlyStatistics(statistics);
+    }
   };
 
   const expenseAddHandler = (response: AddExpenseMutationResult) => {
@@ -75,9 +78,23 @@ export const Home: React.FC = () => {
     );
   };
 
-  if (!data || !categoryQuery.data) {
+  const expenseDialog = () => {
+    return (
+      expenseDialogOpen && (
+        <AddExpenseDialog
+          open={expenseDialogOpen}
+          toggleDialog={() => setExpenseDialogOpen(false)}
+          onSuccess={expenseAddHandler}
+          categories={categoryQuery.data ? categoryQuery.data.getCategoryByUser : []}
+        />
+      )
+    );
+  };
+
+  if (!data || !data.getCategoryExpenseStatisticsByUser.totalExpenses || !categoryQuery.data) {
     return (
       <>
+        {expenseDialog()}
         <NoHomeData />
         {getRowButtons()}
       </>
@@ -86,14 +103,7 @@ export const Home: React.FC = () => {
 
   return (
     <>
-      {expenseDialogOpen && (
-        <AddExpenseDialog
-          open={expenseDialogOpen}
-          toggleDialog={() => setExpenseDialogOpen(false)}
-          onSuccess={expenseAddHandler}
-          categories={categoryQuery.data.getCategoryByUser}
-        />
-      )}
+      {expenseDialogOpen && expenseDialog()}
 
       <PageHeader primaryText={'Home'} secondaryText={'Find out statistics about your expenses.'} />
       {getRowButtons()}
@@ -115,8 +125,8 @@ export const Home: React.FC = () => {
             <div className={'row mt-5rem home-cards'}>
               <StatisticCard
                 title={
-                  monthlyStatistics
-                    ? getMonthName(+monthlyStatistics.monthWithMaxExpenses!.name)
+                  monthlyStatistics && monthlyStatistics.monthWithMaxExpenses
+                    ? ExtensionService.getMonthName(+monthlyStatistics.monthWithMaxExpenses!.name)
                     : '0'
                 }
                 value={monthlyStatistics ? monthlyStatistics.monthWithMaxExpenses!.expenses : '0'}
@@ -125,7 +135,7 @@ export const Home: React.FC = () => {
               <StatisticCard
                 title={
                   monthlyStatistics
-                    ? getMonthName(+monthlyStatistics.monthWithMinExpenses!.name)
+                    ? ExtensionService.getMonthName(+monthlyStatistics.monthWithMinExpenses!.name)
                     : '0'
                 }
                 value={monthlyStatistics ? monthlyStatistics.monthWithMinExpenses!.expenses : '0'}

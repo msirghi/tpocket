@@ -7,7 +7,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { Category } from '../../generated/graphql';
+import { Category, useUpdateCategoryNameMutation } from '../../generated/graphql';
+import { useSnackbar } from 'notistack';
 
 interface IProps {
   open: boolean;
@@ -24,10 +25,12 @@ export const AddUpdateCategoryDialog: React.FC<IProps> = ({
   onSubmit,
   isLoading,
   selectedCategory,
-  deselectCategory,
+  deselectCategory
 }) => {
   const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
+  const [updateCategoryName] = useUpdateCategoryNameMutation();
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     if (!open) {
@@ -41,6 +44,17 @@ export const AddUpdateCategoryDialog: React.FC<IProps> = ({
       setName(selectedCategory.name);
     }
   }, [selectedCategory]);
+
+  const onUpdateCategoryName = async () => {
+    try {
+      const response = await updateCategoryName({ variables: { id: selectedCategory!.id, name } });
+      if (response && response.data?.updateCategoryName) {
+        enqueueSnackbar('Category updated', { variant: 'success' });
+      }
+    } catch (e) {
+      enqueueSnackbar(e.graphQLErrors[0].message, { variant: 'error' });
+    }
+  };
 
   return (
     <div>
@@ -63,6 +77,7 @@ export const AddUpdateCategoryDialog: React.FC<IProps> = ({
               : 'Enter some information about new category.'}
           </DialogContentText>
           <TextField
+            data-test='name-input'
             value={name}
             onChange={(e) => setName(e.target.value)}
             margin='dense'
@@ -72,6 +87,7 @@ export const AddUpdateCategoryDialog: React.FC<IProps> = ({
             fullWidth
           />
           <TextField
+            data-test='description-input'
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             multiline
@@ -83,6 +99,7 @@ export const AddUpdateCategoryDialog: React.FC<IProps> = ({
         </DialogContent>
         <DialogActions>
           <Button
+            data-test='cancel-button'
             onClick={() => {
               deselectCategory();
               toggleDialog(false);
@@ -92,10 +109,13 @@ export const AddUpdateCategoryDialog: React.FC<IProps> = ({
             Cancel
           </Button>
           <Button
+            data-test='submit-button'
             disabled={name.length === 0 || isLoading}
-            onClick={() => {
+            onClick={async () => {
               if (selectedCategory) {
+                toggleDialog();
                 deselectCategory();
+                await onUpdateCategoryName();
                 return;
               }
               onSubmit({ name: name.trim(), description: description.trim() });

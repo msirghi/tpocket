@@ -3,22 +3,20 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
+import Button from '@material-ui/core/Button';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import { AboutYouForm } from '../components/forms/AboutYouForm';
 import { AdditionalInfoForm } from '../components/forms/AdditionalInfoForm';
 import { AES, enc } from 'crypto-js';
+import { Link } from 'react-router-dom';
 
 function Copyright() {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
       {'Copyright © '}
-      <Link color='inherit' href='https://material-ui.com/'>
-        TPocket
-      </Link>{' '}
-      {new Date().getFullYear()}
+      <Link to='https://material-ui.com/'>TPocket</Link> {new Date().getFullYear()}
       {'.'}
     </Typography>
   );
@@ -62,7 +60,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const steps = ['About You', 'Additional Info', 'Done!'];
-let userId: number;
+let encryptedUserId: string;
+let userId;
 
 export const Register = () => {
   const classes = useStyles();
@@ -71,6 +70,7 @@ export const Register = () => {
   useEffect(() => {
     const tempId = localStorage.getItem('tempId');
     if (tempId) {
+      setEncryptedUserId(tempId);
       const decrypted = AES.decrypt(tempId, process.env.REACT_APP_TEMP_ID_KEY!);
       // @ts-ignore
       userId = +decrypted.toString(enc.Utf8);
@@ -78,10 +78,18 @@ export const Register = () => {
     }
   }, []);
 
+  const setEncryptedUserId = (userId: string) => (encryptedUserId = userId);
+
   const getStepContent = (step: number) => {
     switch (step) {
       case 0:
-        return <AboutYouForm handleNext={handleNext} handleRegister={handleRegister} />;
+        return (
+          <AboutYouForm
+            handleNext={handleNext}
+            setEncryptedUserId={setEncryptedUserId}
+            handleRegister={handleRegister}
+          />
+        );
       case 1:
         return <AdditionalInfoForm handleNext={handleNext} />;
       default:
@@ -92,8 +100,6 @@ export const Register = () => {
   const handleRegister = (id: number) => (userId = id);
 
   const handleNext = () => setActiveStep(activeStep + 1);
-
-  const handleBack = () => setActiveStep(activeStep - 1);
 
   return (
     <>
@@ -116,9 +122,22 @@ export const Register = () => {
                 <Typography variant='h5' gutterBottom>
                   Almost done!
                 </Typography>
+                <div className='row row-center'>
+                  <img
+                    width='75%'
+                    height='75%'
+                    src='https://i.pinimg.com/originals/8c/95/7b/8c957b1d5b6262dd171f288eeadcabd7.gif'
+                    alt=''
+                  ></img>
+                </div>
                 <Typography variant='subtitle1'>
                   You're almost there! Please, check your mail box where you'll find mail with
                   activation link. The account will be activate instantly once you click on it.
+                </Typography>
+                <Typography variant='subtitle1'>
+                  <Button color='primary' fullWidth>
+                    <Link to='/login'>Login</Link>
+                  </Button>
                 </Typography>
               </>
             ) : (

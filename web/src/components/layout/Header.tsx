@@ -115,6 +115,7 @@ export const Header = () => {
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
+      data-test='right-menu'
       anchorEl={ anchorEl }
       anchorOrigin={ { vertical: 'top', horizontal: 'right' } }
       id={ menuId }
@@ -131,6 +132,7 @@ export const Header = () => {
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
+      data-test='main-menu'
       anchorEl={ mobileMoreAnchorEl }
       anchorOrigin={ { vertical: 'top', horizontal: 'right' } }
       id={ mobileMenuId }
@@ -155,7 +157,7 @@ export const Header = () => {
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem onClick={ handleProfileMenuOpen }>
+      <MenuItem data-test='profile-menu' onClick={ handleProfileMenuOpen }>
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
@@ -196,6 +198,7 @@ export const Header = () => {
               </Badge>
             </IconButton>
             <IconButton
+              data-test='account-menu'
               edge="end"
               aria-label="account of current user"
               aria-controls={ menuId }
@@ -210,6 +213,7 @@ export const Header = () => {
               aria-label="show more"
               aria-controls={ mobileMenuId }
               aria-haspopup="true"
+              data-test='show-more'
               onClick={ handleMobileMenuOpen }
             >
               <MoreIcon/>

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Cell, Legend, Pie, PieChart } from 'recharts';
 import { ChartCard } from '../cards/ChartCard';
 import { useWindowSize } from '../../utils/useWindowSize';
@@ -36,7 +36,8 @@ interface Props {
 
 export const CustomPieChart: React.FC<Props> = ({ mostUsedCategoryHandler }) => {
   const [width] = useWindowSize();
-  const { data, loading, error } = useGetExpensePercentageByCategoryQuery();
+  const { data, error } = useGetExpensePercentageByCategoryQuery();
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     if (data) {
@@ -44,11 +45,12 @@ export const CustomPieChart: React.FC<Props> = ({ mostUsedCategoryHandler }) => 
         .sort((a, b) => a.percentage - b.percentage)
         .filter((expenses) => expenses.category.name !== 'Others');
       mostUsedCategoryHandler(mostUsedCategory.slice(-1).pop());
+      setLoading(false);
     }
     // eslint-disable-next-line
   }, [data]);
 
-  if (loading) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 

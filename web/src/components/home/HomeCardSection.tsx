@@ -15,7 +15,6 @@ export const HomeCardSection: React.FC<IProps> = ({
   mostUsedCategory,
   monthlyStatistics,
 }) => {
-  console.log('monthlyStatistics :>> ', monthlyStatistics);
   return (
     <div>
       <div className={'home-cards'}>

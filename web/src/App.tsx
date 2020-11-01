@@ -10,7 +10,11 @@ export const App: React.FC<{}> = () => {
     fetch(`http://localhost:4000/refresh_token`, { method: 'POST', credentials: 'include' }).then(
       async (res) => {
         const { accessToken } = await res.json();
-        if (!accessToken && !window.location.href.includes('login')) {
+        if (
+          !accessToken &&
+          !window.location.href.includes('login') &&
+          !window.location.href.includes('register')
+        ) {
           window.location.replace('http://localhost:3000/login');
         }
         setAccessToken(accessToken);
