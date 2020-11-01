@@ -9,7 +9,13 @@ export const isPasswordWeak = (password: string): boolean => {
   return passwordStrength(password).value === 'Weak';
 };
 
+const validateName = (name: string) => {
+  const re = /^(?=.{2,50}$)[a-z]+(?:['_.\s][a-z]+)*$/i;
+  return re.test(String(name).toLowerCase());
+};
+
 export default {
   isPasswordWeak,
-  validateEmailStr
+  validateEmailStr,
+  validateName
 };

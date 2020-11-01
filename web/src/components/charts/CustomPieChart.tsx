@@ -5,6 +5,7 @@ import { ChartCard } from '../cards/ChartCard';
 import { useWindowSize } from '../../utils/useWindowSize';
 import { useGetExpensePercentageByCategoryQuery } from '../../generated/graphql';
 import { startCase } from 'lodash';
+import { useTranslation } from 'react-i18next';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -17,7 +18,7 @@ const renderCustomizedLabel = ({
   innerRadius,
   outerRadius,
   percent,
-  index,
+  index
 }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
@@ -38,6 +39,7 @@ export const CustomPieChart: React.FC<Props> = ({ mostUsedCategoryHandler }) => 
   const [width] = useWindowSize();
   const { data, error } = useGetExpensePercentageByCategoryQuery();
   const [isLoading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (data) {
@@ -59,14 +61,14 @@ export const CustomPieChart: React.FC<Props> = ({ mostUsedCategoryHandler }) => 
   if (data) {
     chartData = data.getExpensePercentageByCategory.map((expense) => ({
       name: startCase(expense.category.name),
-      value: expense.percentage,
+      value: expense.percentage
     }));
   }
 
   return (
-    <ChartCard title={'Expense chart'}>
+    <ChartCard title={t('charts.expenseChart')}>
       {error ? (
-        <div className={'text-center'}>No data found.</div>
+        <div className={'text-center'}>{t('helpers.noDataFound')}</div>
       ) : (
         <PieChart width={400} height={400}>
           <Pie

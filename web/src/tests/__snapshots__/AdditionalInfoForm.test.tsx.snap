@@ -303,7 +303,7 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                   <h6
                     className="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom"
                   >
-                    Additional Info
+                    forms.additionalInfo.title
                   </h6>
                 </ForwardRef(Typography)>
               </WithStyles(ForwardRef(Typography))>
@@ -607,7 +607,7 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                     data-shrink={true}
                                     htmlFor="currency"
                                   >
-                                    Your currency
+                                    forms.additionalInfo.yourCurrency
                                   </label>
                                 </ForwardRef(FormLabel)>
                               </WithStyles(ForwardRef(FormLabel))>
@@ -622,9 +622,9 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                 "data-testid": "currency-selector",
                               }
                             }
-                            label="Currency"
+                            label="forms.additionalInfo.currency"
                             name="currency"
-                            placeholder="Currency"
+                            placeholder="forms.additionalInfo.currency"
                           >
                             <FormikMaterialUISelect
                               defaultValue="none"
@@ -690,8 +690,8 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                   "data-testid": "currency-selector",
                                 }
                               }
-                              label="Currency"
-                              placeholder="Currency"
+                              label="forms.additionalInfo.currency"
+                              placeholder="forms.additionalInfo.currency"
                             >
                               <WithStyles(ForwardRef(Select))
                                 defaultValue="none"
@@ -702,11 +702,11 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                     "data-testid": "currency-selector",
                                   }
                                 }
-                                label="Currency"
+                                label="forms.additionalInfo.currency"
                                 name="currency"
                                 onBlur={[Function]}
                                 onChange={[Function]}
-                                placeholder="Currency"
+                                placeholder="forms.additionalInfo.currency"
                                 value=""
                               >
                                 <ForwardRef(Select)
@@ -733,11 +733,11 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                       "data-testid": "currency-selector",
                                     }
                                   }
-                                  label="Currency"
+                                  label="forms.additionalInfo.currency"
                                   name="currency"
                                   onBlur={[Function]}
                                   onChange={[Function]}
-                                  placeholder="Currency"
+                                  placeholder="forms.additionalInfo.currency"
                                   value=""
                                 >
                                   <WithStyles(ForwardRef(Input))
@@ -845,7 +845,7 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                     name="currency"
                                     onBlur={[Function]}
                                     onChange={[Function]}
-                                    placeholder="Currency"
+                                    placeholder="forms.additionalInfo.currency"
                                     value=""
                                   >
                                     <ForwardRef(Input)
@@ -971,7 +971,7 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                       name="currency"
                                       onBlur={[Function]}
                                       onChange={[Function]}
-                                      placeholder="Currency"
+                                      placeholder="forms.additionalInfo.currency"
                                       value=""
                                     >
                                       <WithStyles(ForwardRef(InputBase))
@@ -1098,7 +1098,7 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                         name="currency"
                                         onBlur={[Function]}
                                         onChange={[Function]}
-                                        placeholder="Currency"
+                                        placeholder="forms.additionalInfo.currency"
                                         type="text"
                                         value=""
                                       >
@@ -1230,7 +1230,7 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                           name="currency"
                                           onBlur={[Function]}
                                           onChange={[Function]}
-                                          placeholder="Currency"
+                                          placeholder="forms.additionalInfo.currency"
                                           type="text"
                                           value=""
                                         >
@@ -1282,7 +1282,7 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                               onBlur={[Function]}
                                               onChange={[Function]}
                                               onFocus={[Function]}
-                                              placeholder="Currency"
+                                              placeholder="forms.additionalInfo.currency"
                                               value=""
                                               variant="standard"
                                             >
@@ -1313,7 +1313,7 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                                 name="currency"
                                                 onAnimationStart={[Function]}
                                                 onChange={[Function]}
-                                                placeholder="Currency"
+                                                placeholder="forms.additionalInfo.currency"
                                                 tabIndex={-1}
                                                 value=""
                                               />
@@ -1562,7 +1562,7 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                               <p
                                 className="MuiFormHelperText-root"
                               >
-                                Select your default currency
+                                forms.additionalInfo.selectDefaultCurrency
                               </p>
                             </ForwardRef(FormHelperText)>
                           </WithStyles(ForwardRef(FormHelperText))>
@@ -1697,14 +1697,14 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                             }
                             component={[Function]}
                             fullWidth={true}
-                            helperText="You will be notified when you reach this limit"
+                            helperText="forms.additionalInfo.notifiedWhenReachedLimit"
                             id="limit"
                             inputProps={
                               Object {
                                 "data-testid": "limit-input",
                               }
                             }
-                            label="Your month limit"
+                            label="forms.additionalInfo.monthLimit"
                             name="monthLimit"
                             required={true}
                             type="number"
@@ -1772,14 +1772,14 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                 }
                               }
                               fullWidth={true}
-                              helperText="You will be notified when you reach this limit"
+                              helperText="forms.additionalInfo.notifiedWhenReachedLimit"
                               id="limit"
                               inputProps={
                                 Object {
                                   "data-testid": "limit-input",
                                 }
                               }
-                              label="Your month limit"
+                              label="forms.additionalInfo.monthLimit"
                               required={true}
                               type="number"
                             >
@@ -1791,14 +1791,14 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                 }
                                 disabled={false}
                                 fullWidth={true}
-                                helperText="You will be notified when you reach this limit"
+                                helperText="forms.additionalInfo.notifiedWhenReachedLimit"
                                 id="limit"
                                 inputProps={
                                   Object {
                                     "data-testid": "limit-input",
                                   }
                                 }
-                                label="Your month limit"
+                                label="forms.additionalInfo.monthLimit"
                                 name="monthLimit"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -1819,14 +1819,14 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                   }
                                   disabled={false}
                                   fullWidth={true}
-                                  helperText="You will be notified when you reach this limit"
+                                  helperText="forms.additionalInfo.notifiedWhenReachedLimit"
                                   id="limit"
                                   inputProps={
                                     Object {
                                       "data-testid": "limit-input",
                                     }
                                   }
-                                  label="Your month limit"
+                                  label="forms.additionalInfo.monthLimit"
                                   name="monthLimit"
                                   onBlur={[Function]}
                                   onChange={[Function]}
@@ -1928,7 +1928,7 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                                   htmlFor="limit"
                                                   id="limit-label"
                                                 >
-                                                  Your month limit
+                                                  forms.additionalInfo.monthLimit
                                                   <span
                                                     aria-hidden={true}
                                                     className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
@@ -2117,7 +2117,7 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                                               className="MuiFormHelperText-root Mui-required"
                                               id="limit-helper-text"
                                             >
-                                              You will be notified when you reach this limit
+                                              forms.additionalInfo.notifiedWhenReachedLimit
                                             </p>
                                           </ForwardRef(FormHelperText)>
                                         </WithStyles(ForwardRef(FormHelperText))>
@@ -2296,7 +2296,7 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                               <h6
                                 className="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom"
                               >
-                                Expense categories
+                                forms.additionalInfo.expenseCategories
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -3548,7 +3548,8 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle1 MuiTypography-gutterBottom"
                               >
-                                * 3 are required
+                                * 
+                                forms.additionalInfo.requiredCategories
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -3776,7 +3777,7 @@ exports[`AdditionalInfoForm component should match snapshot 1`] = `
                               <span
                                 className="MuiButton-label"
                               >
-                                Submit
+                                forms.additionalInfo.submitButtonLabel
                               </span>
                             </button>
                           </ForwardRef(ButtonBase)>

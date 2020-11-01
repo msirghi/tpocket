@@ -111,7 +111,7 @@ describe('AdditionalInfoForm component', () => {
     });
     expect(submitButton).not.toBeDisabled();
     fireEvent.click(submitButton);
-    expect(submitButton).toHaveTextContent('Sending data...');
+    expect(submitButton).toHaveTextContent('forms.additionalInfo.sendingData');
   });
 
   it('should throw an error on submit', async () => {
@@ -130,7 +130,7 @@ describe('AdditionalInfoForm component', () => {
     });
     expect(submitButton).not.toBeDisabled();
     fireEvent.click(submitButton);
-    expect(submitButton).toHaveTextContent('Sending data...');
+    expect(submitButton).toHaveTextContent('forms.additionalInfo.sendingData');
     expect(mutationHandler).not.toBeCalled();
   });
 

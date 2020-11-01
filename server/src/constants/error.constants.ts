@@ -13,3 +13,4 @@ export const INVALID_NAME = 'Invalid name.';
 export const ACCOUNT_NOT_CONFIRMED = 'Account not confirmed.';
 export const TOKEN_TIME_EXPIRED = 'Token time expired.';
 export const ACCOUNT_ALREADY_CONFIRMED = 'Account is already confirmed';
+export const NEGATIVE_MONTH_LIMIT = 'Negative monthly limit.';

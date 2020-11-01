@@ -20,6 +20,7 @@ export type Query = {
   getExpenseById: Expense;
   getAllUserExpenses: Array<ExpenseResponse>;
   getUserPreferences: Preference;
+  getUserInfo: Preference;
   getCategoryExpenseStatisticsByUser: StatisticsPayload;
   getExpensesStatistics: Array<MonthExpensesPayload>;
   getExpensePercentageByCategory: Array<PercentageByCategoryPayload>;
@@ -72,6 +73,7 @@ export type Preference = {
   id: Scalars['Int'];
   currency: Scalars['String'];
   monthLimit: Scalars['Float'];
+  user: User;
 };
 
 export type StatisticsPayload = {
@@ -109,6 +111,7 @@ export type Mutation = {
   initializePreferences: Preference;
   deletePreferences: Scalars['Boolean'];
   updateMonthLimit: Scalars['Boolean'];
+  updateUserPreference: Scalars['Boolean'];
   activateAccount: Scalars['Boolean'];
   login: LoginResponse;
 };
@@ -186,6 +189,14 @@ export type MutationInitializePreferencesArgs = {
 
 export type MutationUpdateMonthLimitArgs = {
   monthLimit: Scalars['Float'];
+};
+
+
+export type MutationUpdateUserPreferenceArgs = {
+  currency: Scalars['String'];
+  monthLimit: Scalars['Float'];
+  lastName: Scalars['String'];
+  firstName: Scalars['String'];
 };
 
 
@@ -302,6 +313,21 @@ export type GetExpensesStatisticsQuery = (
   )> }
 );
 
+export type GetUserInfoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetUserInfoQuery = (
+  { __typename?: 'Query' }
+  & { getUserInfo: (
+    { __typename?: 'Preference' }
+    & Pick<Preference, 'currency' | 'monthLimit'>
+    & { user: (
+      { __typename?: 'User' }
+      & Pick<User, 'email' | 'firstName' | 'lastName'>
+    ) }
+  ) }
+);
+
 export type InitAdditionalRegInfoMutationVariables = Exact<{
   categories: Scalars['String'];
   monthLimit: Scalars['Float'];
@@ -354,6 +380,19 @@ export type UpdateCategoryNameMutationVariables = Exact<{
 export type UpdateCategoryNameMutation = (
   { __typename?: 'Mutation' }
   & Pick<Mutation, 'updateCategoryName'>
+);
+
+export type UpdateUserMutationVariables = Exact<{
+  currency: Scalars['String'];
+  monthLimit: Scalars['Float'];
+  lastName: Scalars['String'];
+  firstName: Scalars['String'];
+}>;
+
+
+export type UpdateUserMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'updateUserPreference'>
 );
 
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
@@ -607,6 +646,44 @@ export function useGetExpensesStatisticsLazyQuery(baseOptions?: ApolloReactHooks
 export type GetExpensesStatisticsQueryHookResult = ReturnType<typeof useGetExpensesStatisticsQuery>;
 export type GetExpensesStatisticsLazyQueryHookResult = ReturnType<typeof useGetExpensesStatisticsLazyQuery>;
 export type GetExpensesStatisticsQueryResult = ApolloReactCommon.QueryResult<GetExpensesStatisticsQuery, GetExpensesStatisticsQueryVariables>;
+export const GetUserInfoDocument = gql`
+    query getUserInfo {
+  getUserInfo {
+    currency
+    monthLimit
+    user {
+      email
+      firstName
+      lastName
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetUserInfoQuery__
+ *
+ * To run a query within a React component, call `useGetUserInfoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserInfoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserInfoQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetUserInfoQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetUserInfoQuery, GetUserInfoQueryVariables>) {
+        return ApolloReactHooks.useQuery<GetUserInfoQuery, GetUserInfoQueryVariables>(GetUserInfoDocument, baseOptions);
+      }
+export function useGetUserInfoLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetUserInfoQuery, GetUserInfoQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GetUserInfoQuery, GetUserInfoQueryVariables>(GetUserInfoDocument, baseOptions);
+        }
+export type GetUserInfoQueryHookResult = ReturnType<typeof useGetUserInfoQuery>;
+export type GetUserInfoLazyQueryHookResult = ReturnType<typeof useGetUserInfoLazyQuery>;
+export type GetUserInfoQueryResult = ApolloReactCommon.QueryResult<GetUserInfoQuery, GetUserInfoQueryVariables>;
 export const InitAdditionalRegInfoDocument = gql`
     mutation initAdditionalRegInfo($categories: String!, $monthLimit: Float!, $currency: String!, $userId: String!) {
   initAdditionalRegInfo(monthLimit: $monthLimit, currency: $currency, userId: $userId, categories: $categories)
@@ -739,6 +816,39 @@ export function useUpdateCategoryNameMutation(baseOptions?: ApolloReactHooks.Mut
 export type UpdateCategoryNameMutationHookResult = ReturnType<typeof useUpdateCategoryNameMutation>;
 export type UpdateCategoryNameMutationResult = ApolloReactCommon.MutationResult<UpdateCategoryNameMutation>;
 export type UpdateCategoryNameMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateCategoryNameMutation, UpdateCategoryNameMutationVariables>;
+export const UpdateUserDocument = gql`
+    mutation updateUser($currency: String!, $monthLimit: Float!, $lastName: String!, $firstName: String!) {
+  updateUserPreference(currency: $currency, monthLimit: $monthLimit, lastName: $lastName, firstName: $firstName)
+}
+    `;
+export type UpdateUserMutationFn = ApolloReactCommon.MutationFunction<UpdateUserMutation, UpdateUserMutationVariables>;
+
+/**
+ * __useUpdateUserMutation__
+ *
+ * To run a mutation, you first call `useUpdateUserMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateUserMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateUserMutation, { data, loading, error }] = useUpdateUserMutation({
+ *   variables: {
+ *      currency: // value for 'currency'
+ *      monthLimit: // value for 'monthLimit'
+ *      lastName: // value for 'lastName'
+ *      firstName: // value for 'firstName'
+ *   },
+ * });
+ */
+export function useUpdateUserMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateUserMutation, UpdateUserMutationVariables>) {
+        return ApolloReactHooks.useMutation<UpdateUserMutation, UpdateUserMutationVariables>(UpdateUserDocument, baseOptions);
+      }
+export type UpdateUserMutationHookResult = ReturnType<typeof useUpdateUserMutation>;
+export type UpdateUserMutationResult = ApolloReactCommon.MutationResult<UpdateUserMutation>;
+export type UpdateUserMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateUserMutation, UpdateUserMutationVariables>;
 export const UsersDocument = gql`
     query Users {
   users {

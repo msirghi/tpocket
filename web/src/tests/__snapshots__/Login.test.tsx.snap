@@ -390,7 +390,7 @@ exports[`Login component should match snapshot 1`] = `
                         "data-testid": "email-field",
                       }
                     }
-                    label="Email Address"
+                    label="forms.login.emailAddress"
                     margin="normal"
                     name="email"
                     onChange={[Function]}
@@ -414,7 +414,7 @@ exports[`Login component should match snapshot 1`] = `
                           "data-testid": "email-field",
                         }
                       }
-                      label="Email Address"
+                      label="forms.login.emailAddress"
                       margin="normal"
                       name="email"
                       onChange={[Function]}
@@ -519,7 +519,7 @@ exports[`Login component should match snapshot 1`] = `
                                       htmlFor="email"
                                       id="email-label"
                                     >
-                                      Email Address
+                                      forms.login.emailAddress
                                       <span
                                         aria-hidden={true}
                                         className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
@@ -544,7 +544,7 @@ exports[`Login component should match snapshot 1`] = `
                               }
                               label={
                                 <React.Fragment>
-                                  Email Address
+                                  forms.login.emailAddress
                                    *
                                 </React.Fragment>
                               }
@@ -584,7 +584,7 @@ exports[`Login component should match snapshot 1`] = `
                                 }
                                 label={
                                   <React.Fragment>
-                                    Email Address
+                                    forms.login.emailAddress
                                      *
                                   </React.Fragment>
                                 }
@@ -695,7 +695,7 @@ exports[`Login component should match snapshot 1`] = `
                                         className="MuiOutlinedInput-notchedOutline"
                                         label={
                                           <React.Fragment>
-                                            Email Address
+                                            forms.login.emailAddress
                                              *
                                           </React.Fragment>
                                         }
@@ -714,7 +714,7 @@ exports[`Login component should match snapshot 1`] = `
                                           }
                                           label={
                                             <React.Fragment>
-                                              Email Address
+                                              forms.login.emailAddress
                                                *
                                             </React.Fragment>
                                           }
@@ -729,7 +729,7 @@ exports[`Login component should match snapshot 1`] = `
                                               className="PrivateNotchedOutline-legendLabelled-7"
                                             >
                                               <span>
-                                                Email Address
+                                                forms.login.emailAddress
                                                  *
                                               </span>
                                             </legend>
@@ -758,7 +758,7 @@ exports[`Login component should match snapshot 1`] = `
                     }
                     label="Password"
                     margin="normal"
-                    name="password"
+                    name="forms.login.password"
                     onChange={[Function]}
                     required={true}
                     type="password"
@@ -782,7 +782,7 @@ exports[`Login component should match snapshot 1`] = `
                       }
                       label="Password"
                       margin="normal"
-                      name="password"
+                      name="forms.login.password"
                       onChange={[Function]}
                       required={true}
                       type="password"
@@ -916,7 +916,7 @@ exports[`Login component should match snapshot 1`] = `
                                 </React.Fragment>
                               }
                               multiline={false}
-                              name="password"
+                              name="forms.login.password"
                               onChange={[Function]}
                               type="password"
                               value=""
@@ -957,7 +957,7 @@ exports[`Login component should match snapshot 1`] = `
                                   </React.Fragment>
                                 }
                                 multiline={false}
-                                name="password"
+                                name="forms.login.password"
                                 onChange={[Function]}
                                 type="password"
                                 value=""
@@ -993,7 +993,7 @@ exports[`Login component should match snapshot 1`] = `
                                     }
                                   }
                                   multiline={false}
-                                  name="password"
+                                  name="forms.login.password"
                                   onChange={[Function]}
                                   renderSuffix={[Function]}
                                   type="password"
@@ -1033,7 +1033,7 @@ exports[`Login component should match snapshot 1`] = `
                                       }
                                     }
                                     multiline={false}
-                                    name="password"
+                                    name="forms.login.password"
                                     onChange={[Function]}
                                     renderSuffix={[Function]}
                                     type="password"
@@ -1051,7 +1051,7 @@ exports[`Login component should match snapshot 1`] = `
                                         data-testid="password-field"
                                         disabled={false}
                                         id="password"
-                                        name="password"
+                                        name="forms.login.password"
                                         onAnimationStart={[Function]}
                                         onBlur={[Function]}
                                         onChange={[Function]}
@@ -1217,7 +1217,7 @@ exports[`Login component should match snapshot 1`] = `
                             <span
                               className="MuiButton-label"
                             >
-                              Sign In
+                              forms.login.signIn
                             </span>
                           </button>
                         </ForwardRef(ButtonBase)>
@@ -1603,7 +1603,7 @@ exports[`Login component should match snapshot 1`] = `
                                     href="/register"
                                     onClick={[Function]}
                                   >
-                                    Don't have an account? Sign Up
+                                    forms.login.dontHaveAnAccount
                                   </a>
                                 </LinkAnchor>
                               </Link>

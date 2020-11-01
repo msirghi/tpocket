@@ -11,6 +11,7 @@ import { AboutYouForm } from '../components/forms/AboutYouForm';
 import { AdditionalInfoForm } from '../components/forms/AdditionalInfoForm';
 import { AES, enc } from 'crypto-js';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function Copyright() {
   return (
@@ -66,6 +67,7 @@ let userId;
 export const Register = () => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const tempId = localStorage.getItem('tempId');
@@ -93,7 +95,7 @@ export const Register = () => {
       case 1:
         return <AdditionalInfoForm handleNext={handleNext} />;
       default:
-        throw new Error('Unknown step');
+        throw new Error(t('errors.unknownStep'));
     }
   };
 
@@ -107,7 +109,7 @@ export const Register = () => {
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <Typography component='h1' variant='h4' align='center'>
-            Registration
+            {t('forms.register.title')}
           </Typography>
           <Stepper activeStep={activeStep} className={classes.stepper}>
             {steps.map((label) => (
@@ -120,7 +122,7 @@ export const Register = () => {
             {activeStep === steps.length - 1 ? (
               <>
                 <Typography variant='h5' gutterBottom>
-                  Almost done!
+                {t('forms.register.doneTitle')}
                 </Typography>
                 <div className='row row-center'>
                   <img
@@ -130,10 +132,7 @@ export const Register = () => {
                     alt=''
                   ></img>
                 </div>
-                <Typography variant='subtitle1'>
-                  You're almost there! Please, check your mail box where you'll find mail with
-                  activation link. The account will be activate instantly once you click on it.
-                </Typography>
+                <Typography variant='subtitle1'>{t('forms.register.doneDescription')}</Typography>
                 <Typography variant='subtitle1'>
                   <Button color='primary' fullWidth>
                     <Link to='/login'>Login</Link>

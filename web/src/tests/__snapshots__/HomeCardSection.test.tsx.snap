@@ -28,8 +28,8 @@ exports[`HomeCardSection component should match snapshot 1`] = `
     >
       <StatisticCard
         currency="MDL"
-        description="Sum of your expenses"
-        title="Total expenses"
+        description="home.sumOfYourExpenses"
+        title="home.totalExpenses"
         value={0}
       >
         <div
@@ -145,7 +145,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                               <h2
                                 className="MuiTypography-root MuiTypography-subtitle1"
                               >
-                                Total expenses
+                                home.totalExpenses
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -194,7 +194,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Sum of your expenses
+                                home.sumOfYourExpenses
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -263,7 +263,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
       </StatisticCard>
       <StatisticCard
         description="Where you spend the most"
-        title="Most used category"
+        title="home.mostUsedCategory"
         value="Fetching..."
       >
         <div
@@ -379,7 +379,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                               <h2
                                 className="MuiTypography-root MuiTypography-subtitle1"
                               >
-                                Most used category
+                                home.mostUsedCategory
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -499,8 +499,8 @@ exports[`HomeCardSection component should match snapshot 1`] = `
       className="home-cards"
     >
       <StatisticCard
-        description="Your categories"
-        title="Total categories"
+        description="home.yourCategories"
+        title="home.totalCategories"
         value={10}
       >
         <div
@@ -616,7 +616,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                               <h2
                                 className="MuiTypography-root MuiTypography-subtitle1"
                               >
-                                Total categories
+                                home.totalCategories
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -665,7 +665,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Your categories
+                                home.yourCategories
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -733,7 +733,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
       </StatisticCard>
       <StatisticCard
         currency="MDL"
-        description="Sum of your expenses by this month"
+        description="home.monthExpensesSum"
         title="Spent this month"
         value={0}
       >
@@ -899,7 +899,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Sum of your expenses by this month
+                                home.monthExpensesSum
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -1000,8 +1000,8 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
     >
       <StatisticCard
         currency="MDL"
-        description="Sum of your expenses"
-        title="Total expenses"
+        description="home.sumOfYourExpenses"
+        title="home.totalExpenses"
         value={0}
       >
         <div
@@ -1117,7 +1117,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                               <h2
                                 className="MuiTypography-root MuiTypography-subtitle1"
                               >
-                                Total expenses
+                                home.totalExpenses
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -1166,7 +1166,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Sum of your expenses
+                                home.sumOfYourExpenses
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -1235,7 +1235,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
       </StatisticCard>
       <StatisticCard
         description="Where you spend the most"
-        title="Most used category"
+        title="home.mostUsedCategory"
         value="Fetching..."
       >
         <div
@@ -1351,7 +1351,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                               <h2
                                 className="MuiTypography-root MuiTypography-subtitle1"
                               >
-                                Most used category
+                                home.mostUsedCategory
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -1471,8 +1471,8 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
       className="home-cards"
     >
       <StatisticCard
-        description="Your categories"
-        title="Total categories"
+        description="home.yourCategories"
+        title="home.totalCategories"
         value={10}
       >
         <div
@@ -1588,7 +1588,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                               <h2
                                 className="MuiTypography-root MuiTypography-subtitle1"
                               >
-                                Total categories
+                                home.totalCategories
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -1637,7 +1637,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Your categories
+                                home.yourCategories
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -1705,7 +1705,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
       </StatisticCard>
       <StatisticCard
         currency="MDL"
-        description="Sum of your expenses by this month"
+        description="home.monthExpensesSum"
         title="Spent this month"
         value={0}
       >
@@ -1871,7 +1871,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Sum of your expenses by this month
+                                home.monthExpensesSum
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -1972,8 +1972,8 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
     >
       <StatisticCard
         currency="MDL"
-        description="Sum of your expenses"
-        title="Total expenses"
+        description="home.sumOfYourExpenses"
+        title="home.totalExpenses"
         value={0}
       >
         <div
@@ -2089,7 +2089,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                               <h2
                                 className="MuiTypography-root MuiTypography-subtitle1"
                               >
-                                Total expenses
+                                home.totalExpenses
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -2138,7 +2138,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Sum of your expenses
+                                home.sumOfYourExpenses
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -2207,7 +2207,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
       </StatisticCard>
       <StatisticCard
         description="Where you spend the most"
-        title="Most used category"
+        title="home.mostUsedCategory"
         value="Fetching..."
       >
         <div
@@ -2323,7 +2323,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                               <h2
                                 className="MuiTypography-root MuiTypography-subtitle1"
                               >
-                                Most used category
+                                home.mostUsedCategory
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -2443,8 +2443,8 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
       className="home-cards"
     >
       <StatisticCard
-        description="Your categories"
-        title="Total categories"
+        description="home.yourCategories"
+        title="home.totalCategories"
         value={10}
       >
         <div
@@ -2560,7 +2560,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                               <h2
                                 className="MuiTypography-root MuiTypography-subtitle1"
                               >
-                                Total categories
+                                home.totalCategories
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -2609,7 +2609,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Your categories
+                                home.yourCategories
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -2677,7 +2677,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
       </StatisticCard>
       <StatisticCard
         currency="MDL"
-        description="Sum of your expenses by this month"
+        description="home.monthExpensesSum"
         title="Spent this month"
         value={0}
       >
@@ -2843,7 +2843,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Sum of your expenses by this month
+                                home.monthExpensesSum
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -2944,8 +2944,8 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
     >
       <StatisticCard
         currency="MDL"
-        description="Sum of your expenses"
-        title="Total expenses"
+        description="home.sumOfYourExpenses"
+        title="home.totalExpenses"
         value={0}
       >
         <div
@@ -3061,7 +3061,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                               <h2
                                 className="MuiTypography-root MuiTypography-subtitle1"
                               >
-                                Total expenses
+                                home.totalExpenses
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -3110,7 +3110,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Sum of your expenses
+                                home.sumOfYourExpenses
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -3179,7 +3179,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
       </StatisticCard>
       <StatisticCard
         description="Where you spend the most"
-        title="Most used category"
+        title="home.mostUsedCategory"
         value="Fetching..."
       >
         <div
@@ -3295,7 +3295,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                               <h2
                                 className="MuiTypography-root MuiTypography-subtitle1"
                               >
-                                Most used category
+                                home.mostUsedCategory
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -3415,8 +3415,8 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
       className="home-cards"
     >
       <StatisticCard
-        description="Your categories"
-        title="Total categories"
+        description="home.yourCategories"
+        title="home.totalCategories"
         value={10}
       >
         <div
@@ -3532,7 +3532,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                               <h2
                                 className="MuiTypography-root MuiTypography-subtitle1"
                               >
-                                Total categories
+                                home.totalCategories
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -3581,7 +3581,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Your categories
+                                home.yourCategories
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -3649,7 +3649,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
       </StatisticCard>
       <StatisticCard
         currency="MDL"
-        description="Sum of your expenses by this month"
+        description="home.monthExpensesSum"
         title="Spent this month"
         value={0}
       >
@@ -3815,7 +3815,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Sum of your expenses by this month
+                                home.monthExpensesSum
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>

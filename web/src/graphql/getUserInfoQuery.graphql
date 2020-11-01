@@ -1,0 +1,11 @@
+query getUserInfo {
+  getUserInfo {
+    currency
+    monthLimit
+    user {
+      email
+      firstName
+      lastName
+    }
+  }
+}

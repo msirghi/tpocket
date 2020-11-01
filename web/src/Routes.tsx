@@ -7,6 +7,7 @@ import { Login } from './pages/Login';
 import { SiteWrapper } from './components/layout/SiteWrapper';
 import { CategoryPage } from './pages/CategoryPage';
 import { SnackbarProvider } from 'notistack';
+import { Account } from './pages/Account';
 // import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const HomeWrapper = withRouter((props) => <Home {...props} />);
@@ -27,11 +28,12 @@ export const Routes = () => {
               > */}
             <>
               <Switch location={location}>
-                <Route key={3} exact path={'/login'} component={Login} />
-                <Route key={2} exact path={'/register'} component={Register} />
+                <Route exact path={'/login'} component={Login} />
+                <Route exact path={'/register'} component={Register} />
                 <SiteWrapper>
-                  <Route key={1} exact path={'/home'} component={HomeWrapper} />
-                  <Route key={5} exact path={'/categories'} component={CategoryPage} />
+                  <Route exact path={'/home'} component={HomeWrapper} />
+                  <Route exact path={'/categories'} component={CategoryPage} />
+                  <Route exact path={'/account'} component={Account} />
                 </SiteWrapper>
               </Switch>
             </>

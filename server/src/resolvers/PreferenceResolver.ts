@@ -4,16 +4,9 @@ import { isAuthMiddleware } from '../isAuthMiddleware';
 import { MyContext } from '../MyContext';
 import { getConnection } from 'typeorm';
 import { User } from '../entity/User';
-import { USER_NOT_FOUND } from '../constants/error.constants';
-
-// @ObjectType()
-// @InputType('data')
-// class InitPayload {
-//
-//   @Field()
-//   currency: string;
-// }
-
+import { INVALID_NAME, NEGATIVE_MONTH_LIMIT, USER_NOT_FOUND } from '../constants/error.constants';
+import { logger } from '../config/logger.config';
+import ValidatorService from '../utils/validators';
 @Resolver()
 export class PreferenceResolver {
   @Query(() => Preference)
@@ -76,5 +69,51 @@ export class PreferenceResolver {
       .execute();
 
     return true;
+  }
+
+  // TODO: tests
+  @Query(() => Preference)
+  @UseMiddleware(isAuthMiddleware)
+  async getUserInfo(@Ctx() { payload }: MyContext) {
+    const userPrefs = await Preference.findOne({ where: { user: payload?.userId } });
+
+    return { ...userPrefs };
+  }
+
+  @Mutation(() => Boolean)
+  @UseMiddleware(isAuthMiddleware)
+  async updateUserPreference(
+    @Ctx() { payload }: MyContext,
+    @Arg('firstName') firstName: string,
+    @Arg('lastName') lastName: string,
+    @Arg('monthLimit') monthLimit: number,
+    @Arg('currency') currency: string
+  ) {
+    if (!ValidatorService.isNameValid(lastName) || !ValidatorService.isNameValid(firstName)) {
+      throw new Error(INVALID_NAME);
+    }
+
+    if (monthLimit <= 0) {
+      throw new Error(NEGATIVE_MONTH_LIMIT);
+    }
+    try {
+      await getConnection()
+        .createQueryBuilder()
+        .update(User)
+        .set({ firstName, lastName })
+        .where('id = :id', { id: payload?.userId })
+        .execute();
+
+      await getConnection()
+        .createQueryBuilder()
+        .update(Preference)
+        .set({ monthLimit, currency })
+        .where('user = :id', { id: payload?.userId })
+        .execute();
+      return true;
+    } catch (e) {
+      logger.error(e);
+      throw new Error('Error during update');
+    }
   }
 }

@@ -564,7 +564,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                 "data-testid": "firstname-field",
                               }
                             }
-                            label="First name"
+                            label="forms.aboutYou.firstName"
                             name="firstName"
                             required={true}
                           >
@@ -641,7 +641,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                   "data-testid": "firstname-field",
                                 }
                               }
-                              label="First name"
+                              label="forms.aboutYou.firstName"
                               required={true}
                             >
                               <WithStyles(ForwardRef(TextField))
@@ -654,7 +654,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                     "data-testid": "firstname-field",
                                   }
                                 }
-                                label="First name"
+                                label="forms.aboutYou.firstName"
                                 name="firstName"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -676,7 +676,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                       "data-testid": "firstname-field",
                                     }
                                   }
-                                  label="First name"
+                                  label="forms.aboutYou.firstName"
                                   name="firstName"
                                   onBlur={[Function]}
                                   onChange={[Function]}
@@ -767,7 +767,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                                   className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-required Mui-required"
                                                   data-shrink={false}
                                                 >
-                                                  First name
+                                                  forms.aboutYou.firstName
                                                   <span
                                                     aria-hidden={true}
                                                     className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
@@ -1068,7 +1068,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                 "data-testid": "lastname-field",
                               }
                             }
-                            label="Last name"
+                            label="forms.aboutYou.lastName"
                             name="lastName"
                           >
                             <FormikMaterialUITextField
@@ -1145,7 +1145,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                   "data-testid": "lastname-field",
                                 }
                               }
-                              label="Last name"
+                              label="forms.aboutYou.lastName"
                             >
                               <WithStyles(ForwardRef(TextField))
                                 autoComplete="family-name"
@@ -1158,7 +1158,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                     "data-testid": "lastname-field",
                                   }
                                 }
-                                label="Last name"
+                                label="forms.aboutYou.lastName"
                                 name="lastName"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -1180,7 +1180,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                       "data-testid": "lastname-field",
                                     }
                                   }
-                                  label="Last name"
+                                  label="forms.aboutYou.lastName"
                                   name="lastName"
                                   onBlur={[Function]}
                                   onChange={[Function]}
@@ -1281,7 +1281,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                                   htmlFor="lastName"
                                                   id="lastName-label"
                                                 >
-                                                  Last name
+                                                  forms.aboutYou.lastName
                                                 </label>
                                               </ForwardRef(FormLabel)>
                                             </WithStyles(ForwardRef(FormLabel))>
@@ -1578,7 +1578,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                 "data-testid": "email-field",
                               }
                             }
-                            label="Email"
+                            label="forms.aboutYou.email"
                             name="email"
                             required={true}
                           >
@@ -1656,7 +1656,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                   "data-testid": "email-field",
                                 }
                               }
-                              label="Email"
+                              label="forms.aboutYou.email"
                               required={true}
                             >
                               <WithStyles(ForwardRef(TextField))
@@ -1670,7 +1670,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                     "data-testid": "email-field",
                                   }
                                 }
-                                label="Email"
+                                label="forms.aboutYou.email"
                                 name="email"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -1693,7 +1693,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                       "data-testid": "email-field",
                                     }
                                   }
-                                  label="Email"
+                                  label="forms.aboutYou.email"
                                   name="email"
                                   onBlur={[Function]}
                                   onChange={[Function]}
@@ -1795,7 +1795,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                                   htmlFor="email"
                                                   id="email-label"
                                                 >
-                                                  Email
+                                                  forms.aboutYou.email
                                                   <span
                                                     aria-hidden={true}
                                                     className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
@@ -2100,7 +2100,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                 "data-testid": "password-field",
                               }
                             }
-                            label="Password"
+                            label="forms.aboutYou.password"
                             name="password"
                             required={true}
                             type="password"
@@ -2178,7 +2178,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                   "data-testid": "password-field",
                                 }
                               }
-                              label="Password"
+                              label="forms.aboutYou.password"
                               required={true}
                               type="password"
                             >
@@ -2192,7 +2192,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                     "data-testid": "password-field",
                                   }
                                 }
-                                label="Password"
+                                label="forms.aboutYou.password"
                                 name="password"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -2215,7 +2215,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                       "data-testid": "password-field",
                                     }
                                   }
-                                  label="Password"
+                                  label="forms.aboutYou.password"
                                   name="password"
                                   onBlur={[Function]}
                                   onChange={[Function]}
@@ -2318,7 +2318,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                                   htmlFor="password"
                                                   id="password-label"
                                                 >
-                                                  Password
+                                                  forms.aboutYou.password
                                                   <span
                                                     aria-hidden={true}
                                                     className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
@@ -2620,7 +2620,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                 "data-testid": "repeatPassword-field",
                               }
                             }
-                            label="Repeat your password"
+                            label="forms.aboutYou.repeatPassword"
                             name="repeatPassword"
                             required={true}
                             type="password"
@@ -2698,7 +2698,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                   "data-testid": "repeatPassword-field",
                                 }
                               }
-                              label="Repeat your password"
+                              label="forms.aboutYou.repeatPassword"
                               required={true}
                               type="password"
                             >
@@ -2712,7 +2712,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                     "data-testid": "repeatPassword-field",
                                   }
                                 }
-                                label="Repeat your password"
+                                label="forms.aboutYou.repeatPassword"
                                 name="repeatPassword"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -2735,7 +2735,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                       "data-testid": "repeatPassword-field",
                                     }
                                   }
-                                  label="Repeat your password"
+                                  label="forms.aboutYou.repeatPassword"
                                   name="repeatPassword"
                                   onBlur={[Function]}
                                   onChange={[Function]}
@@ -2838,7 +2838,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                                   htmlFor="repeatPassword"
                                                   id="repeatPassword-label"
                                                 >
-                                                  Repeat your password
+                                                  forms.aboutYou.repeatPassword
                                                   <span
                                                     aria-hidden={true}
                                                     className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
@@ -3131,7 +3131,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                           <Field
                             Label={
                               Object {
-                                "label": "Accept Terms and Conditions",
+                                "label": "forms.aboutYou.acceptTermsAndConditions",
                               }
                             }
                             component={[Function]}
@@ -3147,7 +3147,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                             <FormikMaterialUICheckboxWithLabel
                               Label={
                                 Object {
-                                  "label": "Accept Terms and Conditions",
+                                  "label": "forms.aboutYou.acceptTermsAndConditions",
                                 }
                               }
                               data-test="terms-field"
@@ -3241,7 +3241,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                     value={false}
                                   />
                                 }
-                                label="Accept Terms and Conditions"
+                                label="forms.aboutYou.acceptTermsAndConditions"
                               >
                                 <ForwardRef(FormControlLabel)
                                   classes={
@@ -3271,7 +3271,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                       value={false}
                                     />
                                   }
-                                  label="Accept Terms and Conditions"
+                                  label="forms.aboutYou.acceptTermsAndConditions"
                                 >
                                   <label
                                     className="MuiFormControlLabel-root"
@@ -3575,7 +3575,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                         <span
                                           className="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
                                         >
-                                          Accept Terms and Conditions
+                                          forms.aboutYou.acceptTermsAndConditions
                                         </span>
                                       </ForwardRef(Typography)>
                                     </WithStyles(ForwardRef(Typography))>
@@ -3805,7 +3805,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                     <span
                                       className="MuiButton-label"
                                     >
-                                      Next
+                                      forms.aboutYou.next
                                     </span>
                                   </button>
                                 </ForwardRef(ButtonBase)>
@@ -3873,7 +3873,8 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                             }
                           }
                         >
-                          Already have an account? 
+                          forms.aboutYou.alreadyHaveAnAccount
+                           
                           <Link
                             to="/login"
                           >
@@ -3885,7 +3886,7 @@ exports[`AboutYouForm component should match snapshot 1`] = `
                                 href="/login"
                                 onClick={[Function]}
                               >
-                                Sign in
+                                forms.aboutYou.signIn
                               </a>
                             </LinkAnchor>
                           </Link>

@@ -10,6 +10,7 @@ import { AlertMessage } from '../alerts/AlertMessage';
 import { AlertType } from '../../commons/enums';
 import { AES } from 'crypto-js';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   handleNext: () => void;
@@ -33,6 +34,7 @@ export const AboutYouForm: React.FC<Props> = ({
 }) => {
   const [register] = useRegisterMutation();
   const [error, setError] = useState<string | null>();
+  const { t } = useTranslation();
 
   const onSubmit = async (values: Values, setSubmitting: Function) => {
     const { email, password, firstName, lastName } = values;
@@ -76,22 +78,22 @@ export const AboutYouForm: React.FC<Props> = ({
         const errors: Partial<Values> = {};
         const { email, password, repeatPassword, firstName, lastName } = values;
         if (!email) {
-          errors.email = 'Required.';
+          errors.email = t('errors.required');
         } else if (!validateEmailStr(email)) {
-          errors.email = 'Invalid email address.';
+          errors.email = t('errors.invalidEmailShort');
         }
 
         if (isPasswordWeak(password)) {
-          errors.password = 'Password is too weak.';
+          errors.password = t('errors.weakPassword');
         } else if (password !== repeatPassword) {
-          errors.password = 'Passwords do not match.';
+          errors.password = t('errors.passwordsDoNotMatch');
         }
 
         if (firstName.length < 2) {
-          errors.firstName = 'Enter a valid first name';
+          errors.firstName = t('errors.enterValidFirstName');
         }
         if (lastName.length < 2) {
-          errors.lastName = 'Enter a valid last name';
+          errors.lastName = t('errors.enterValidLastName');
         }
         return errors;
       }}
@@ -101,7 +103,7 @@ export const AboutYouForm: React.FC<Props> = ({
         <Form>
           {isSubmitting && <LinearProgress />}
           <Typography variant='h6' gutterBottom>
-            About You
+            {t('forms.aboutYou.title')}
           </Typography>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
@@ -111,7 +113,7 @@ export const AboutYouForm: React.FC<Props> = ({
                 data-test='firstname-field'
                 inputProps={{ 'data-testid': 'firstname-field' }}
                 name='firstName'
-                label='First name'
+                label={t('forms.aboutYou.firstName')}
                 fullWidth
                 autoComplete='given-name'
               />
@@ -123,7 +125,7 @@ export const AboutYouForm: React.FC<Props> = ({
                 component={TextField}
                 id='lastName'
                 name='lastName'
-                label='Last name'
+                label={t('forms.aboutYou.lastName')}
                 fullWidth
                 autoComplete='family-name'
               />
@@ -136,7 +138,7 @@ export const AboutYouForm: React.FC<Props> = ({
                 required
                 id='email'
                 name='email'
-                label='Email'
+                label={t('forms.aboutYou.email')}
                 fullWidth
                 autoComplete='email'
               />
@@ -150,7 +152,7 @@ export const AboutYouForm: React.FC<Props> = ({
                 type='password'
                 id='password'
                 name='password'
-                label='Password'
+                label={t('forms.aboutYou.password')}
                 fullWidth
               />
             </Grid>
@@ -163,7 +165,7 @@ export const AboutYouForm: React.FC<Props> = ({
                 type='password'
                 id='repeatPassword'
                 name='repeatPassword'
-                label='Repeat your password'
+                label={t('forms.aboutYou.repeatPassword')}
                 fullWidth
               />
             </Grid>
@@ -173,7 +175,7 @@ export const AboutYouForm: React.FC<Props> = ({
                 inputProps={{ 'data-testid': 'terms-field' }}
                 component={CheckboxWithLabel}
                 type='checkbox'
-                Label={{ label: 'Accept Terms and Conditions' }}
+                Label={{ label: t('forms.aboutYou.acceptTermsAndConditions') }}
                 name='checked'
               />
             </Grid>
@@ -199,11 +201,12 @@ export const AboutYouForm: React.FC<Props> = ({
                 }
                 onClick={submitForm}
               >
-                Next
+                {t('forms.aboutYou.next')}
               </Button>
             </Grid>
             <Typography className='text-center' style={{ width: '100%' }}>
-              Already have an account? <Link to='/login'>Sign in</Link>
+              {t('forms.aboutYou.alreadyHaveAnAccount')}{' '}
+              <Link to='/login'>{t('forms.aboutYou.signIn')}</Link>
             </Typography>
           </Grid>
         </Form>

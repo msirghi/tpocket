@@ -23,6 +23,7 @@ import passwordStrength from 'check-password-strength';
 import EmailService from '../services/EmailService';
 import { EmailType } from '../types';
 import TokenService from '../services/TokenService';
+
 @ObjectType()
 class RegisterResponse {
   @Field()

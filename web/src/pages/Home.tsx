@@ -20,6 +20,7 @@ import { useHistory } from 'react-router-dom';
 import { AddExpenseDialog } from '../components/dialogs/AddExpenseDialog';
 import { useSnackbar } from 'notistack';
 import ExtensionService from '../utils/ExtensionService';
+import { useTranslation } from 'react-i18next';
 
 export type MonthlyStatistics = {
   thisMonthExpenses?: MonthExpensesPayload;
@@ -37,20 +38,20 @@ export const Home: React.FC = () => {
   );
   const [monthlyStatistics, setMonthlyStatistics] = useState<MonthlyStatistics>();
   const history = useHistory();
+  const { t } = useTranslation();
 
   const mostUsedCategoryHandler = (category: PercentageByCategoryPayload) => {
     setMostUsedCategory(category);
   };
 
   const monthlyStatisticsHandler = (statistics: MonthlyStatistics) => {
-    console.log('statistics :>> ', statistics);
     if (statistics && statistics.thisMonthExpenses) {
       setMonthlyStatistics(statistics);
     }
   };
 
   const expenseAddHandler = (response: AddExpenseMutationResult) => {
-    enqueueSnackbar('Expense added.');
+    enqueueSnackbar(t('home.expenseAdded'));
     setExpenseDialogOpen(false);
     const stats = monthlyStatistics;
     if (stats) {
@@ -70,8 +71,8 @@ export const Home: React.FC = () => {
         buttonWidth={150}
         leftIcon={<AttachMoneyIcon />}
         rightIcon={<CategoryIcon />}
-        leftLabel={'Add expense'}
-        rightLabel={'Add category'}
+        leftLabel={t('home.addExpense')}
+        rightLabel={t('home.addCategory')}
         leftClickHandler={() => setExpenseDialogOpen(true)}
         rightClickHandler={() => history.push('/categories')}
       />
@@ -105,7 +106,7 @@ export const Home: React.FC = () => {
     <>
       {expenseDialogOpen && expenseDialog()}
 
-      <PageHeader primaryText={'Home'} secondaryText={'Find out statistics about your expenses.'} />
+      <PageHeader primaryText={t('home.title')} secondaryText={t('home.description')} />
       {getRowButtons()}
       <div className={'content-wrapper'}>
         <div className={'row home-row-wrapper'}>
@@ -120,27 +121,27 @@ export const Home: React.FC = () => {
             </div>
           </div>
 
-          <div className={'expense-chart m-15'}>
+          <div className={'expense-chart'}>
             <CustomPieChart mostUsedCategoryHandler={mostUsedCategoryHandler} />
             <div className={'row mt-5rem home-cards'}>
-              <StatisticCard
-                title={
-                  monthlyStatistics && monthlyStatistics.monthWithMaxExpenses
-                    ? ExtensionService.getMonthName(+monthlyStatistics.monthWithMaxExpenses!.name)
-                    : '0'
-                }
-                value={monthlyStatistics ? monthlyStatistics.monthWithMaxExpenses!.expenses : '0'}
-                description={'Max month expenses'}
-              />
-              <StatisticCard
-                title={
-                  monthlyStatistics
-                    ? ExtensionService.getMonthName(+monthlyStatistics.monthWithMinExpenses!.name)
-                    : '0'
-                }
-                value={monthlyStatistics ? monthlyStatistics.monthWithMinExpenses!.expenses : '0'}
-                description={'Min month expenses'}
-              />
+              {monthlyStatistics && (
+                <>
+                  <StatisticCard
+                    title={ExtensionService.getMonthName(
+                      +monthlyStatistics.monthWithMaxExpenses!.name
+                    )}
+                    value={monthlyStatistics.monthWithMaxExpenses!.expenses}
+                    description={t('home.maxMonthExpenses')}
+                  />
+                  <StatisticCard
+                    title={ExtensionService.getMonthName(
+                      +monthlyStatistics.monthWithMinExpenses!.name
+                    )}
+                    value={monthlyStatistics.monthWithMinExpenses!.expenses}
+                    description={t('home.minMonthExpenses')}
+                  />
+                </>
+              )}
             </div>
           </div>
         </div>

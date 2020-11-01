@@ -1,0 +1,91 @@
+{
+  "home": {
+    "title": "Home",
+    "description": "Find out statistics about your expenses.",
+    "maxMonthExpenses": "Max month expenses",
+    "minMonthExpenses": "Min month expenses",
+    "totalExpenses": "Total expenses",
+    "sumOfYourExpenses": "Sum of your expenses",
+    "mostUsedCategory": "Most used category",
+    "totalCategories": "Total categories",
+    "yourCategories": "Your categories",
+    "monthExpensesSum": "Sum of your expenses by this month",
+    "addExpense": "Add expense",
+    "addCategory": "Add category",
+    "expenseAdded": "Expense added."
+  },
+  "account": {
+    "title": "Account settings",
+    "description": "Manage your account easily."
+  },
+  "charts": {
+    "monthlyChart": "Monthly chart",
+    "expenseChart": "Expense chart"
+  },
+  "helpers": {
+    "noDataFound": "No data found"
+  },
+  "forms": {
+    "login": {
+      "emailAddress": "Email Address",
+      "password": "Password",
+      "signIn": "Sign In",
+      "submitting": "Sending...",
+      "dontHaveAnAccount": "Don't have an account? Sign Up"
+    },
+    "register": {
+      "title": "Registration",
+      "doneTitle": "Almost done!",
+      "doneDescription": " You're almost there! Please, check your mail box where you'll find mail with activation link. The account will be activate instantly once you click on it."
+    },
+    "aboutYou": {
+      "title": "About You",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "password": "Password",
+      "repeatPassword": "Repeat your password",
+      "email": "Email",
+      "acceptTermsAndConditions": "Accept Terms and Conditions",
+      "signIn": "Sign In",
+      "next": "Next",
+      "alreadyHaveAnAccount": "Already have an account?"
+    },
+    "additionalInfo": {
+      "title": "Additional Info",
+      "yourCurrency": "Your currency",
+      "currency": "Currency",
+      "selectDefaultCurrency": "Select your default currency",
+      "monthLimit": "Your month limit",
+      "notifiedWhenReachedLimit": "You will be notified when you reach this limit",
+      "expenseCategories": "Expense categories",
+      "requiredCategories": "3 are required",
+      "submitButtonLabel": "Submit",
+      "sendingData": "Sending data..."
+    },
+    "account": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "monthLimit": "Month limit",
+      "currency": "Your currency",
+      "submitButtonLabel": "Save",
+      "submittingLabel": "Saving...",
+      "email": "Email"
+    }
+  },
+  "messages": {
+    "accountInfoUpdated": "Account succesfully updated."
+  },
+  "errors": {
+    "invalidEmail": "It seems like you have entered invalid email. Please, verify and check one more time.",
+    "unknownStep": "Unknown step",
+    "invalidEmailShort": "Invalid email address.",
+    "required": "Required.",
+    "weakPassword": "Password is too weak",
+    "passwordDoNotMatch": "Passwords do not match.",
+    "enterValidFirstName": "Enter a valid first name",
+    "enterValidLastName": "Enter a valid last name",
+    "negativeMonthLimit": "Month limit cannot be negative.",
+    "invalidName": "Please, enter a valid name",
+    "serverError": "Server error."
+  }
+}

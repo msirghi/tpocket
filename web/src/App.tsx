@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { Routes } from './Routes';
 import { setAccessToken } from './accessToken';
 import { FullScreenLoader } from './components/loaders/FullScreenLoader';
+import './commons/i18n';
 
 export const App: React.FC<{}> = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -10,6 +11,7 @@ export const App: React.FC<{}> = () => {
     fetch(`http://localhost:4000/refresh_token`, { method: 'POST', credentials: 'include' }).then(
       async (res) => {
         const { accessToken } = await res.json();
+        console.log('accessToken :>> ', accessToken);
         if (
           !accessToken &&
           !window.location.href.includes('login') &&
@@ -27,5 +29,9 @@ export const App: React.FC<{}> = () => {
     return <FullScreenLoader />;
   }
 
-  return <Routes />;
+  return (
+    <Suspense fallback='loading'>
+      <Routes />
+    </Suspense>
+  );
 };

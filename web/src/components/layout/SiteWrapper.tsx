@@ -29,61 +29,61 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      display: 'flex',
+      display: 'flex'
     },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
+        duration: theme.transitions.duration.leavingScreen
+      })
     },
     appBarShift: {
       marginLeft: drawerWidth,
       width: `calc(100% - ${drawerWidth}px)`,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
+        duration: theme.transitions.duration.enteringScreen
+      })
     },
     menuButton: {
-      marginRight: 36,
+      marginRight: 36
     },
     hide: {
-      display: 'none',
+      display: 'none'
     },
     paper: {
-      backgroundColor: '#233c46',
+      backgroundColor: '#233c46'
     },
     drawer: {
       width: drawerWidth,
       flexShrink: 0,
-      whiteSpace: 'nowrap',
+      whiteSpace: 'nowrap'
     },
     drawerOpen: {
       width: drawerWidth,
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
+        duration: theme.transitions.duration.enteringScreen
+      })
     },
     drawerClose: {
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
+        duration: theme.transitions.duration.leavingScreen
       }),
       overflowX: 'hidden',
       width: theme.spacing(7) + 1,
       [theme.breakpoints.up('sm')]: {
-        width: theme.spacing(9) + 1,
-      },
+        width: theme.spacing(9) + 1
+      }
     },
     toolbar: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'flex-end',
       padding: theme.spacing(0, 1),
-      ...theme.mixins.toolbar,
+      ...theme.mixins.toolbar
     },
     content: {
       width: '100%',
@@ -91,20 +91,20 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(3),
       paddingLeft: window.innerWidth < 700 ? theme.spacing(0) : theme.spacing(3),
       paddingRight: window.innerWidth < 700 ? theme.spacing(0) : theme.spacing(3),
-      overflowX: 'hidden',
+      overflowX: 'hidden'
     },
     title: {
-      color: '#000',
+      color: '#000'
     },
     sectionDesktop: {
       display: 'none',
       [theme.breakpoints.up('md')]: {
-        display: 'flex',
-      },
+        display: 'flex'
+      }
     },
     grow: {
-      flexGrow: 1,
-    },
+      flexGrow: 1
+    }
   })
 );
 
@@ -113,8 +113,12 @@ const renderMenu = () => {
     <>
       <List>
         {mainMenuItems.map((item) => (
-          <Link key={item.id} to={item.link}>
-            <ListItem button key={item.id}>
+          <Link key={item.id} to={item.link} style={{ textDecoration: 'none' }}>
+            <ListItem
+              button
+              key={item.id}
+              className={window.location.href.includes(item.link) ? 'active-item' : 'custom-link'}
+            >
               <ListItemIcon key={item.id}>{item.icon}</ListItemIcon>
               <ListItemText
                 data-test={`menu-${item.name}`}
@@ -130,7 +134,11 @@ const renderMenu = () => {
       <List>
         {secondaryMenuItems.map((item) => (
           <Link key={item.id} to={item.link}>
-            <ListItem button key={item.id}>
+            <ListItem
+              button
+              key={item.id}
+              className={window.location.href.includes(item.link) ? 'active-item' : 'custom-link'}
+            >
               <ListItemIcon key={item.id}>{item.icon}</ListItemIcon>
               <ListItemText key={item.name} primary={item.name} className={'drawer-text'} />
             </ListItem>
@@ -179,7 +187,7 @@ export const SiteWrapper: React.FC = ({ children }) => {
   const appBarStyle =
     width > 900
       ? {
-          [classes.appBarShift]: open,
+          [classes.appBarShift]: open
         }
       : {};
 
@@ -199,7 +207,7 @@ export const SiteWrapper: React.FC = ({ children }) => {
             onClick={() => (width > 900 ? handleDrawerOpen() : setMobileDrawerOpen(true))}
             edge='start'
             className={clsx(classes.menuButton, {
-              [classes.hide]: open,
+              [classes.hide]: open
             })}
           >
             <MenuIcon />
@@ -230,17 +238,17 @@ export const SiteWrapper: React.FC = ({ children }) => {
           variant='permanent'
           className={clsx(classes.drawer, {
             [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
+            [classes.drawerClose]: !open
           })}
           classes={{
             paper: clsx(classes.paper, {
               [classes.drawerOpen]: open,
-              [classes.drawerClose]: !open,
-            }),
+              [classes.drawerClose]: !open
+            })
           }}
         >
           <div className={classes.toolbar}>
-            <IconButton onClick={handleDrawerClose}>
+            <IconButton onClick={handleDrawerClose} className={'chevron-button'}>
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
           </div>
@@ -253,8 +261,8 @@ export const SiteWrapper: React.FC = ({ children }) => {
           classes={{
             paper: clsx(classes.paper, {
               [classes.drawerOpen]: mobileDrawerOpen,
-              [classes.drawerClose]: !mobileDrawerOpen,
-            }),
+              [classes.drawerClose]: !mobileDrawerOpen
+            })
           }}
           className={classes.drawer}
           anchor={'left'}

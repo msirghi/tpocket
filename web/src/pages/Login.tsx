@@ -16,6 +16,7 @@ import ValidationService from '../utils/ValidationService';
 import { AlertMessage } from '../components/alerts/AlertMessage';
 import { AlertType } from '../commons/enums';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function Copyright() {
   return (
@@ -54,15 +55,14 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setSubmitting] = useState(false);
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
 
     if (!ValidationService.validateEmailStr(email)) {
-      setError( 
-        'It seems like you have entered invalid email. Please, verify and check one more time.'
-      );
+      setError(t('errors.invalidEmail'));
       setSubmitting(false);
       return;
     }
@@ -81,9 +81,7 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
     } catch (e) {
       setSubmitting(false);
       setError(
-        e.networkError
-          ? e.networkError.graphQLErrors.map((x: { message: string }) => x.message)[0]
-          : 'Error'
+        e.graphQLErrors ? e.graphQLErrors.map((x: { message: string }) => x.message)[0] : 'Error'
       );
     }
   };
@@ -110,7 +108,7 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
             required
             fullWidth
             id='email'
-            label='Email Address'
+            label={t('forms.login.emailAddress')}
             name='email'
             autoComplete='email'
             autoFocus
@@ -124,7 +122,7 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
             margin='normal'
             required
             fullWidth
-            name='password'
+            name={t('forms.login.password')}
             label='Password'
             type='password'
             id='password'
@@ -140,14 +138,14 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
             className={classes.submit}
             disabled={!email || !password || isSubmitting}
           >
-            {isSubmitting ? 'Sending...' : 'Sign In'}
+            {isSubmitting ? t('forms.login.submitting') : t('forms.login.signIn')}
           </Button>
           <Grid container>
             <Grid item xs>
               <Link to='#'>Forgot password?</Link>
             </Grid>
             <Grid item>
-              <Link to='/register'>{"Don't have an account? Sign Up"}</Link>
+              <Link to='/register'>{t('forms.login.dontHaveAnAccount')}</Link>
             </Grid>
           </Grid>
         </form>

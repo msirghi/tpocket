@@ -26,8 +26,9 @@ export class Preference extends BaseEntity {
   @Column({ nullable: true })
   monthLimit: number;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, { eager: true })
   @JoinColumn()
+  @Field()
   user: User;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })

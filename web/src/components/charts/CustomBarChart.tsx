@@ -4,6 +4,7 @@ import { ChartCard } from '../cards/ChartCard';
 import { useWindowSize } from '../../utils/useWindowSize';
 import { useGetExpensesStatisticsQuery } from '../../generated/graphql';
 import { MonthlyStatistics } from '../../pages/Home';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   monthlyStatisticsHandler: (statistics: MonthlyStatistics) => void;
@@ -15,8 +16,8 @@ export const CustomBarChart: React.FC<Props> = ({ monthlyStatisticsHandler }) =>
     variables: { year: new Date().getFullYear() }
   });
   const [isLoading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
-  // console.log('data is: ', data);
   useEffect(() => {
     if (data) {
       const sortedByExpenses = data.getExpensesStatistics.sort((a, b) => a.expenses - b.expenses);
@@ -47,9 +48,9 @@ export const CustomBarChart: React.FC<Props> = ({ monthlyStatisticsHandler }) =>
   }
 
   return (
-    <ChartCard title={'Monthly chart'}>
+    <ChartCard title={t('charts.monthlyChart')}>
       {error ? (
-        <div className={'text-center'}>No data found.</div>
+        <div className={'text-center'}>{t('helpers.noDataFound')}</div>
       ) : (
         <BarChart
           width={width > 600 ? 600 : 300}

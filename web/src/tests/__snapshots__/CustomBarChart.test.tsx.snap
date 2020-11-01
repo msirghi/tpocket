@@ -3388,7 +3388,7 @@ exports[`CustomBarChart component should match snapshot on bar render 1`] = `
     monthlyStatisticsHandler={[MockFunction]}
   >
     <ChartCard
-      title="Monthly chart"
+      title="charts.monthlyChart"
     >
       <WithStyles(ForwardRef(Card))
         className="makeStyles-root-1"
@@ -3504,7 +3504,7 @@ exports[`CustomBarChart component should match snapshot on bar render 1`] = `
                           <h2
                             className="MuiTypography-root card-title MuiTypography-h5 MuiTypography-alignCenter"
                           >
-                            Monthly chart
+                            charts.monthlyChart
                           </h2>
                         </ForwardRef(Typography)>
                       </WithStyles(ForwardRef(Typography))>

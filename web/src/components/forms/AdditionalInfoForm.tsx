@@ -9,6 +9,7 @@ import { Select, TextField } from 'formik-material-ui';
 import { FormHelperText } from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
 import { useInitAdditionalRegInfoMutation } from '../../generated/graphql';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   handleNext: () => void;
@@ -41,6 +42,7 @@ const currencies = [
 export const AdditionalInfoForm: React.FC<Props> = ({ handleNext }) => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [initAdditionalRegInfo] = useInitAdditionalRegInfoMutation();
+  const { t } = useTranslation();
 
   const onSubmit = async (values: Values, setSubmitting: (val: boolean) => void) => {
     const { currency, monthLimit } = values;
@@ -82,17 +84,17 @@ export const AdditionalInfoForm: React.FC<Props> = ({ handleNext }) => {
       {({ submitForm, isSubmitting, values }) => (
         <Form>
           <Typography variant='h6' gutterBottom>
-            Additional Info
+            {t('forms.additionalInfo.title')}
           </Typography>
           <Grid container spacing={3} className='row row-vert-end'>
             <Grid item xs={12} md={6}>
               <InputLabel shrink htmlFor='currency'>
-                Your currency
+                {t('forms.additionalInfo.yourCurrency')}
               </InputLabel>
               <Field
                 inputProps={{ 'data-testid': 'currency-selector' }}
-                label='Currency'
-                placeholder='Currency'
+                label={t('forms.additionalInfo.currency')}
+                placeholder={t('forms.additionalInfo.currency')}
                 fullWidth
                 name='currency'
                 component={Select}
@@ -104,7 +106,7 @@ export const AdditionalInfoForm: React.FC<Props> = ({ handleNext }) => {
                   </MenuItem>
                 ))}
               </Field>
-              <FormHelperText>Select your default currency</FormHelperText>
+              <FormHelperText>{t('forms.additionalInfo.selectDefaultCurrency')}</FormHelperText>
             </Grid>
             <Grid item xs={12} md={6}>
               <Field
@@ -114,9 +116,9 @@ export const AdditionalInfoForm: React.FC<Props> = ({ handleNext }) => {
                 type='number'
                 required
                 id='limit'
-                label='Your month limit'
+                label={t('forms.additionalInfo.monthLimit')}
                 fullWidth
-                helperText='You will be notified when you reach this limit'
+                helperText={t('forms.additionalInfo.notifiedWhenReachedLimit')}
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -125,7 +127,7 @@ export const AdditionalInfoForm: React.FC<Props> = ({ handleNext }) => {
 
             <Grid item xs={12} md={12}>
               <Typography variant='h6' gutterBottom>
-                Expense categories
+                {t('forms.additionalInfo.expenseCategories')}
               </Typography>
             </Grid>
             <Grid item xs={12} md={12} className='disable-padding'>
@@ -136,7 +138,7 @@ export const AdditionalInfoForm: React.FC<Props> = ({ handleNext }) => {
             </Grid>
             <Grid item xs={12}>
               <Typography variant='subtitle1' gutterBottom>
-                * 3 are required
+                * {t('forms.additionalInfo.requiredCategories')}
               </Typography>
             </Grid>
           </Grid>
@@ -154,7 +156,7 @@ export const AdditionalInfoForm: React.FC<Props> = ({ handleNext }) => {
               onClick={submitForm}
               fullWidth
             >
-              {isSubmitting ? 'Sending data...' : 'Submit'}
+              {isSubmitting ? t('forms.additionalInfo.sendingData') : t('forms.additionalInfo.submitButtonLabel')}
             </Button>
           </Grid>
         </Form>
