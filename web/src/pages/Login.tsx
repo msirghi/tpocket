@@ -6,25 +6,23 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Patterns from '../utils/patterns';
+import ValidationService from '../utils/ValidationService';
 import { AlertMessage } from '../components/alerts/AlertMessage';
 import { AlertType } from '../commons/enums';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function Copyright() {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
       {'Copyright © '}
-      <Link color='inherit' href='https://material-ui.com/'>
-        TPocket
-      </Link>{' '}
-      {new Date().getFullYear()}
+      <Link to='https://material-ui.com/'>TPocket</Link> {new Date().getFullYear()}
       {'.'}
     </Typography>
   );
@@ -32,22 +30,22 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(12),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.main
   },
   form: {
     width: '100%',
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(1)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
+    margin: theme.spacing(3, 0, 2)
+  }
 }));
 
 export const Login: React.FC<RouteComponentProps> = ({ history }) => {
@@ -55,39 +53,42 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [password, setPassword] = useState('');
   const [login] = useLoginMutation();
   const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setSubmitting] = useState(false);
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitting(true);
 
-    if (!Patterns.validateEmail(email) && email !== 'bob') {
-      setError(
-        'It seems like you have entered invalid email. Please, verify and check one more time.'
-      );
+    if (!ValidationService.validateEmailStr(email)) {
+      setError(t('errors.invalidEmail'));
+      setSubmitting(false);
       return;
     }
     try {
       const response = await login({
         variables: {
           email,
-          password,
-        },
+          password
+        }
       });
-      console.log(response);
       if (response && response.data) {
         setAccessToken(response.data.login.accessToken);
       }
 
       history.push('/home');
     } catch (e) {
-      setError('Invalid credentials.')
+      setSubmitting(false);
+      setError(
+        e.graphQLErrors ? e.graphQLErrors.map((x: { message: string }) => x.message)[0] : 'Error'
+      );
     }
   };
 
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
-      {error && <AlertMessage message={error} type={AlertType.ERROR} />}
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -96,7 +97,10 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
           Sign in
         </Typography>
         <form className={classes.form} noValidate onSubmit={onSubmit}>
+          {error && <AlertMessage message={error} type={AlertType.ERROR} />}
           <TextField
+            inputProps={{ 'data-testid': 'email-field' }}
+            data-test='email-field'
             variant='outlined'
             margin='normal'
             value={email}
@@ -104,44 +108,44 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
             required
             fullWidth
             id='email'
-            label='Email Address'
+            label={t('forms.login.emailAddress')}
             name='email'
             autoComplete='email'
             autoFocus
           />
           <TextField
+            inputProps={{ 'data-testid': 'password-field' }}
+            data-test='password-field'
             value={password}
             onChange={(e) => setPassword((e.target as HTMLInputElement).value)}
             variant='outlined'
             margin='normal'
             required
             fullWidth
-            name='password'
+            name={t('forms.login.password')}
             label='Password'
             type='password'
             id='password'
             autoComplete='current-password'
           />
           <Button
+            data-test='submit-button'
+            data-testid='submit-button'
             type='submit'
             fullWidth
             variant='contained'
             color='primary'
             className={classes.submit}
-            disabled={!email || !password}
+            disabled={!email || !password || isSubmitting}
           >
-            Sign In
+            {isSubmitting ? t('forms.login.submitting') : t('forms.login.signIn')}
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href='#' variant='body2'>
-                Forgot password?
-              </Link>
+              <Link to='#'>Forgot password?</Link>
             </Grid>
             <Grid item>
-              <Link href='#' variant='body2'>
-                {"Don't have an account? Sign Up"}
-              </Link>
+              <Link to='/register'>{t('forms.login.dontHaveAnAccount')}</Link>
             </Grid>
           </Grid>
         </form>

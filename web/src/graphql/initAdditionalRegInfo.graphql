@@ -1,0 +1,13 @@
+mutation initAdditionalRegInfo(
+  $categories: String!
+  $monthLimit: Float!
+  $currency: String!
+  $userId: String!
+) {
+  initAdditionalRegInfo(
+    monthLimit: $monthLimit
+    currency: $currency
+    userId: $userId
+    categories: $categories
+  )
+}

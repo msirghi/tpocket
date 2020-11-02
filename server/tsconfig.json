@@ -2,7 +2,6 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "moduleResolution": "node",
-    "noImplicitAny": true,
     "target": "es6",
     "module": "commonjs",
     "lib": [
@@ -18,6 +17,7 @@
     "strictFunctionTypes": true,
     "noImplicitThis": true,
     "noUnusedLocals": false,
+    "noImplicitAny": false,
     "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
@@ -32,6 +32,7 @@
   ],
   "include": [
     "./src/**/*.tsx",
-    "./src/**/*.ts"
+    "./src/**/*.ts",
+    "./index.d.ts"
   ]
 }

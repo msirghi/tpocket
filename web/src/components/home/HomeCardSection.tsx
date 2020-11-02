@@ -1,12 +1,10 @@
-import React from 'react';
-import {
-  Category,
-  useGetCategoryExpenseStatisticsByUserQuery,
-  PercentageByCategoryPayload,
-} from '../../generated/graphql';
+import React, { useContext } from 'react';
+import { PercentageByCategoryPayload } from '../../generated/graphql';
 import { StatisticCard } from '../cards/StatisticCard';
 import { startCase } from 'lodash';
 import { MonthlyStatistics } from '../../pages/Home';
+import { useTranslation } from 'react-i18next';
+import { AccountContext } from '../../context/AccountContext';
 
 interface IProps {
   data: any;
@@ -17,35 +15,41 @@ interface IProps {
 export const HomeCardSection: React.FC<IProps> = ({
   data,
   mostUsedCategory,
-  monthlyStatistics,
+  monthlyStatistics
 }) => {
-  console.log('monthlyStatistics :>> ', monthlyStatistics);
+  const accountInfo = useContext(AccountContext);
+  const { t } = useTranslation();
+
   return (
     <div>
       <div className={'home-cards'}>
         <StatisticCard
-          title={'Total expenses'}
+          title={t('home.totalExpenses')}
           value={data ? data.getCategoryExpenseStatisticsByUser.totalExpenses : 0}
-          description={'Sum of your expenses'}
-          currency={'MDL'}
+          description={t('home.sumOfYourExpenses')}
+          currency={accountInfo.state!.currency}
         />
         <StatisticCard
-          title={'Most used category'}
+          title={t('home.mostUsedCategory')}
           value={mostUsedCategory ? startCase(mostUsedCategory.category.name) : 'Fetching...'}
-          description={'Where you spend the most'}
+          description={t('home.mostUsedCategoryDescription')}
         />
       </div>
 
       <div className={'home-cards'}>
         <StatisticCard
-          title={'Total categories'}
+          title={t('home.totalCategories')}
           value={data ? data.getCategoryExpenseStatisticsByUser.totalCategories : 0}
-          description={'Your categories'}
+          description={t('home.yourCategories')}
         />
         <StatisticCard
           title={'Spent this month'}
-          value={monthlyStatistics ? monthlyStatistics.thisMonthExpenses!.expenses : 0}
-          description={'Sum of your expenses by this month'}
+          value={
+            monthlyStatistics && monthlyStatistics.thisMonthExpenses
+              ? monthlyStatistics.thisMonthExpenses.expenses
+              : 0
+          }
+          description={t('home.monthExpensesSum')}
           currency={'MDL'}
         />
       </div>

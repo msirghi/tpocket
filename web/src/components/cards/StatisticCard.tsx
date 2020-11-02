@@ -12,8 +12,6 @@ interface IProps {
 }
 
 const useStyles = makeStyles({
-  root: {},
-  bullet: {},
   title: {
     fontSize: 15,
   },
@@ -30,7 +28,7 @@ export const StatisticCard: React.FC<IProps> = ({ title, value, description, cur
 
   return (
     <div className={ 'full-width m-15 text-center mt-0' }>
-      <Card className={ classes.root }>
+      <Card>
         <CardContent>
           <Typography variant="subtitle1" component="h2">
             { title }

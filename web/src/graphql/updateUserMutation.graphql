@@ -1,0 +1,3 @@
+mutation updateUser($currency: String!, $monthLimit: Float!, $lastName: String!, $firstName: String!) {
+  updateUserPreference(currency: $currency, monthLimit: $monthLimit, lastName: $lastName, firstName: $firstName)
+}

@@ -9,6 +9,7 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.6",
+    "@types/crypto-js": "^4.0.1",
     "@types/express": "^4.17.6",
     "@types/graphql": "^14.5.0",
     "@types/jest": "^26.0.5",
@@ -28,6 +29,7 @@
     "check-password-strength": "^1.0.8",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^15.1.0",
@@ -37,14 +39,20 @@
     "lodash": "^4.17.20",
     "morgan": "^1.10.0",
     "node-fetch": "^2.6.0",
+    "nodemailer": "^6.4.14",
     "pg": "^8.2.1",
     "reflect-metadata": "^0.1.10",
     "type-graphql": "^1.0.0-rc.3",
-    "typeorm": "0.2.25"
+    "typeorm": "0.2.25",
+    "winston": "^3.3.3"
   },
   "scripts": {
-    "start": "nodemon --exec ts-node src/index.ts",
+    "start": "nodemon --exec ts-node src/index.ts --declaration",
     "test": "jest src/tests/runner.test.ts --coverage",
+    "test-file": "jest src/tests/authResolver.test.ts",
     "generate": "graphql-codegen --config codegen.yml"
+  },
+  "transform": {
+    "\\.js$": "<rootDir>/node_modules/babel-jest"
   }
 }

@@ -3,8 +3,13 @@ import { User } from '../entity/User';
 import { MyContext } from '../MyContext';
 import { isAuthMiddleware } from '../isAuthMiddleware';
 import { Category } from '../entity/Category';
-import { Arg, Ctx, Mutation, Query, Resolver, UseMiddleware, } from 'type-graphql';
-import { CATEGORY_ALREADY_EXISTS, NO_CATEGORY, NOT_FOUND, USER_NOT_FOUND } from "../constants/error.constants";
+import { Arg, Ctx, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql';
+import {
+  CATEGORY_ALREADY_EXISTS,
+  NO_CATEGORY,
+  NOT_FOUND,
+  USER_NOT_FOUND
+} from '../constants/error.constants';
 
 @Resolver()
 export class CategoryResolver {
@@ -28,17 +33,13 @@ export class CategoryResolver {
 
   @Query(() => [Category])
   @UseMiddleware(isAuthMiddleware)
-  getCategoryByUser(
-    @Ctx() { payload }: MyContext
-  ) {
+  getCategoryByUser(@Ctx() { payload }: MyContext) {
     return Category.find({ where: { user: payload?.userId } });
   }
 
   @Query(() => Category)
   @UseMiddleware(isAuthMiddleware)
-  async getCategoryById(
-    @Arg('id') id: number
-  ) {
+  async getCategoryById(@Arg('id') id: number) {
     const result = await Category.findOne({ where: { id } });
 
     if (!result) {
@@ -71,9 +72,7 @@ export class CategoryResolver {
 
   @Mutation(() => Boolean)
   @UseMiddleware(isAuthMiddleware)
-  async deleteCategory(
-    @Arg('id') id: number,
-    @Ctx() { payload }: MyContext) {
+  async deleteCategory(@Arg('id') id: number, @Ctx() { payload }: MyContext) {
     const category = await Category.findOne({ where: { id } });
 
     if (!category) {
@@ -93,10 +92,7 @@ export class CategoryResolver {
 
   @Mutation(() => Category)
   @UseMiddleware(isAuthMiddleware)
-  async createCategory(
-    @Arg('name') name: string,
-    @Ctx() { payload }: MyContext
-  ) {
+  async createCategory(@Arg('name') name: string, @Ctx() { payload }: MyContext) {
     const user = await User.findOne({ where: { id: payload?.userId } });
 
     if (!user) {
@@ -104,7 +100,7 @@ export class CategoryResolver {
     }
 
     await this.checkCategoryByName(name, payload!.userId);
-    const result = await Category.insert({ name, user, });
+    const result = await Category.insert({ name, user });
 
     return { name, id: result.identifiers[0].id };
   }

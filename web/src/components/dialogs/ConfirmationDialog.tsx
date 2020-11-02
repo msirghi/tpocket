@@ -15,46 +15,43 @@ interface IProps {
   title: String;
 }
 
-export const ConfirmationDialog: React.FC<IProps> = (
-  {
-    open,
-    toggleDialog,
-    onSubmit,
-    isLoading,
-    title,
-    children
-  }) => {
+export const ConfirmationDialog: React.FC<IProps> = ({
+  open,
+  toggleDialog,
+  onSubmit,
+  isLoading,
+  title,
+  children
+}) => {
   return (
     <div>
-      <Dialog open={ open } onClose={ () => {
-        toggleDialog(false);
-      } } aria-labelledby="form-dialog-title">
-        { isLoading && <LinearProgress/> }
-        <DialogTitle id="form-dialog-title">
-          { title }
-        </DialogTitle>
+      <Dialog
+        open={open}
+        onClose={() => {
+          toggleDialog(false);
+        }}
+        aria-labelledby='form-dialog-title'
+      >
+        {isLoading && <LinearProgress />}
+        <DialogTitle id='form-dialog-title'>{title}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            { children }
-          </DialogContentText>
+          <DialogContentText>{children}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button
-            onClick={ () => {
-              toggleDialog(false)
-            } }
-            color="secondary"
+            data-test='cancel-button'
+            onClick={() => {
+              toggleDialog(false);
+            }}
+            color='secondary'
           >
             Cancel
           </Button>
-          <Button
-            onClick={ onSubmit }
-            color="primary"
-          >
+          <Button data-test='submit-button' onClick={onSubmit} color='primary'>
             Submit
           </Button>
         </DialogActions>
       </Dialog>
     </div>
   );
-}
+};

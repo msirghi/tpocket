@@ -1,8 +1,10 @@
 /server/.env
 /server/yarn.lock
 /server/ormconfig.json
+/server/coverage/*
 
 */node_modules/*
 
 /web/.env
 /web/yarn.lock
+/web/coverage/*
