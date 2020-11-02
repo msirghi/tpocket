@@ -4,6 +4,8 @@ import { HomeCardSection } from '../components/home/HomeCardSection';
 import { PercentageByCategoryPayload } from '../generated/graphql';
 import { MonthlyStatistics } from '../pages/Home';
 import toJson from 'enzyme-to-json';
+import { AccountContext, AccountProvider } from '../context/AccountContext';
+import { AccountContextData } from './utils/contextData';
 
 type Props = {
   data?: any;
@@ -34,7 +36,11 @@ describe('HomeCardSection component', () => {
 
   const getComponent = (props: Props | {} = {}) => {
     const finalProps = { ...defaultProps, ...props };
-    return mount(<HomeCardSection {...finalProps} />);
+    return mount(
+      <AccountContext.Provider value={{ state: AccountContextData, dispatch: jest.fn() }}>
+        <HomeCardSection {...finalProps} />
+      </AccountContext.Provider>
+    );
   };
 
   it('should match snapshot', () => {

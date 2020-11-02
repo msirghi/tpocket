@@ -23,6 +23,7 @@
     "formik": "^2.1.7",
     "formik-material-ui": "^3.0.0",
     "graphql": "^15.2.0",
+    "husky": "^4.3.0",
     "i18next": "^19.8.3",
     "i18next-browser-languagedetector": "^6.0.1",
     "i18next-xhr-backend": "^3.2.2",
@@ -93,7 +94,13 @@
       "<rootDir>/src/index.tsx",
       "<rootDir>/src/serviceWorker.ts",
       "<rootDir>/src/common",
-      "<rootDir>/src/interfaces"
+      "<rootDir>/src/interfaces",
+      "<rootDir>/src/App.tsx"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo COMMITING"
+    }
   }
 }

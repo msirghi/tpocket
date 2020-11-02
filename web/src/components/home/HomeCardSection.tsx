@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { PercentageByCategoryPayload } from '../../generated/graphql';
 import { StatisticCard } from '../cards/StatisticCard';
 import { startCase } from 'lodash';
 import { MonthlyStatistics } from '../../pages/Home';
 import { useTranslation } from 'react-i18next';
+import { AccountContext } from '../../context/AccountContext';
 
 interface IProps {
   data: any;
@@ -16,7 +17,9 @@ export const HomeCardSection: React.FC<IProps> = ({
   mostUsedCategory,
   monthlyStatistics
 }) => {
+  const accountInfo = useContext(AccountContext);
   const { t } = useTranslation();
+
   return (
     <div>
       <div className={'home-cards'}>
@@ -24,12 +27,12 @@ export const HomeCardSection: React.FC<IProps> = ({
           title={t('home.totalExpenses')}
           value={data ? data.getCategoryExpenseStatisticsByUser.totalExpenses : 0}
           description={t('home.sumOfYourExpenses')}
-          currency={'MDL'}
+          currency={accountInfo.state!.currency}
         />
         <StatisticCard
           title={t('home.mostUsedCategory')}
           value={mostUsedCategory ? startCase(mostUsedCategory.category.name) : 'Fetching...'}
-          description={'Where you spend the most'}
+          description={t('home.mostUsedCategoryDescription')}
         />
       </div>
 

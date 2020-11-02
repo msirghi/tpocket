@@ -1,19 +1,14 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AccountEditForm } from '../components/forms/AccountEditForm';
 import { PageHeader } from '../components/layout/PageHeader';
 import { FullScreenLoader } from '../components/loaders/FullScreenLoader';
+import { AccountContext } from '../context/AccountContext';
 import { useGetUserInfoQuery } from '../generated/graphql';
 
 export const Account: React.FC = () => {
   const { t } = useTranslation();
-  const accountQuery = useGetUserInfoQuery();
-
-  if (accountQuery.loading) {
-    return <FullScreenLoader />;
-  }
-
-  const { currency, monthLimit, user } = accountQuery.data!.getUserInfo;
+  const accountInfo = useContext(AccountContext);
 
   return (
     <div>
@@ -27,13 +22,7 @@ export const Account: React.FC = () => {
         />
       </div>
 
-      <AccountEditForm
-        email={user.email}
-        firstName={user.firstName}
-        lastName={user.lastName}
-        monthLimit={monthLimit}
-        currency={currency}
-      />
+      <AccountEditForm {...accountInfo.state!} />
     </div>
   );
 };

@@ -85,10 +85,16 @@ exports[`SiteWrapper Component should render properly 1`] = `
     <WithStyles(ForwardRef(List))>
       <Link
         key="1"
+        style={
+          Object {
+            "textDecoration": "none",
+          }
+        }
         to="/home"
       >
         <WithStyles(ForwardRef(ListItem))
           button={true}
+          className="custom-link"
           key="1"
         >
           <WithStyles(ForwardRef(ListItemIcon))
@@ -108,10 +114,16 @@ exports[`SiteWrapper Component should render properly 1`] = `
       </Link>
       <Link
         key="2"
+        style={
+          Object {
+            "textDecoration": "none",
+          }
+        }
         to="/account"
       >
         <WithStyles(ForwardRef(ListItem))
           button={true}
+          className="custom-link"
           key="2"
         >
           <WithStyles(ForwardRef(ListItemIcon))
@@ -131,10 +143,16 @@ exports[`SiteWrapper Component should render properly 1`] = `
       </Link>
       <Link
         key="3"
+        style={
+          Object {
+            "textDecoration": "none",
+          }
+        }
         to="/categories"
       >
         <WithStyles(ForwardRef(ListItem))
           button={true}
+          className="custom-link"
           key="3"
         >
           <WithStyles(ForwardRef(ListItemIcon))
@@ -161,6 +179,7 @@ exports[`SiteWrapper Component should render properly 1`] = `
       >
         <WithStyles(ForwardRef(ListItem))
           button={true}
+          className="custom-link"
           key="1"
         >
           <WithStyles(ForwardRef(ListItemIcon))
@@ -183,6 +202,7 @@ exports[`SiteWrapper Component should render properly 1`] = `
       >
         <WithStyles(ForwardRef(ListItem))
           button={true}
+          className="custom-link"
           key="2"
         >
           <WithStyles(ForwardRef(ListItemIcon))
@@ -205,6 +225,7 @@ exports[`SiteWrapper Component should render properly 1`] = `
       >
         <WithStyles(ForwardRef(ListItem))
           button={true}
+          className="custom-link"
           key="3"
         >
           <WithStyles(ForwardRef(ListItemIcon))

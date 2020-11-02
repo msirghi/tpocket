@@ -27,7 +27,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
       className="home-cards"
     >
       <StatisticCard
-        currency="MDL"
+        currency="USD"
         description="home.sumOfYourExpenses"
         title="home.totalExpenses"
         value={0}
@@ -35,11 +35,8 @@ exports[`HomeCardSection component should match snapshot 1`] = `
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -47,11 +44,11 @@ exports[`HomeCardSection component should match snapshot 1`] = `
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -87,7 +84,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -199,12 +196,12 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -243,11 +240,11 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 0
                                  
-                                MDL
+                                USD
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -262,18 +259,15 @@ exports[`HomeCardSection component should match snapshot 1`] = `
         </div>
       </StatisticCard>
       <StatisticCard
-        description="Where you spend the most"
+        description="home.mostUsedCategoryDescription"
         title="home.mostUsedCategory"
         value="Fetching..."
       >
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -281,11 +275,11 @@ exports[`HomeCardSection component should match snapshot 1`] = `
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -321,7 +315,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -428,17 +422,17 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Where you spend the most
+                                home.mostUsedCategoryDescription
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -477,7 +471,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 Fetching...
                                  
@@ -506,11 +500,8 @@ exports[`HomeCardSection component should match snapshot 1`] = `
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -518,11 +509,11 @@ exports[`HomeCardSection component should match snapshot 1`] = `
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -558,7 +549,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -670,12 +661,12 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -714,7 +705,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 10
                                  
@@ -740,11 +731,8 @@ exports[`HomeCardSection component should match snapshot 1`] = `
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -752,11 +740,11 @@ exports[`HomeCardSection component should match snapshot 1`] = `
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -792,7 +780,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -904,12 +892,12 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -948,7 +936,7 @@ exports[`HomeCardSection component should match snapshot 1`] = `
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 0
                                  
@@ -999,7 +987,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
       className="home-cards"
     >
       <StatisticCard
-        currency="MDL"
+        currency="USD"
         description="home.sumOfYourExpenses"
         title="home.totalExpenses"
         value={0}
@@ -1007,11 +995,8 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -1019,11 +1004,11 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -1059,7 +1044,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -1171,12 +1156,12 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -1215,11 +1200,11 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 0
                                  
-                                MDL
+                                USD
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -1234,18 +1219,15 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
         </div>
       </StatisticCard>
       <StatisticCard
-        description="Where you spend the most"
+        description="home.mostUsedCategoryDescription"
         title="home.mostUsedCategory"
         value="Fetching..."
       >
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -1253,11 +1235,11 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -1293,7 +1275,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -1400,17 +1382,17 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Where you spend the most
+                                home.mostUsedCategoryDescription
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -1449,7 +1431,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 Fetching...
                                  
@@ -1478,11 +1460,8 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -1490,11 +1469,11 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -1530,7 +1509,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -1642,12 +1621,12 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -1686,7 +1665,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 10
                                  
@@ -1712,11 +1691,8 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -1724,11 +1700,11 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -1764,7 +1740,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -1876,12 +1852,12 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -1920,7 +1896,7 @@ exports[`HomeCardSection component should render zeros if no value for getCatego
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 0
                                  
@@ -1971,7 +1947,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
       className="home-cards"
     >
       <StatisticCard
-        currency="MDL"
+        currency="USD"
         description="home.sumOfYourExpenses"
         title="home.totalExpenses"
         value={0}
@@ -1979,11 +1955,8 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -1991,11 +1964,11 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -2031,7 +2004,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -2143,12 +2116,12 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -2187,11 +2160,11 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 0
                                  
-                                MDL
+                                USD
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -2206,18 +2179,15 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
         </div>
       </StatisticCard>
       <StatisticCard
-        description="Where you spend the most"
+        description="home.mostUsedCategoryDescription"
         title="home.mostUsedCategory"
         value="Fetching..."
       >
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -2225,11 +2195,11 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -2265,7 +2235,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -2372,17 +2342,17 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Where you spend the most
+                                home.mostUsedCategoryDescription
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -2421,7 +2391,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 Fetching...
                                  
@@ -2450,11 +2420,8 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -2462,11 +2429,11 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -2502,7 +2469,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -2614,12 +2581,12 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -2658,7 +2625,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 10
                                  
@@ -2684,11 +2651,8 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -2696,11 +2660,11 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -2736,7 +2700,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -2848,12 +2812,12 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -2892,7 +2856,7 @@ exports[`HomeCardSection component should render zeros if no value for monthlySt
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 0
                                  
@@ -2943,7 +2907,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
       className="home-cards"
     >
       <StatisticCard
-        currency="MDL"
+        currency="USD"
         description="home.sumOfYourExpenses"
         title="home.totalExpenses"
         value={0}
@@ -2951,11 +2915,8 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -2963,11 +2924,11 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -3003,7 +2964,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -3115,12 +3076,12 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -3159,11 +3120,11 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 0
                                  
-                                MDL
+                                USD
                               </h2>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
@@ -3178,18 +3139,15 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
         </div>
       </StatisticCard>
       <StatisticCard
-        description="Where you spend the most"
+        description="home.mostUsedCategoryDescription"
         title="home.mostUsedCategory"
         value="Fetching..."
       >
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -3197,11 +3155,11 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -3237,7 +3195,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -3344,17 +3302,17 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                               <h6
                                 className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
                               >
-                                Where you spend the most
+                                home.mostUsedCategoryDescription
                               </h6>
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -3393,7 +3351,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 Fetching...
                                  
@@ -3422,11 +3380,8 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -3434,11 +3389,11 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -3474,7 +3429,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -3586,12 +3541,12 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -3630,7 +3585,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 10
                                  
@@ -3656,11 +3611,8 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
         <div
           className="full-width m-15 text-center mt-0"
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-root-1"
-          >
+          <WithStyles(ForwardRef(Card))>
             <ForwardRef(Card)
-              className="makeStyles-root-1"
               classes={
                 Object {
                   "root": "MuiCard-root",
@@ -3668,11 +3620,11 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
               }
             >
               <WithStyles(ForwardRef(Paper))
-                className="MuiCard-root makeStyles-root-1"
+                className="MuiCard-root"
                 elevation={1}
               >
                 <ForwardRef(Paper)
-                  className="MuiCard-root makeStyles-root-1"
+                  className="MuiCard-root"
                   classes={
                     Object {
                       "elevation0": "MuiPaper-elevation0",
@@ -3708,7 +3660,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                   elevation={1}
                 >
                   <div
-                    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+                    className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
                   >
                     <WithStyles(ForwardRef(CardContent))>
                       <ForwardRef(CardContent)
@@ -3820,12 +3772,12 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                             </ForwardRef(Typography)>
                           </WithStyles(ForwardRef(Typography))>
                           <WithStyles(ForwardRef(Typography))
-                            className="makeStyles-value-5"
+                            className="makeStyles-value-3"
                             component="h2"
                             variant="h4"
                           >
                             <ForwardRef(Typography)
-                              className="makeStyles-value-5"
+                              className="makeStyles-value-3"
                               classes={
                                 Object {
                                   "alignCenter": "MuiTypography-alignCenter",
@@ -3864,7 +3816,7 @@ exports[`HomeCardSection component should render zeros if no value for mostUsedC
                               variant="h4"
                             >
                               <h2
-                                className="MuiTypography-root makeStyles-value-5 MuiTypography-h4"
+                                className="MuiTypography-root makeStyles-value-3 MuiTypography-h4"
                               >
                                 0
                                  

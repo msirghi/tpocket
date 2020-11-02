@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Button, Grid, MenuItem } from '@material-ui/core';
 import { Select, TextField } from 'formik-material-ui';
@@ -9,6 +9,7 @@ import { useSnackbar } from 'notistack';
 import { AlertMessage } from '../alerts/AlertMessage';
 import { AlertType } from '../../commons/enums';
 import { useWindowSize } from '../../utils/useWindowSize';
+import { AccountContext } from '../../context/AccountContext';
 
 const currencies = [
   {
@@ -57,6 +58,7 @@ export const AccountEditForm: React.FC<Props> = ({
   const [error, setError] = useState(null);
   const { enqueueSnackbar } = useSnackbar();
   const [width] = useWindowSize();
+  const { dispatch } = useContext(AccountContext);
 
   const onSubmit = async (values: any, setSubmitting: (val: boolean) => void) => {
     const { firstName, lastName, monthLimit, currency } = values;
@@ -70,12 +72,16 @@ export const AccountEditForm: React.FC<Props> = ({
         }
       });
 
+      console.log('RESPONSE IS:', response);
       if (response && response.data?.updateUserPreference) {
+        dispatch({ ...values });
         enqueueSnackbar(t('messages.accountInfoUpdated'), { variant: 'success' });
       }
       setSubmitting(false);
     } catch (e) {
-      setError(e.graphQLErrors.map((x: { message: string }) => x.message)[0]);
+      if (e.graphQLErrors) {
+        setError(e.graphQLErrors.map((x: { message: string }) => x.message)[0]);
+      }
       setSubmitting(false);
     }
   };
@@ -122,11 +128,11 @@ export const AccountEditForm: React.FC<Props> = ({
               {error && <AlertMessage type={AlertType.ERROR} message={t('errors.serverError')} />}
               <Grid item xs={12}>
                 <Field
+                  inputProps={{ 'data-testid': 'email-field' }}
                   component={TextField}
                   disabled
                   required
                   data-test='email-field'
-                  inputProps={{ 'data-testid': 'firstname-field' }}
                   name='email'
                   label={t('forms.account.email')}
                   fullWidth
@@ -137,8 +143,8 @@ export const AccountEditForm: React.FC<Props> = ({
                 <Field
                   component={TextField}
                   required
-                  data-test='firstname-field'
-                  inputProps={{ 'data-testid': 'firstname-field' }}
+                  data-test='firstName-field'
+                  inputProps={{ 'data-testid': 'firstName-field' }}
                   name='firstName'
                   label={t('forms.account.firstName')}
                   fullWidth

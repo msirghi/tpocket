@@ -12,7 +12,8 @@
     "monthExpensesSum": "Sum of your expenses by this month",
     "addExpense": "Add expense",
     "addCategory": "Add category",
-    "expenseAdded": "Expense added."
+    "expenseAdded": "Expense added.",
+    "mostUsedCategoryDescription": "Where you spend the most"
   },
   "account": {
     "title": "Account settings",
