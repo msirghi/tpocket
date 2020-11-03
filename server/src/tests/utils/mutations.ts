@@ -139,3 +139,32 @@ export const activeAccountMutation = (token: string) => `
     activateAccount(token: "${token}")
   }
 `;
+
+export const createNotificationMutation = (message: string) => `
+  mutation {
+    createNotification(message: "${message}") 
+  }
+`;
+
+export const markNotificationAsReadMutation = (id: number) => `
+  mutation {
+    markNotificationAsRead(id: ${id})
+  }
+`;
+
+export const deleteNotificationMutation = (id: number) => `
+  mutation {
+    deleteNotification(id: ${id}) 
+  }
+`;
+
+export const updateUserPreferenceMutation = (
+  currency: string,
+  monthLimit: number,
+  firstName: string,
+  lastName: string
+) => `
+  mutation {
+    updateUserPreference(currency: "${currency}", monthLimit: ${monthLimit}, firstName: "${firstName}", lastName: "${lastName}")
+  }
+`;

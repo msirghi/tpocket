@@ -82,3 +82,40 @@ export const getExpensePercentageByCategoryQuery = () => `
     }
   }
 `;
+
+export const getUserNotificationsQuery = () => `
+  query {
+    getUserNotifications{
+      id
+      message
+      read
+    }
+  }
+`;
+
+export const getNotificationById = (id: number) => `
+  query {
+    getNotificationById(id: ${id}) {
+      id
+      message
+      read
+    }
+  }
+`;
+
+export const getUserInfoQuery = () => `
+  query {
+    getUserInfo {
+      id
+      currency
+      monthLimit
+      user {
+        id
+        email
+        firstName
+        lastName
+        confirmed
+      }
+    }
+  }
+`;

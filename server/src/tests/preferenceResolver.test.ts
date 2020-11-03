@@ -3,10 +3,12 @@ import {
   changeUserCurrencyMutation,
   deletePrefsMutation,
   initPrefsMutation,
-  updateMonthLimitMutation
+  updateMonthLimitMutation,
+  updateUserPreferenceMutation
 } from './utils/mutations';
-import { getUserPreferencesQuery } from './utils/queries';
-import { getClientWithTokenInterceptor } from './utils/getClientWithTokenInterceptor';
+import { getUserInfoQuery, getUserPreferencesQuery } from './utils/queries';
+import { getClientWithTokenInterceptor, getEmail } from './utils/getClientWithTokenInterceptor';
+import { INVALID_NAME, NEGATIVE_MONTH_LIMIT } from '../constants/error.constants';
 
 const Chance = require('chance');
 
@@ -19,7 +21,7 @@ export const preferenceResolverTest = () =>
 
     beforeAll(async () => {
       currency = chance.word({ length: 5 });
-      monthLimit = chance.integer({ min: 0, max: 1000 })
+      monthLimit = chance.integer({ min: 0, max: 1000 });
       client = await getClientWithTokenInterceptor();
     });
 
@@ -59,5 +61,108 @@ export const preferenceResolverTest = () =>
       const response = await client.request(updateMonthLimitMutation(100));
 
       expect(response.updateMonthLimit).toBeTruthy();
+    });
+
+    it('should return info about logged user', async () => {
+      const response = await client.request(getUserInfoQuery());
+
+      expect(response.getUserInfo.user.id).not.toBeNull();
+      expect(response.getUserInfo.user.firstName).toBeDefined();
+      expect(response.getUserInfo.user.lastName).toBeDefined();
+      expect(response.getUserInfo.user.email).toBe(getEmail());
+      expect(typeof response.getUserInfo.monthLimit).toBe('number');
+      expect(typeof response.getUserInfo.currency).toBe('string');
+    });
+
+    it('should update user preference', async () => {
+      const data = {
+        currency: 'USD',
+        monthLimit: 1000,
+        firstName: 'John',
+        lastName: 'Doe'
+      };
+      const response = await client.request(
+        updateUserPreferenceMutation(data.currency, data.monthLimit, data.firstName, data.lastName)
+      );
+
+      expect(response.updateUserPreference).toBeTruthy();
+
+      const userInfoResponse = await client.request(getUserInfoQuery());
+
+      expect(userInfoResponse.getUserInfo.user.id).not.toBeNull();
+      expect(userInfoResponse.getUserInfo.user.firstName).toBe(data.firstName);
+      expect(userInfoResponse.getUserInfo.user.lastName).toBe(data.lastName);
+      expect(userInfoResponse.getUserInfo.user.email).toBe(getEmail());
+      expect(userInfoResponse.getUserInfo.monthLimit).toBe(data.monthLimit);
+      expect(userInfoResponse.getUserInfo.currency).toBe(data.currency);
+    });
+
+    it('should not update user preference on negative month limit', async () => {
+      const data = {
+        currency: 'USD',
+        monthLimit: -1000,
+        firstName: 'John',
+        lastName: 'Doe'
+      };
+      let err;
+      try {
+        await client.request(
+          updateUserPreferenceMutation(
+            data.currency,
+            data.monthLimit,
+            data.firstName,
+            data.lastName
+          )
+        );
+      } catch (e) {
+        err = e;
+      }
+      expect(String(err)).toContain(NEGATIVE_MONTH_LIMIT);
+    });
+
+    it('should not update user preference on invalid first name', async () => {
+      const data = {
+        currency: 'USD',
+        monthLimit: -1000,
+        firstName: 'John 22',
+        lastName: 'Doe'
+      };
+      let err;
+      try {
+        await client.request(
+          updateUserPreferenceMutation(
+            data.currency,
+            data.monthLimit,
+            data.firstName,
+            data.lastName
+          )
+        );
+      } catch (e) {
+        err = e;
+      }
+      expect(String(err)).toContain(INVALID_NAME);
+    });
+
+    it('should not update user preference on invalid last name', async () => {
+      const data = {
+        currency: 'USD',
+        monthLimit: -1000,
+        firstName: 'John',
+        lastName: 'Doe 22'
+      };
+      let err;
+      try {
+        await client.request(
+          updateUserPreferenceMutation(
+            data.currency,
+            data.monthLimit,
+            data.firstName,
+            data.lastName
+          )
+        );
+      } catch (e) {
+        err = e;
+      }
+      expect(String(err)).toContain(INVALID_NAME);
     });
   });
