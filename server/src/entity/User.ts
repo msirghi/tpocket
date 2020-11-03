@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { Field, Int, ObjectType } from 'type-graphql';
 import { Category } from './Category';
+import { Notification } from './Notification';
 
 @Entity('users')
 @ObjectType()
@@ -42,6 +43,9 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Category, (category) => category.user, { onDelete: 'CASCADE' })
   categories: Array<Category>;
+
+  @OneToMany(() => Notification, (notification) => notification.user, { onDelete: 'CASCADE' })
+  notifications: Array<Notification>;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   createdAt: Date;

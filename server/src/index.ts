@@ -16,6 +16,7 @@ import { ExpenseResolver } from './resolvers/ExpenseResolver';
 import { PreferenceResolver } from './resolvers/PreferenceResolver';
 import { StatisticsResolver } from './resolvers/StatisticsResolver';
 import { AuthResolver } from './resolvers/AuthResolver';
+import { NotificationResolver } from './resolvers/NotificationResolver';
 
 (async () => {
   const app = express();
@@ -38,7 +39,8 @@ import { AuthResolver } from './resolvers/AuthResolver';
         ExpenseResolver,
         PreferenceResolver,
         StatisticsResolver,
-        AuthResolver
+        AuthResolver,
+        NotificationResolver
       ]
     }),
     context: ({ req, res }) => ({ req, res }),

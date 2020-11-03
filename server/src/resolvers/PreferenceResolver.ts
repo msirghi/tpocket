@@ -4,7 +4,7 @@ import { isAuthMiddleware } from '../isAuthMiddleware';
 import { MyContext } from '../MyContext';
 import { getConnection } from 'typeorm';
 import { User } from '../entity/User';
-import { INVALID_NAME, NEGATIVE_MONTH_LIMIT, USER_NOT_FOUND } from '../constants/error.constants';
+import { INVALID_NAME, NEGATIVE_MONTH_LIMIT, SERVER_ERROR, USER_NOT_FOUND } from '../constants/error.constants';
 import { logger } from '../config/logger.config';
 import ValidatorService from '../utils/validators';
 @Resolver()
@@ -71,13 +71,16 @@ export class PreferenceResolver {
     return true;
   }
 
-  // TODO: tests
   @Query(() => Preference)
   @UseMiddleware(isAuthMiddleware)
   async getUserInfo(@Ctx() { payload }: MyContext) {
-    const userPrefs = await Preference.findOne({ where: { user: payload?.userId } });
-
-    return { ...userPrefs };
+    try {
+      const userPrefs = await Preference.findOne({ where: { user: payload?.userId } });
+      return { ...userPrefs };
+    } catch (e) {
+      logger.error(e);
+      throw new Error(SERVER_ERROR);
+    }
   }
 
   @Mutation(() => Boolean)
