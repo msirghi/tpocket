@@ -1,0 +1,3 @@
+mutation deleteNotification($id: Float!) {
+  deleteNotification(id: $id) 
+}

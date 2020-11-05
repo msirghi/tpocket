@@ -6,7 +6,7 @@ import {
   useCategoryByUserQuery,
   AddExpenseMutationResult
 } from '../generated/graphql';
-import { HomeCardSection } from '../components/home/HomeCardSection';
+import { HomeCardSection } from '../components/cards/HomeCardSection';
 import { CustomPieChart } from '../components/charts/CustomPieChart';
 import { PageHeader } from '../components/layout/PageHeader';
 import { TwoRowButtons } from '../components/buttons/TwoRowButtons';
@@ -128,14 +128,14 @@ export const Home: React.FC = () => {
                 <>
                   <StatisticCard
                     title={ExtensionService.getMonthName(
-                      +monthlyStatistics.monthWithMaxExpenses!.name
+                      +monthlyStatistics.monthWithMaxExpenses!.name - 1
                     )}
                     value={monthlyStatistics.monthWithMaxExpenses!.expenses}
                     description={t('home.maxMonthExpenses')}
                   />
                   <StatisticCard
                     title={ExtensionService.getMonthName(
-                      +monthlyStatistics.monthWithMinExpenses!.name
+                      +monthlyStatistics.monthWithMinExpenses!.name - 1
                     )}
                     value={monthlyStatistics.monthWithMinExpenses!.expenses}
                     description={t('home.minMonthExpenses')}

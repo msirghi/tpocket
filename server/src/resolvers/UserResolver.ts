@@ -7,7 +7,6 @@ import {
   Field,
   Mutation,
   ObjectType,
-  Query,
   Resolver,
   UseMiddleware
 } from 'type-graphql';
@@ -23,6 +22,7 @@ import passwordStrength from 'check-password-strength';
 import EmailService from '../services/EmailService';
 import { EmailType } from '../types';
 import TokenService from '../services/TokenService';
+import { Notification } from '../entity/Notification';
 
 @ObjectType()
 class RegisterResponse {
@@ -40,11 +40,6 @@ export class UserResolver {
     if (!this.isNameValid(firstName) || !this.isNameValid(lastName)) {
       throw new Error(INVALID_NAME);
     }
-  }
-
-  @Query(() => [User])
-  users() {
-    return User.find();
   }
 
   @Mutation(() => Boolean)
@@ -89,6 +84,7 @@ export class UserResolver {
       });
 
       const token = TokenService.generateToken(newUser.identifiers[0].id);
+      await Notification.insert({ message: 'Welcome to TPocket!', user: newUser });
       EmailService.sendEmail(email, EmailType.REGISTRATION, { token });
     } catch (err) {
       return false;

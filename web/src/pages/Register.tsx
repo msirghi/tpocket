@@ -122,7 +122,7 @@ export const Register = () => {
             {activeStep === steps.length - 1 ? (
               <>
                 <Typography variant='h5' gutterBottom>
-                {t('forms.register.doneTitle')}
+                  {t('forms.register.doneTitle')}
                 </Typography>
                 <div className='row row-center'>
                   <img

@@ -123,7 +123,7 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
             required
             fullWidth
             name={t('forms.login.password')}
-            label='Password'
+            label={t('forms.login.password')}
             type='password'
             id='password'
             autoComplete='current-password'

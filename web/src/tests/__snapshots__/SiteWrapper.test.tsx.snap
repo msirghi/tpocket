@@ -40,26 +40,7 @@ exports[`SiteWrapper Component should render properly 1`] = `
       <div
         className="makeStyles-sectionDesktop-13"
       >
-        <WithStyles(ForwardRef(IconButton))
-          aria-label="show 4 new mails"
-        >
-          <WithStyles(ForwardRef(Badge))
-            badgeContent={4}
-            color="primary"
-          >
-            <MailIcon />
-          </WithStyles(ForwardRef(Badge))>
-        </WithStyles(ForwardRef(IconButton))>
-        <WithStyles(ForwardRef(IconButton))
-          aria-label="show 17 new notifications"
-        >
-          <WithStyles(ForwardRef(Badge))
-            badgeContent={17}
-            color="primary"
-          >
-            <NotificationsNoneIcon />
-          </WithStyles(ForwardRef(Badge))>
-        </WithStyles(ForwardRef(IconButton))>
+        <Notifications />
         <WithStyles(ForwardRef(IconButton))
           aria-haspopup="true"
           aria-label="account of current user"

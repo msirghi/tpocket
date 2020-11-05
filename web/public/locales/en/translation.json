@@ -88,5 +88,9 @@
     "negativeMonthLimit": "Month limit cannot be negative.",
     "invalidName": "Please, enter a valid name",
     "serverError": "Server error."
+  },
+  "notifications": {
+    "markAsReadTooltip": "Click to mark as read",
+    "newNotifications": " new notifications"
   }
 }

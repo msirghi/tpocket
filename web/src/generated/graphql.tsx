@@ -10,6 +10,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** The javascript `Date` as string. Type represents date and time as the ISO Date string. */
+  DateTime: any;
 };
 
 export type Query = {
@@ -24,6 +26,8 @@ export type Query = {
   getCategoryExpenseStatisticsByUser: StatisticsPayload;
   getExpensesStatistics: Array<MonthExpensesPayload>;
   getExpensePercentageByCategory: Array<PercentageByCategoryPayload>;
+  getNotificationById: Notification;
+  getUserNotifications: Array<Notification>;
 };
 
 
@@ -39,6 +43,11 @@ export type QueryGetExpenseByIdArgs = {
 
 export type QueryGetExpensesStatisticsArgs = {
   year: Scalars['Float'];
+};
+
+
+export type QueryGetNotificationByIdArgs = {
+  id: Scalars['Float'];
 };
 
 export type Category = {
@@ -94,6 +103,15 @@ export type PercentageByCategoryPayload = {
   percentage: Scalars['Float'];
 };
 
+export type Notification = {
+  __typename?: 'Notification';
+  id: Scalars['Int'];
+  message: Scalars['String'];
+  read: Scalars['Boolean'];
+  createdAt: Scalars['DateTime'];
+};
+
+
 export type Mutation = {
   __typename?: 'Mutation';
   updateCategoryName: Scalars['Boolean'];
@@ -114,6 +132,9 @@ export type Mutation = {
   updateUserPreference: Scalars['Boolean'];
   activateAccount: Scalars['Boolean'];
   login: LoginResponse;
+  createNotification: Scalars['Boolean'];
+  markNotificationAsRead: Scalars['Boolean'];
+  deleteNotification: Scalars['Boolean'];
 };
 
 
@@ -210,6 +231,21 @@ export type MutationLoginArgs = {
   email: Scalars['String'];
 };
 
+
+export type MutationCreateNotificationArgs = {
+  message: Scalars['String'];
+};
+
+
+export type MutationMarkNotificationAsReadArgs = {
+  id: Scalars['Float'];
+};
+
+
+export type MutationDeleteNotificationArgs = {
+  id: Scalars['Float'];
+};
+
 export type RegisterResponse = {
   __typename?: 'RegisterResponse';
   id: Scalars['String'];
@@ -261,6 +297,16 @@ export type DeleteCategoryMutationVariables = Exact<{
 export type DeleteCategoryMutation = (
   { __typename?: 'Mutation' }
   & Pick<Mutation, 'deleteCategory'>
+);
+
+export type DeleteNotificationMutationVariables = Exact<{
+  id: Scalars['Float'];
+}>;
+
+
+export type DeleteNotificationMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'deleteNotification'>
 );
 
 export type GetCategoryExpenseStatisticsByUserQueryVariables = Exact<{ [key: string]: never; }>;
@@ -328,6 +374,17 @@ export type GetUserInfoQuery = (
   ) }
 );
 
+export type GetUserNotificationsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetUserNotificationsQuery = (
+  { __typename?: 'Query' }
+  & { getUserNotifications: Array<(
+    { __typename?: 'Notification' }
+    & Pick<Notification, 'id' | 'message' | 'read' | 'createdAt'>
+  )> }
+);
+
 export type InitAdditionalRegInfoMutationVariables = Exact<{
   categories: Scalars['String'];
   monthLimit: Scalars['Float'];
@@ -353,6 +410,16 @@ export type LoginMutation = (
     { __typename?: 'LoginResponse' }
     & Pick<LoginResponse, 'accessToken'>
   ) }
+);
+
+export type MarkNotificationAsReadMutationVariables = Exact<{
+  id: Scalars['Float'];
+}>;
+
+
+export type MarkNotificationAsReadMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'markNotificationAsRead'>
 );
 
 export type RegisterMutationVariables = Exact<{
@@ -510,6 +577,36 @@ export function useDeleteCategoryMutation(baseOptions?: ApolloReactHooks.Mutatio
 export type DeleteCategoryMutationHookResult = ReturnType<typeof useDeleteCategoryMutation>;
 export type DeleteCategoryMutationResult = ApolloReactCommon.MutationResult<DeleteCategoryMutation>;
 export type DeleteCategoryMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteCategoryMutation, DeleteCategoryMutationVariables>;
+export const DeleteNotificationDocument = gql`
+    mutation deleteNotification($id: Float!) {
+  deleteNotification(id: $id)
+}
+    `;
+export type DeleteNotificationMutationFn = ApolloReactCommon.MutationFunction<DeleteNotificationMutation, DeleteNotificationMutationVariables>;
+
+/**
+ * __useDeleteNotificationMutation__
+ *
+ * To run a mutation, you first call `useDeleteNotificationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteNotificationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteNotificationMutation, { data, loading, error }] = useDeleteNotificationMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteNotificationMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<DeleteNotificationMutation, DeleteNotificationMutationVariables>) {
+        return ApolloReactHooks.useMutation<DeleteNotificationMutation, DeleteNotificationMutationVariables>(DeleteNotificationDocument, baseOptions);
+      }
+export type DeleteNotificationMutationHookResult = ReturnType<typeof useDeleteNotificationMutation>;
+export type DeleteNotificationMutationResult = ApolloReactCommon.MutationResult<DeleteNotificationMutation>;
+export type DeleteNotificationMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteNotificationMutation, DeleteNotificationMutationVariables>;
 export const GetCategoryExpenseStatisticsByUserDocument = gql`
     query GetCategoryExpenseStatisticsByUser {
   getCategoryExpenseStatisticsByUser {
@@ -684,6 +781,41 @@ export function useGetUserInfoLazyQuery(baseOptions?: ApolloReactHooks.LazyQuery
 export type GetUserInfoQueryHookResult = ReturnType<typeof useGetUserInfoQuery>;
 export type GetUserInfoLazyQueryHookResult = ReturnType<typeof useGetUserInfoLazyQuery>;
 export type GetUserInfoQueryResult = ApolloReactCommon.QueryResult<GetUserInfoQuery, GetUserInfoQueryVariables>;
+export const GetUserNotificationsDocument = gql`
+    query getUserNotifications {
+  getUserNotifications {
+    id
+    message
+    read
+    createdAt
+  }
+}
+    `;
+
+/**
+ * __useGetUserNotificationsQuery__
+ *
+ * To run a query within a React component, call `useGetUserNotificationsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserNotificationsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserNotificationsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetUserNotificationsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetUserNotificationsQuery, GetUserNotificationsQueryVariables>) {
+        return ApolloReactHooks.useQuery<GetUserNotificationsQuery, GetUserNotificationsQueryVariables>(GetUserNotificationsDocument, baseOptions);
+      }
+export function useGetUserNotificationsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetUserNotificationsQuery, GetUserNotificationsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GetUserNotificationsQuery, GetUserNotificationsQueryVariables>(GetUserNotificationsDocument, baseOptions);
+        }
+export type GetUserNotificationsQueryHookResult = ReturnType<typeof useGetUserNotificationsQuery>;
+export type GetUserNotificationsLazyQueryHookResult = ReturnType<typeof useGetUserNotificationsLazyQuery>;
+export type GetUserNotificationsQueryResult = ApolloReactCommon.QueryResult<GetUserNotificationsQuery, GetUserNotificationsQueryVariables>;
 export const InitAdditionalRegInfoDocument = gql`
     mutation initAdditionalRegInfo($categories: String!, $monthLimit: Float!, $currency: String!, $userId: String!) {
   initAdditionalRegInfo(monthLimit: $monthLimit, currency: $currency, userId: $userId, categories: $categories)
@@ -750,6 +882,36 @@ export function useLoginMutation(baseOptions?: ApolloReactHooks.MutationHookOpti
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = ApolloReactCommon.MutationResult<LoginMutation>;
 export type LoginMutationOptions = ApolloReactCommon.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const MarkNotificationAsReadDocument = gql`
+    mutation markNotificationAsRead($id: Float!) {
+  markNotificationAsRead(id: $id)
+}
+    `;
+export type MarkNotificationAsReadMutationFn = ApolloReactCommon.MutationFunction<MarkNotificationAsReadMutation, MarkNotificationAsReadMutationVariables>;
+
+/**
+ * __useMarkNotificationAsReadMutation__
+ *
+ * To run a mutation, you first call `useMarkNotificationAsReadMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useMarkNotificationAsReadMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [markNotificationAsReadMutation, { data, loading, error }] = useMarkNotificationAsReadMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useMarkNotificationAsReadMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<MarkNotificationAsReadMutation, MarkNotificationAsReadMutationVariables>) {
+        return ApolloReactHooks.useMutation<MarkNotificationAsReadMutation, MarkNotificationAsReadMutationVariables>(MarkNotificationAsReadDocument, baseOptions);
+      }
+export type MarkNotificationAsReadMutationHookResult = ReturnType<typeof useMarkNotificationAsReadMutation>;
+export type MarkNotificationAsReadMutationResult = ApolloReactCommon.MutationResult<MarkNotificationAsReadMutation>;
+export type MarkNotificationAsReadMutationOptions = ApolloReactCommon.BaseMutationOptions<MarkNotificationAsReadMutation, MarkNotificationAsReadMutationVariables>;
 export const RegisterDocument = gql`
     mutation Register($email: String!, $password: String!, $firstName: String!, $lastName: String!) {
   register(email: $email, password: $password, firstName: $firstName, lastName: $lastName) {

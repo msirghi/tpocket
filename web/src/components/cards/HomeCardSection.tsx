@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { PercentageByCategoryPayload } from '../../generated/graphql';
-import { StatisticCard } from '../cards/StatisticCard';
+import { StatisticCard } from './StatisticCard';
 import { startCase } from 'lodash';
 import { MonthlyStatistics } from '../../pages/Home';
 import { useTranslation } from 'react-i18next';

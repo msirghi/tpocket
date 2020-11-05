@@ -1,10 +1,10 @@
 import React from 'react';
-import { mount, shallow, ShallowWrapper } from 'enzyme';
-import { HomeCardSection } from '../components/home/HomeCardSection';
+import { mount } from 'enzyme';
+import { HomeCardSection } from '../components/cards/HomeCardSection';
 import { PercentageByCategoryPayload } from '../generated/graphql';
 import { MonthlyStatistics } from '../pages/Home';
 import toJson from 'enzyme-to-json';
-import { AccountContext, AccountProvider } from '../context/AccountContext';
+import { AccountContext } from '../context/AccountContext';
 import { AccountContextData } from './utils/contextData';
 
 type Props = {
