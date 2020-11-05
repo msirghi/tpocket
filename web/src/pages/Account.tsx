@@ -1,10 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AccountEditForm } from '../components/forms/AccountEditForm';
 import { PageHeader } from '../components/layout/PageHeader';
-import { FullScreenLoader } from '../components/loaders/FullScreenLoader';
 import { AccountContext } from '../context/AccountContext';
-import { useGetUserInfoQuery } from '../generated/graphql';
 
 export const Account: React.FC = () => {
   const { t } = useTranslation();

@@ -84,7 +84,7 @@ export class NotificationResolver {
     try {
       const notifications = await Notification.find({ where: { user: payload?.userId } });
       if (notifications) {
-        return [...notifications];
+        return [...notifications.slice(Math.max(notifications.length - 5, 1))];
       }
       throw new Error(NOTIFICATION_NOT_FOUND);
     } catch (e) {

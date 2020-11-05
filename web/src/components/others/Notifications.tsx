@@ -20,18 +20,20 @@ var dateFormat = require('dateformat');
 
 export const Notifications = () => {
   const [notificationMenuOpen, setNotificationMenuOpen] = useState<null | HTMLElement>(null);
-  const { data, refetch } = useGetUserNotificationsQuery();
+  const notificationsQuery = useGetUserNotificationsQuery();
   const [markAsReadMutation] = useMarkNotificationAsReadMutation();
   const [notifications, setNotifications] = useState<INotification[]>([]);
   const [unreadNotifications, setUnreadNotifications] = useState<null | number>(null);
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (data) {
-      setNotifications(data.getUserNotifications);
-      setUnreadNotifications(data.getUserNotifications.filter((e) => !e.read).length);
+    if (notificationsQuery.data) {
+      setNotifications(notificationsQuery.data.getUserNotifications);
+      setUnreadNotifications(
+        notificationsQuery.data.getUserNotifications.filter((e) => !e.read).length
+      );
     }
-  }, [data]);
+  }, [notificationsQuery.data]);
 
   const markNotificationAsRead = async (notificationId: number) => {
     try {
@@ -41,12 +43,12 @@ export const Notifications = () => {
         }
       });
       if (response && response.data) {
-        refetch();
+        notificationsQuery.refetch();
       }
     } catch (e) {}
   };
 
-  if (!data) {
+  if (!notificationsQuery.data) {
     return <div />;
   }
 
@@ -79,29 +81,27 @@ export const Notifications = () => {
           {notifications &&
             notifications.map((notification) => {
               return (
-                <>
-                  <ListItem
-                    button
-                    onClick={() => !notification.read && markNotificationAsRead(notification.id)}
-                  >
-                    <ListItemIcon>
-                      {notification.read ? (
-                        <InboxIcon />
-                      ) : (
-                        <Tooltip
-                          title={String(t('notifications.markAsReadTooltip'))}
-                          aria-label='add'
-                        >
-                          <FiberNewIcon color={'primary'} />
-                        </Tooltip>
-                      )}
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={notification.message}
-                      secondary={dateFormat(notification.createdAt, 'mmmm dS, h:MM TT')}
-                    />
-                  </ListItem>
-                </>
+                <ListItem
+                  button
+                  onClick={() => !notification.read && markNotificationAsRead(notification.id)}
+                >
+                  <ListItemIcon>
+                    {notification.read ? (
+                      <InboxIcon />
+                    ) : (
+                      <Tooltip
+                        title={String(t('notifications.markAsReadTooltip'))}
+                        aria-label='add'
+                      >
+                        <FiberNewIcon color={'primary'} />
+                      </Tooltip>
+                    )}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={notification.message}
+                    secondary={dateFormat(notification.createdAt, 'mmmm dS, h:MM TT')}
+                  />
+                </ListItem>
               );
             })}
         </List>

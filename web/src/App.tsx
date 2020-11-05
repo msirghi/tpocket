@@ -1,9 +1,9 @@
+import './commons/i18n';
 import React, { useEffect, useState, Suspense, useContext } from 'react';
 import { Routes } from './Routes';
 import { setAccessToken } from './accessToken';
 import { FullScreenLoader } from './components/loaders/FullScreenLoader';
-import './commons/i18n';
-import { AccountContext, AccountProvider } from './context/AccountContext';
+import { AccountContext } from './context/AccountContext';
 import { useGetUserInfoQuery } from './generated/graphql';
 
 export const App: React.FC<{}> = () => {
