@@ -29,6 +29,7 @@ export class Notification extends BaseEntity {
   user: User;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
+  @Field()
   createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })

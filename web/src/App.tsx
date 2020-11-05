@@ -14,7 +14,11 @@ export const App: React.FC<{}> = () => {
   useEffect(() => {
     fetch(`http://localhost:4000/refresh_token`, { method: 'POST', credentials: 'include' }).then(
       async (res) => {
-        const { accessToken } = await res.json();
+        const { accessToken, ok } = await res.json();
+        if (!ok) {
+          setLoading(false);
+          return;
+        }
         if (
           !accessToken &&
           !window.location.href.includes('login') &&

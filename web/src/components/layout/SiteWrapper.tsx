@@ -23,6 +23,7 @@ import { mainMenuItems, secondaryMenuItems } from '../../utils/mainMenuItems';
 import { Link } from 'react-router-dom';
 import { useWindowSize } from '../../utils/useWindowSize';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import { Notifications } from '../others/Notifications';
 
 const drawerWidth = 240;
 
@@ -153,6 +154,7 @@ export const SiteWrapper: React.FC = ({ children }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [width, height] = useWindowSize();
 
@@ -217,16 +219,7 @@ export const SiteWrapper: React.FC = ({ children }) => {
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label='show 4 new mails'>
-              <Badge badgeContent={4} color='primary'>
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label='show 17 new notifications'>
-              <Badge badgeContent={17} color='primary'>
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            <Notifications />
             <IconButton edge='end' aria-label='account of current user' aria-haspopup='true'>
               <AccountCircle />
             </IconButton>

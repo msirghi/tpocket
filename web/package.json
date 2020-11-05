@@ -20,6 +20,7 @@
     "apollo-link-token-refresh": "^0.3.1",
     "check-password-strength": "^1.0.15",
     "crypto-js": "^4.0.0",
+    "dateformat": "^3.0.3",
     "formik": "^2.1.7",
     "formik-material-ui": "^3.0.0",
     "graphql": "^15.2.0",

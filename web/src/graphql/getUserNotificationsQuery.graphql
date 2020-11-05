@@ -1,0 +1,8 @@
+query getUserNotifications {
+  getUserNotifications{
+    id
+    message
+    read
+    createdAt
+  }
+}
