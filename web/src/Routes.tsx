@@ -10,6 +10,7 @@ import { SnackbarProvider } from 'notistack';
 import { Account } from './pages/Account';
 import { PrivateRoute } from './utils/PrivateRoute';
 import { NoAuthRoute } from './utils/NoAuthRoute';
+import { ExpenseHistory } from './pages/ExpenseHistory';
 
 const HomeWrapper = withRouter((props) => <Home {...props} />);
 
@@ -26,6 +27,7 @@ export const Routes = () => {
                 <PrivateRoute exact path={'/home'} Component={HomeWrapper} />
                 <PrivateRoute exact path={'/categories'} Component={CategoryPage} />
                 <PrivateRoute exact path={'/account'} Component={Account} />
+                <PrivateRoute exact path={'/expenseHistory'} Component={ExpenseHistory} />
                 <Redirect from='/' to='/home' />
               </SiteWrapper>
             </Switch>

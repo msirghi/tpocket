@@ -1,0 +1,13 @@
+query getLastUserExpenses {
+  getLastUserExpenses {
+    category {
+      id
+      name
+    }
+    expense {
+      id
+      amount
+      createdAt
+    }
+  }
+}

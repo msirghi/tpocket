@@ -16,7 +16,7 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import Tooltip from '@material-ui/core/Tooltip';
 import FiberNewIcon from '@material-ui/icons/FiberNew';
 import { useTranslation } from 'react-i18next';
-var dateFormat = require('dateformat');
+import dateFormat from 'dateformat';
 
 export const Notifications = () => {
   const [notificationMenuOpen, setNotificationMenuOpen] = useState<null | HTMLElement>(null);

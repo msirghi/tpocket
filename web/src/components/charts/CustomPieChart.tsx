@@ -33,13 +33,18 @@ const renderCustomizedLabel = ({
 
 interface Props {
   mostUsedCategoryHandler: (category: Category) => void;
+  expenseData: object;
 }
 
-export const CustomPieChart: React.FC<Props> = ({ mostUsedCategoryHandler }) => {
+export const CustomPieChart: React.FC<Props> = ({ mostUsedCategoryHandler, expenseData }) => {
   const [width] = useWindowSize();
-  const { data, error } = useGetExpensePercentageByCategoryQuery();
+  const { data, error, refetch } = useGetExpensePercentageByCategoryQuery();
   const [isLoading, setLoading] = useState(true);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    refetch();
+  }, [expenseData]);
 
   useEffect(() => {
     if (data) {

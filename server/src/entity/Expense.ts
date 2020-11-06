@@ -29,6 +29,7 @@ export class Expense extends BaseEntity {
   category: Category;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
+  @Field()
   createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
