@@ -18,9 +18,9 @@ export type Query = {
   __typename?: 'Query';
   getCategoryByUser: Array<Category>;
   getCategoryById: Category;
-  users: Array<User>;
   getExpenseById: Expense;
   getAllUserExpenses: Array<ExpenseResponse>;
+  getLastUserExpenses: Array<ExpenseResponse>;
   getUserPreferences: Preference;
   getUserInfo: Preference;
   getCategoryExpenseStatisticsByUser: StatisticsPayload;
@@ -56,20 +56,13 @@ export type Category = {
   name: Scalars['String'];
 };
 
-export type User = {
-  __typename?: 'User';
-  id: Scalars['Int'];
-  email: Scalars['String'];
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
-  confirmed: Scalars['Boolean'];
-};
-
 export type Expense = {
   __typename?: 'Expense';
   id: Scalars['Int'];
   amount: Scalars['Float'];
+  createdAt: Scalars['DateTime'];
 };
+
 
 export type ExpenseResponse = {
   __typename?: 'ExpenseResponse';
@@ -83,6 +76,15 @@ export type Preference = {
   currency: Scalars['String'];
   monthLimit: Scalars['Float'];
   user: User;
+};
+
+export type User = {
+  __typename?: 'User';
+  id: Scalars['Int'];
+  email: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  confirmed: Scalars['Boolean'];
 };
 
 export type StatisticsPayload = {
@@ -110,7 +112,6 @@ export type Notification = {
   read: Scalars['Boolean'];
   createdAt: Scalars['DateTime'];
 };
-
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -299,6 +300,16 @@ export type DeleteCategoryMutation = (
   & Pick<Mutation, 'deleteCategory'>
 );
 
+export type DeleteExpenseByIdMutationVariables = Exact<{
+  id: Scalars['Float'];
+}>;
+
+
+export type DeleteExpenseByIdMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'deleteExpenseById'>
+);
+
 export type DeleteNotificationMutationVariables = Exact<{
   id: Scalars['Float'];
 }>;
@@ -356,6 +367,23 @@ export type GetExpensesStatisticsQuery = (
   & { getExpensesStatistics: Array<(
     { __typename?: 'MonthExpensesPayload' }
     & Pick<MonthExpensesPayload, 'name' | 'expenses'>
+  )> }
+);
+
+export type GetLastUserExpensesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetLastUserExpensesQuery = (
+  { __typename?: 'Query' }
+  & { getLastUserExpenses: Array<(
+    { __typename?: 'ExpenseResponse' }
+    & { category: (
+      { __typename?: 'Category' }
+      & Pick<Category, 'id' | 'name'>
+    ), expense: (
+      { __typename?: 'Expense' }
+      & Pick<Expense, 'id' | 'amount' | 'createdAt'>
+    ) }
   )> }
 );
 
@@ -462,17 +490,6 @@ export type UpdateUserMutation = (
   & Pick<Mutation, 'updateUserPreference'>
 );
 
-export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type UsersQuery = (
-  { __typename?: 'Query' }
-  & { users: Array<(
-    { __typename?: 'User' }
-    & Pick<User, 'id' | 'email'>
-  )> }
-);
-
 
 export const AddExpenseDocument = gql`
     mutation AddExpense($categoryId: Float!, $amount: Float!) {
@@ -577,6 +594,36 @@ export function useDeleteCategoryMutation(baseOptions?: ApolloReactHooks.Mutatio
 export type DeleteCategoryMutationHookResult = ReturnType<typeof useDeleteCategoryMutation>;
 export type DeleteCategoryMutationResult = ApolloReactCommon.MutationResult<DeleteCategoryMutation>;
 export type DeleteCategoryMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteCategoryMutation, DeleteCategoryMutationVariables>;
+export const DeleteExpenseByIdDocument = gql`
+    mutation deleteExpenseById($id: Float!) {
+  deleteExpenseById(id: $id)
+}
+    `;
+export type DeleteExpenseByIdMutationFn = ApolloReactCommon.MutationFunction<DeleteExpenseByIdMutation, DeleteExpenseByIdMutationVariables>;
+
+/**
+ * __useDeleteExpenseByIdMutation__
+ *
+ * To run a mutation, you first call `useDeleteExpenseByIdMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteExpenseByIdMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteExpenseByIdMutation, { data, loading, error }] = useDeleteExpenseByIdMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteExpenseByIdMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<DeleteExpenseByIdMutation, DeleteExpenseByIdMutationVariables>) {
+        return ApolloReactHooks.useMutation<DeleteExpenseByIdMutation, DeleteExpenseByIdMutationVariables>(DeleteExpenseByIdDocument, baseOptions);
+      }
+export type DeleteExpenseByIdMutationHookResult = ReturnType<typeof useDeleteExpenseByIdMutation>;
+export type DeleteExpenseByIdMutationResult = ApolloReactCommon.MutationResult<DeleteExpenseByIdMutation>;
+export type DeleteExpenseByIdMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteExpenseByIdMutation, DeleteExpenseByIdMutationVariables>;
 export const DeleteNotificationDocument = gql`
     mutation deleteNotification($id: Float!) {
   deleteNotification(id: $id)
@@ -743,6 +790,46 @@ export function useGetExpensesStatisticsLazyQuery(baseOptions?: ApolloReactHooks
 export type GetExpensesStatisticsQueryHookResult = ReturnType<typeof useGetExpensesStatisticsQuery>;
 export type GetExpensesStatisticsLazyQueryHookResult = ReturnType<typeof useGetExpensesStatisticsLazyQuery>;
 export type GetExpensesStatisticsQueryResult = ApolloReactCommon.QueryResult<GetExpensesStatisticsQuery, GetExpensesStatisticsQueryVariables>;
+export const GetLastUserExpensesDocument = gql`
+    query getLastUserExpenses {
+  getLastUserExpenses {
+    category {
+      id
+      name
+    }
+    expense {
+      id
+      amount
+      createdAt
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetLastUserExpensesQuery__
+ *
+ * To run a query within a React component, call `useGetLastUserExpensesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetLastUserExpensesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetLastUserExpensesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetLastUserExpensesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetLastUserExpensesQuery, GetLastUserExpensesQueryVariables>) {
+        return ApolloReactHooks.useQuery<GetLastUserExpensesQuery, GetLastUserExpensesQueryVariables>(GetLastUserExpensesDocument, baseOptions);
+      }
+export function useGetLastUserExpensesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetLastUserExpensesQuery, GetLastUserExpensesQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GetLastUserExpensesQuery, GetLastUserExpensesQueryVariables>(GetLastUserExpensesDocument, baseOptions);
+        }
+export type GetLastUserExpensesQueryHookResult = ReturnType<typeof useGetLastUserExpensesQuery>;
+export type GetLastUserExpensesLazyQueryHookResult = ReturnType<typeof useGetLastUserExpensesLazyQuery>;
+export type GetLastUserExpensesQueryResult = ApolloReactCommon.QueryResult<GetLastUserExpensesQuery, GetLastUserExpensesQueryVariables>;
 export const GetUserInfoDocument = gql`
     query getUserInfo {
   getUserInfo {
@@ -1011,36 +1098,3 @@ export function useUpdateUserMutation(baseOptions?: ApolloReactHooks.MutationHoo
 export type UpdateUserMutationHookResult = ReturnType<typeof useUpdateUserMutation>;
 export type UpdateUserMutationResult = ApolloReactCommon.MutationResult<UpdateUserMutation>;
 export type UpdateUserMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateUserMutation, UpdateUserMutationVariables>;
-export const UsersDocument = gql`
-    query Users {
-  users {
-    id
-    email
-  }
-}
-    `;
-
-/**
- * __useUsersQuery__
- *
- * To run a query within a React component, call `useUsersQuery` and pass it any options that fit your needs.
- * When your component renders, `useUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useUsersQuery({
- *   variables: {
- *   },
- * });
- */
-export function useUsersQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<UsersQuery, UsersQueryVariables>) {
-        return ApolloReactHooks.useQuery<UsersQuery, UsersQueryVariables>(UsersDocument, baseOptions);
-      }
-export function useUsersLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<UsersQuery, UsersQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<UsersQuery, UsersQueryVariables>(UsersDocument, baseOptions);
-        }
-export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
-export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
-export type UsersQueryResult = ApolloReactCommon.QueryResult<UsersQuery, UsersQueryVariables>;

@@ -70,11 +70,27 @@
       "currency": "Your currency",
       "submitButtonLabel": "Save",
       "submittingLabel": "Saving...",
-      "email": "Email"
+      "email": "Email",
+      "category": "Category"
     }
   },
+  "expenseTable": {
+    "amount": "Amount",
+    "name": "Name",
+    "description": "Description",
+    "date": "Date",
+    "category": "Category",
+    "id": "ID",
+    "title": "Expense History",
+    "pageDescription": "Find out your expense history.",
+    "backHome": "Back Home"
+  },
   "messages": {
-    "accountInfoUpdated": "Account succesfully updated."
+    "accountInfoUpdated": "Account succesfully updated.",
+    "expenseDelete": "Expense removal",
+    "expenseDeleteDescription": "Your expense will be deleted forever. Are you sure?",
+    "expenseDeleted": "Expense successfully deleted.",
+    "serverError": "Server error."
   },
   "errors": {
     "invalidEmail": "It seems like you have entered invalid email. Please, verify and check one more time.",

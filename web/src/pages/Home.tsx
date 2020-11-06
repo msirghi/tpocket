@@ -13,7 +13,6 @@ import { TwoRowButtons } from '../components/buttons/TwoRowButtons';
 import CategoryIcon from '@material-ui/icons/Category';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import { CustomBarChart } from '../components/charts/CustomBarChart';
-import { ExpenseTable } from '../components/tables/ExpenseTable';
 import { StatisticCard } from '../components/cards/StatisticCard';
 import { NoHomeData } from '../components/alerts/NoHomeData';
 import { useHistory } from 'react-router-dom';
@@ -122,7 +121,7 @@ export const Home: React.FC = () => {
           </div>
 
           <div className={'expense-chart'}>
-            <CustomPieChart mostUsedCategoryHandler={mostUsedCategoryHandler} />
+            <CustomPieChart expenseData={data} mostUsedCategoryHandler={mostUsedCategoryHandler} />
             <div className={'row mt-5rem home-cards'}>
               {monthlyStatistics && (
                 <>
@@ -144,10 +143,6 @@ export const Home: React.FC = () => {
               )}
             </div>
           </div>
-        </div>
-
-        <div className={'expense-table m-15'}>
-          <ExpenseTable />
         </div>
       </div>
     </>

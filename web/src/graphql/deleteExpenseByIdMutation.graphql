@@ -1,0 +1,3 @@
+mutation deleteExpenseById($id: Float!) {
+	deleteExpenseById(id: $id)
+}

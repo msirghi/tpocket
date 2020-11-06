@@ -1,14 +1,22 @@
-import { Arg, Ctx, Field, Mutation, ObjectType, Query, Resolver, UseMiddleware } from "type-graphql";
-import { Expense } from "../entity/Expense";
-import { isAuthMiddleware } from "../isAuthMiddleware";
-import { Category } from "../entity/Category";
-import { CATEGORY_NOT_FOUND, NOT_FOUND } from "../constants/error.constants";
-import { MyContext } from "../MyContext";
-import { getConnection, In } from "typeorm";
+import {
+  Arg,
+  Ctx,
+  Field,
+  Mutation,
+  ObjectType,
+  Query,
+  Resolver,
+  UseMiddleware
+} from 'type-graphql';
+import { Expense } from '../entity/Expense';
+import { isAuthMiddleware } from '../isAuthMiddleware';
+import { Category } from '../entity/Category';
+import { CATEGORY_NOT_FOUND, NOT_FOUND, SERVER_ERROR } from '../constants/error.constants';
+import { MyContext } from '../MyContext';
+import { getConnection, In } from 'typeorm';
 
 @ObjectType()
 class ExpenseResponse {
-
   @Field()
   category: Category;
 
@@ -18,12 +26,9 @@ class ExpenseResponse {
 
 @Resolver()
 export class ExpenseResolver {
-
   @Mutation(() => Boolean)
   @UseMiddleware(isAuthMiddleware)
-  async deleteExpenseById(
-    @Arg('id') id: number
-  ) {
+  async deleteExpenseById(@Arg('id') id: number) {
     await this.getExpenseById(id);
 
     await getConnection()
@@ -37,10 +42,7 @@ export class ExpenseResolver {
 
   @Mutation(() => Boolean)
   @UseMiddleware(isAuthMiddleware)
-  async updateExpenseById(
-    @Arg('amount') amount: number,
-    @Arg('id') id: number
-  ) {
+  async updateExpenseById(@Arg('amount') amount: number, @Arg('id') id: number) {
     await this.getExpenseById(id);
 
     await getConnection()
@@ -54,9 +56,7 @@ export class ExpenseResolver {
 
   @Query(() => Expense)
   @UseMiddleware(isAuthMiddleware)
-  async getExpenseById(
-    @Arg('id') id: number
-  ) {
+  async getExpenseById(@Arg('id') id: number) {
     const expense = await Expense.findOne({ where: { id } });
 
     if (!expense) {
@@ -67,13 +67,11 @@ export class ExpenseResolver {
 
   @Query(() => [ExpenseResponse])
   @UseMiddleware(isAuthMiddleware)
-  async getAllUserExpenses(
-    @Ctx() { payload }: MyContext
-  ) {
+  async getAllUserExpenses(@Ctx() { payload }: MyContext) {
     const allCategories = await Category.find({ where: { user: payload?.userId } });
     const ids: Array<number> = [];
 
-    allCategories.forEach(category => ids.push(+category.id));
+    allCategories.forEach((category) => ids.push(+category.id));
 
     const allExpenses = await Expense.find({
       where: { category: In(ids) }
@@ -81,12 +79,12 @@ export class ExpenseResolver {
 
     const result: Array<ExpenseResponse> = [];
 
-    allExpenses.forEach(value => {
+    allExpenses.forEach((value) => {
       result.push({
         expense: value,
-        category: allCategories.find(category => category.id === value.category.id)!
-      })
-    })
+        category: allCategories.find((category) => category.id === value.category.id)!
+      });
+    });
     return result;
   }
 
@@ -108,5 +106,35 @@ export class ExpenseResolver {
       expense: { id: result.identifiers[0].id, amount },
       category
     };
+  }
+
+  @Query(() => [ExpenseResponse])
+  @UseMiddleware(isAuthMiddleware)
+  async getLastUserExpenses(@Ctx() { payload }: MyContext) {
+    let allCategories;
+    try {
+      allCategories = await Category.find({ where: { user: payload?.userId } });
+    } catch (e) {
+      throw new Error(SERVER_ERROR);
+    }
+    const ids: Array<number> = [];
+
+    allCategories.forEach((category) => ids.push(+category.id));
+
+    const allExpenses = await Expense.find({
+      where: { category: In(ids) }
+    });
+
+    const result: Array<ExpenseResponse> = [];
+
+    allExpenses.forEach((value) => {
+      if (result.length <= 5) {
+        result.push({
+          expense: value,
+          category: allCategories.find((category) => category.id === value.category.id)!
+        });
+      }
+    });
+    return result;
   }
 }
